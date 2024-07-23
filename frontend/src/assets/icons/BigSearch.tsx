@@ -1,4 +1,4 @@
-export function BigSearch() {
+export default function BigSearch() {
   return (
     <svg
       width="167"

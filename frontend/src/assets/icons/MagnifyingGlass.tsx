@@ -1,4 +1,4 @@
-export function MagnifyingGlass() {
+export default function MagnifyingGlass() {
   return (
     <svg
       width="32"

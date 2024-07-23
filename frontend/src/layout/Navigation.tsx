@@ -1,11 +1,13 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { User } from '@/assets/icons/User.tsx';
-import { MagnifyingGlass } from '@/assets/icons/MagnifyingGlass.tsx';
-import { Plus } from '@/assets/icons/Plus.tsx';
-import { Archive } from '@/assets/icons/Archive.tsx';
-import { House } from '@/assets/icons/House';
+import {
+  User as UserLogo,
+  MagnifyingGlass,
+  Plus,
+  Archive,
+  House,
+} from '@/assets/icons/';
 
 interface NavItem {
   text?: string;
@@ -37,7 +39,7 @@ export default function Navigation() {
     {
       text: '마이',
       path: '/mypage',
-      icon: <User />,
+      icon: <UserLogo />,
     },
   ];
 

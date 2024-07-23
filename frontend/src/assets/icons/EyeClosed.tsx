@@ -1,4 +1,4 @@
-export function EyeClosed() {
+export default function EyeClosed() {
   return (
     <svg
       width="32"

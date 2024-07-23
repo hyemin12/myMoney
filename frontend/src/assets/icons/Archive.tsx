@@ -1,4 +1,4 @@
-export function Archive() {
+export default function Archive() {
   return (
     <svg
       width="32"

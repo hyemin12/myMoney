@@ -1,4 +1,4 @@
-export function Baby() {
+export default function Baby() {
   return (
     <svg
       width="32"

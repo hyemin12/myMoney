@@ -1,4 +1,4 @@
-export function ShieldWarning() {
+export default function ShieldWarning() {
   return (
     <svg
       width="32"

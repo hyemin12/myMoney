@@ -1,4 +1,4 @@
-export function Oven() {
+export default function Oven() {
   return (
     <svg
       width="32"

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Attention } from '@/assets/icons/Attention';
+import { Attention } from '@/assets/icons';
 import { ErrorContainer } from './ErrorTemplate.style';
 
 interface ErrorTemplateProps {

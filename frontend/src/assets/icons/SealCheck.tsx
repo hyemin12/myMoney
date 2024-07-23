@@ -1,4 +1,4 @@
-export function SealCheck() {
+export default function SealCheck() {
   return (
     <svg
       width="32"

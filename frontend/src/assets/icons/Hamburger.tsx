@@ -1,4 +1,4 @@
-export function Hamburger() {
+export default function Hamburger() {
   return (
     <svg
       width="32"

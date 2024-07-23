@@ -1,4 +1,4 @@
-export function SignOut() {
+export default function SignOut() {
   return (
     <svg
       width="32"

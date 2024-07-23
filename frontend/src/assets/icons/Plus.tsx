@@ -1,4 +1,4 @@
-export function Plus() {
+export default function Plus() {
   return (
     <svg
       width="32"

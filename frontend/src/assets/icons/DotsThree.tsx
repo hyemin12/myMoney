@@ -1,4 +1,4 @@
-export function DotsThree() {
+export default function DotsThree() {
   return (
     <svg
       width="32"

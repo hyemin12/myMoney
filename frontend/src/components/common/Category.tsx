@@ -1,21 +1,24 @@
 import styled from 'styled-components';
-import { useCategory } from '@/hooks/useCategory';
+import { useSearchParams } from 'react-router-dom';
 
-import { Armchair } from '@/assets/icons/Armchair';
-import { HairDryer } from '@/assets/icons/HairDryer';
-import { Hamburger } from '@/assets/icons/Hamburger';
-import { MapPin } from '@/assets/icons/MapPin';
-import { TShirt } from '@/assets/icons/TShirt';
-import { Devices } from '@/assets/icons/Devices';
-import { Oven } from '@/assets/icons/Oven';
-import { FilmSlate } from '@/assets/icons/FilmSlate';
-import { DotsThree } from '@/assets/icons/DotsThree';
-import CategoryButton from './CategoryButton';
+import {
+  Armchair,
+  HairDryer,
+  Hamburger,
+  MapPin,
+  TShirt,
+  Devices,
+  Oven,
+  FilmSlate,
+  DotsThree,
+} from '@/assets/icons';
+
 import CheckImg from '@/assets/images/logo32x32.png';
+import CategoryButton from './CategoryButton';
 import { ICategoryItem } from '@/models/category.model';
 import Loading from './Loading';
+import { useCategory } from '@/hooks/useCategory';
 import { LoadingContainer } from '../Admin/AdminContent';
-import { useSearchParams } from 'react-router-dom';
 
 const assetMap = {
   디지털: <Devices />,

@@ -1,4 +1,4 @@
-export function MapPin() {
+export default function MapPin() {
   return (
     <svg
       width="32"

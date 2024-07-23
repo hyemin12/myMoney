@@ -1,4 +1,4 @@
-export function Devices() {
+export default function Devices() {
   return (
     <svg
       width="32"

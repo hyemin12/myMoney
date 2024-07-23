@@ -1,4 +1,4 @@
-export function Armchair() {
+export default function Armchair() {
   return (
     <svg
       width="32"

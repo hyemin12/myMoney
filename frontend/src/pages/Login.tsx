@@ -8,7 +8,7 @@ import LoginForm from '@/components/Login/LoginForm';
 import AuthOptions from '@/components/common/AuthOptions';
 import { IUserLogin } from '@/models/user.model';
 import Icon from '@/components/common/Icon';
-import { TextLogo } from '@/assets/icons/textLogo';
+import { TextLogo } from '@/assets/icons';
 import { useAuth } from '@/hooks/useAuth';
 import { withUnauthenticatedUser } from '@/components/hocs/withUnauthenticatedUser';
 

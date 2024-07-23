@@ -1,4 +1,4 @@
-export function Link() {
+export default function Link() {
   return (
     <svg
       width="32"

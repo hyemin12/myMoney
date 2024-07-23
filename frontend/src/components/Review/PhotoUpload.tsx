@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
-import { Camera } from '@/assets/icons/Camera';
+
+import { Camera, X } from '@/assets/icons';
 import { convertToBase64 } from '@/utils/base64';
-import { X } from '@/assets/icons/X';
 import Icon from '../common/Icon';
 
 interface PhotoUploadProps {

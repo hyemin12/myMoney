@@ -1,4 +1,4 @@
-export function PencilSimple() {
+export default function PencilSimple() {
   return (
     <svg
       width="32"

@@ -1,10 +1,12 @@
+import { useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { AiFillStar } from 'react-icons/ai';
+
 import Icon from '../common/Icon';
 import Like from './Like';
-import { Siren } from '@/assets/icons/Siren';
+import { Siren, PencilSimple, Trash } from '@/assets/icons';
 import { IReviewDetail } from '@/models/review.model';
-import { AiFillStar } from 'react-icons/ai';
 import { useReviewDetail } from '@/hooks/useReviewDetail';
-import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Badge } from '../common/ReviewItem.style';
 import BadgeImg from '@/assets/images/badge-img.png';
 import {
@@ -15,11 +17,8 @@ import {
   AuthorContainer,
 } from './ReviewContent.style';
 import { formatDate } from '@/utils/format';
-import { PencilSimple } from '@/assets/icons/PencilSimple';
-import { Trash } from '@/assets/icons/Trash';
 import useAuthStore from '@/store/auth.store';
 import Modal from '../common/Modal';
-import { useState } from 'react';
 import {
   MODAL_TYPES,
   MODAL_TITLE,
@@ -67,18 +66,15 @@ function ReviewContent() {
   const navigate = useNavigate();
   const { isLoggedIn } = useAuthStore();
   const [modalType, setModalType] = useState('');
-  const [selectedOption, setSelectedOption] = useState<string>('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   if (!review) return null;
 
   const openModal = () => {
     setIsModalOpen(true);
-    setSelectedOption('');
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
-    setSelectedOption('');
   };
 
   const handleUpdate = () => {

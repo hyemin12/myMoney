@@ -1,4 +1,4 @@
-export function Question() {
+export default function Question() {
   return (
     <svg
       width="32"

@@ -1,4 +1,4 @@
-export function X() {
+export default function X() {
   return (
     <svg
       width="32"

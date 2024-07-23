@@ -5,8 +5,7 @@ import styled from 'styled-components';
 
 import Input from '../common/Input';
 import { CancelIcon, ISearchForm } from '@/pages/Search';
-import { MagnifyingGlass } from '@/assets/icons/MagnifyingGlass';
-import { SmallX } from '@/assets/icons/SmallX';
+import { MagnifyingGlass, SmallX } from '@/assets/icons';
 
 interface SearchInputBoxProps {
   onSubmit: (data: ISearchForm) => void;

@@ -1,5 +1,6 @@
-import { BigSearch } from '@/assets/icons/BigSearch';
 import styled from 'styled-components';
+
+import { BigSearch } from '@/assets/icons';
 
 interface NoRecentSearchResultProps {
   text: string;

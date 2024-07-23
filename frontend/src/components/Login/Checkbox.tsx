@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Checked } from '@/assets/icons/Checked';
+import { Checked } from '@/assets/icons';
 import Icon from '../common/Icon';
 
 interface CheckboxProps {

@@ -1,4 +1,4 @@
-export function Camera() {
+export default function Camera() {
   return (
     <svg
       width="32"

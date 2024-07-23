@@ -1,4 +1,4 @@
-export function SmallX() {
+export default function SmallX() {
   return (
     <svg
       width="16"

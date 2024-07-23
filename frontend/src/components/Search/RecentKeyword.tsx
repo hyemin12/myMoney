@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import NoRecentSearchResult from './NoRecentSearchResult';
 import { IRecentKeywordKey, RecentKeywordCancelIcon } from '@/pages/Search';
-import { SmallX } from '@/assets/icons/SmallX';
+import { SmallX } from '@/assets/icons';
 
 interface IRecentKeywordProps {
   keywords: IRecentKeywordKey[];

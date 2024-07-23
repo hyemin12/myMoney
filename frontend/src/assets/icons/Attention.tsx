@@ -1,4 +1,4 @@
-export function Attention() {
+export default function Attention() {
   return (
     <svg
       width="80"

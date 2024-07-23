@@ -1,4 +1,4 @@
-export function HairDryer() {
+export default function HairDryer() {
   return (
     <svg
       width="32"

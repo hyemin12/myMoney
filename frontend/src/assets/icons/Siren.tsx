@@ -1,4 +1,4 @@
-export function Siren() {
+export default function Siren() {
   return (
     <svg
       width="32"

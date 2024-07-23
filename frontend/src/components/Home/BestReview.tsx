@@ -1,9 +1,9 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+
 import { Badge } from '@/components/common/ReviewItem.style';
 import BadgeImg from '@/assets/images/badge-img.png';
-import { Star } from '@/assets/icons/Star';
-import { LightStar } from '@/assets/icons/LightStar';
-import { Link } from 'react-router-dom';
+import { Star, LightStar } from '@/assets/icons';
 
 interface Props {
   id: number;

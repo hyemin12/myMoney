@@ -1,4 +1,4 @@
-export function Trash() {
+export default function Trash() {
   return (
     <svg
       width="32"

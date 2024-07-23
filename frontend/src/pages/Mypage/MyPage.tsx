@@ -1,14 +1,9 @@
-import React from 'react';
 import styled from 'styled-components';
 import Layout from '@/layout/Layout';
 import { useNavigate } from 'react-router-dom';
+
+import { Archive, Baby, Heart, Question, SignOut, Siren } from '@/assets/icons';
 import { useAuth } from '@/hooks/useAuth';
-import { Archive } from '@/assets/icons/Archive';
-import { Baby } from '@/assets/icons/Baby';
-import { Heart } from '@/assets/icons/Heart';
-import { Question } from '@/assets/icons/Question';
-import { SignOut } from '@/assets/icons/SignOut';
-import { Siren } from '@/assets/icons/Siren';
 import { useUser } from '@/hooks/useUser';
 import { withAuthenticatedUser } from '@/components/hocs/withAuthenticatedUser';
 import Loading from '@/components/common/Loading';

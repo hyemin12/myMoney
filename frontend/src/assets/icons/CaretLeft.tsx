@@ -1,4 +1,4 @@
-export function CaretLeft() {
+export default function CaretLeft() {
   return (
     <svg
       width="32"

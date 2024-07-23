@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import AdminContent from '@/components/Admin/AdminContent';
 import AdminLayout from '@/components/Admin/AdminLayout';
 import AdminTable, { TableHeadItem } from '@/components/Admin/AdminTable';
-import { Image } from '@/assets/icons/Image';
+import { Image } from '@/assets/icons';
 import Icon from '@/components/common/Icon';
 import { withAdminAuthenticatedUser } from '@/components/hocs/withAdminAuthenticatedUser';
 import { useAdmin } from '@/hooks/useAdmin';

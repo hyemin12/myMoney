@@ -1,4 +1,4 @@
-export function User() {
+export default function User() {
   return (
     <svg
       width="32"

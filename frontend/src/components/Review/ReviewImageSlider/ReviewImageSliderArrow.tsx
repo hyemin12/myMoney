@@ -1,5 +1,4 @@
-import { CaretLeft } from '@/assets/icons/CaretLeft';
-import { CaretRight } from '@/assets/icons/CaretRight';
+import { CaretLeft, CaretRight } from '@/assets/icons';
 
 export const PrevArrow = (props: any) => {
   const { className, style, onClick } = props;

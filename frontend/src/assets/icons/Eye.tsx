@@ -1,6 +1,4 @@
-import React from 'react';
-
-export function Eye() {
+export default function Eye() {
   return (
     <svg
       width="32"

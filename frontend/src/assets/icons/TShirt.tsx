@@ -1,4 +1,4 @@
-export function TShirt() {
+export default function TShirt() {
   return (
     <svg
       width="32"

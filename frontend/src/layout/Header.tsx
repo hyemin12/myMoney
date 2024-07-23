@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-import { CaretLeft } from '@/assets/icons/CaretLeft';
-import { TextLogo } from '@/assets/icons/textLogo';
+import { CaretLeft, TextLogo } from '@/assets/icons';
 import { handleGoAdmin, handleGoBack } from '@/utils/routingUtils';
 import useAuthStore from '@/store/auth.store';
 

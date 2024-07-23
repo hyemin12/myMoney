@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import Dropdown from './Dropdown';
-import { DotsThree } from '@/assets/icons/DotsThree';
+import { DotsThree } from '@/assets/icons';
 import BadgeImg from '@/assets/images/badge-img.png';
 import {
   Badge,

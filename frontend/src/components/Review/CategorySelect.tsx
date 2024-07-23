@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import Dropdown from '@/components/common/Dropdown';
-import CaretDown from '@/assets/icons/CaretDown';
+import { CaretDown } from '@/assets/icons';
 
 interface CategoryOption {
   id: number;
@@ -19,7 +20,6 @@ function CategorySelector({
   selectedCategoryId,
   setSelectedCategoryId,
 }: CategorySelectorProps) {
-  
   const handleSelectCategory = (id: number) => {
     setSelectedCategoryId(id);
   };
@@ -27,7 +27,8 @@ function CategorySelector({
   return (
     <CategoryContainer>
       <p>
-        {categoryOptions.find((category) => category.id === selectedCategoryId)?.name || 'Select Category'}
+        {categoryOptions.find((category) => category.id === selectedCategoryId)
+          ?.name || 'Select Category'}
       </p>
 
       <Dropdown

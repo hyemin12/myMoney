@@ -1,17 +1,19 @@
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
+import {
+  Link as LinkIcon,
+  User as UserIcon,
+  ReceiptAuthentication,
+  TextLogo,
+} from '@/assets/icons';
 import AdminNavItem, { AdminNavItemProps } from './AdminNavItem';
-import { Link as LinkIcon } from '@/assets/icons/Link';
-import { User } from '@/assets/icons/User';
-import { ReceiptAuthentication } from '@/assets/icons/ReceiptAuthentication';
-import { TextLogo } from '@/assets/icons/textLogo';
 
 const adminNav: AdminNavItemProps[] = [
   {
     path: '/admin/report-user',
     name: '신고된 사용자 관리',
-    icon: <User />,
+    icon: <UserIcon />,
   },
   {
     path: '/admin/unverified-reviews',

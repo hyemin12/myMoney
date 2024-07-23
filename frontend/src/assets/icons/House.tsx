@@ -1,4 +1,4 @@
-export function House() {
+export default function House() {
   return (
     <svg
       width="32"
