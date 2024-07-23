@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useReview } from '@/hooks/useReview';
+
 import Header from '@/layout/Header';
-import ReviewForm from '@/components/Review/ReviewForm';
+import { ReviewForm } from '@/components/Review';
 import { FormStyled } from './EditReview';
 
 function CreateReview() {
@@ -56,4 +57,3 @@ function CreateReview() {
 }
 
 export default CreateReview;
-

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import Icon from '../common/Icon';
+import { Icon } from '@/components/common';
 
 export interface AdminNavItemProps {
   icon: JSX.Element;

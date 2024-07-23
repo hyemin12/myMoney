@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import Button from '../common/Button';
+import { Button } from '@/components/common';
 import { useAuth } from '@/hooks/useAuth';
 
 function AdminHeader() {

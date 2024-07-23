@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { Attention } from '@/assets/icons';
+import { Icon } from '@/components/common';
 import AdminSidebar from './AdminSidebar';
 import AdminHeader from './AdminHeader';
-import Icon from '../common/Icon';
 
 interface AdminLayoutProps {
   children: React.ReactNode;

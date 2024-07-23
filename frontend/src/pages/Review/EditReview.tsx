@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useReview } from '@/hooks/useReview';
-import Header from '@/layout/Header';
-import ReviewForm from '../../components/Review/ReviewForm';
 import styled from 'styled-components';
+
+import Header from '@/layout/Header';
+import { ReviewForm } from '@/components/Review';
+import { useReview } from '@/hooks/useReview';
 
 function EditReview() {
   const { id } = useParams<{ id: string }>();
@@ -16,7 +17,6 @@ function EditReview() {
   const [selectedCategoryId, setSelectedCategoryId] = useState<number>(1);
   const [receiptImg, setReceiptImg] = useState<string>('');
   const [photoToAddList, setPhotoToAddList] = useState<string[]>([]);
-
 
   const isFormValid =
     title.trim() !== '' &&

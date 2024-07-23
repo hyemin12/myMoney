@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
 import styled from 'styled-components';
+
+import 'react-quill/dist/quill.snow.css';
 
 interface CreateContentProps {
   content: string;
@@ -60,7 +61,6 @@ const CharacterCount = styled.div`
   font-size: 12px;
   text-align: end;
 `;
-
 
 const modules = {
   toolbar: {
