@@ -15,6 +15,7 @@ import CheckImg from '@/assets/images/logo32x32.png';
 import { ICategoryItem } from '@/models/category.model';
 import Loading from './Loading';
 import { LoadingContainer } from '../Admin/AdminContent';
+import { useSearchParams } from 'react-router-dom';
 
 const assetMap = {
   디지털: <Devices />,
@@ -31,6 +32,8 @@ const assetMap = {
 
 function Category() {
   const { categoryList, isLoading } = useCategory();
+  const [searchParams] = useSearchParams();
+  const categoryId = searchParams.get('categoryId');
   if (isLoading) {
     return (
       <LoadingContainer>
@@ -51,7 +54,11 @@ function Category() {
     <CategoryStyle>
       <div className="items">
         {categories.map((category) => (
-          <CategoryButton key={category.categoryId} {...category} />
+          <CategoryButton
+            key={category.categoryId}
+            {...category}
+            isActive={parseInt(categoryId!) === category.categoryId}
+          />
         ))}
       </div>
     </CategoryStyle>

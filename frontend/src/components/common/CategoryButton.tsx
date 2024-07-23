@@ -1,13 +1,22 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Button from './Button';
 import { ICategoryItem } from '@/models/category.model';
-import React from 'react';
 
-function CategoryButton({ categoryId, element, categoryName }: ICategoryItem) {
+interface CategoryButtonProps extends ICategoryItem {
+  isActive: boolean;
+}
+
+function CategoryButton({
+  categoryId,
+  element,
+  categoryName,
+  isActive,
+}: CategoryButtonProps) {
   return (
-    <CategoryButtonStyle className="item" key={categoryId}>
+    <CategoryButtonStyle className="item" key={categoryId} isActive={isActive}>
       <StyledLink
         to={{
           pathname: '/list',
@@ -33,7 +42,7 @@ function CategoryButton({ categoryId, element, categoryName }: ICategoryItem) {
   );
 }
 
-const CategoryButtonStyle = styled.div`
+const CategoryButtonStyle = styled.div<{ isActive: boolean }>`
   grid-column: span 1;
   display: flex;
   justify-content: center;
@@ -55,6 +64,23 @@ const CategoryButtonStyle = styled.div`
     height: 55px;
     margin-bottom: 4px;
   }
+
+  // isActive가 true일 때만 적용할 스타일
+  ${({ isActive, theme }) =>
+    isActive &&
+    `
+    button {
+      background-color: ${theme.color.primary};
+      svg {
+        fill: #eee;
+        path {
+          fill: inherit;
+        }
+      }
+    }
+    p {
+      color: ${theme.color.primary};
+    }`}
 `;
 
 const StyledLink = styled(Link)`
