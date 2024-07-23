@@ -1,13 +1,12 @@
-import styled from 'styled-components';
-import Button from '../common/Button';
-import { TCommentItemWrite } from '@/models/comment.model';
-import { useForm } from 'react-hook-form';
-import Input from '../common/Input';
-import useAuthStore from '@/store/auth.store';
-import Modal from '../common/Modal';
 import { useState } from 'react';
-import { MODAL_BTNTEXT, MODAL_TITLE } from '@/constance/modalString';
 import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import styled from 'styled-components';
+
+import { Button, Input, Modal } from '@/components/common';
+import { TCommentItemWrite } from '@/models/comment.model';
+import useAuthStore from '@/store/auth.store';
+import { MODAL_BTNTEXT, MODAL_TITLE } from '@/constance/modalString';
 
 interface Props {
   onAdd: (data: TCommentItemWrite) => void;

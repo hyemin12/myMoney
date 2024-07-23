@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Loading from '../common/Loading';
+
+import { Loading } from '@/components/common/';
 
 interface AdminContentProps {
   title: string;

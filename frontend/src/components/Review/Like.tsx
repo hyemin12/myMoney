@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
-import Icon from '../common/Icon';
+import { Icon } from '@/components/common';
 import { theme } from '@/style/theme';
 
 interface Props {

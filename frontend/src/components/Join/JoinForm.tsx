@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Button from '../common/Button';
-import AlertText from '../common/AlertText';
+import { Button, AlertText } from '@/components/common';
 
 interface JoinFormProps {
   children: React.ReactNode;

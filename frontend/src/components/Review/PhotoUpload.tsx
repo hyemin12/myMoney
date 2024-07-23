@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { Camera, X } from '@/assets/icons';
 import { convertToBase64 } from '@/utils/base64';
-import Icon from '../common/Icon';
+import { Icon } from '@/components/common';
 
 interface PhotoUploadProps {
   photoToAddList: string[];

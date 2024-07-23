@@ -3,7 +3,7 @@ import { UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-import Input from '../common/Input';
+import { Input } from '@/components/common';
 import { CancelIcon, ISearchForm } from '@/pages/Search';
 import { MagnifyingGlass, SmallX } from '@/assets/icons';
 

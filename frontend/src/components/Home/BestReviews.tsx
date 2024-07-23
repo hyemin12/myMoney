@@ -1,10 +1,9 @@
+import { ReactNode } from 'react';
 import styled from 'styled-components';
 
-import ImageSlide from '../common/ImageSlide';
+import { ImageSlide, Loading } from '@/components/common';
 import BestReview from './BestReview';
 import { LoadingContainer } from '../Admin/AdminContent';
-import Loading from '../common/Loading';
-import { ReactNode } from 'react';
 import { IResponseReviews } from '@/pages/Home';
 
 interface Props {

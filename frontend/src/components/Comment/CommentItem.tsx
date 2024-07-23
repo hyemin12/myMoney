@@ -1,11 +1,11 @@
+import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+
 import { IComment } from '@/models/comment.model';
 import { formatDate } from '@/utils/format';
-import Button from '../common/Button';
-import { useState } from 'react';
+import { Button, Modal } from '@/components/common';
 import useComments from '@/hooks/useComment';
-import { useParams } from 'react-router-dom';
-import Modal from '../common/Modal';
 import useAuthStore from '@/store/auth.store';
 import { MODAL_BTNTEXT, MODAL_TITLE } from '@/constance/modalString';
 

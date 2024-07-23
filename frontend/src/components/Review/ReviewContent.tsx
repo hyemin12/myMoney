@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { AiFillStar } from 'react-icons/ai';
 
-import Icon from '../common/Icon';
-import Like from './Like';
 import { Siren, PencilSimple, Trash } from '@/assets/icons';
+import { Icon, Modal } from '@/components/common';
+import Like from './Like';
 import { IReviewDetail } from '@/models/review.model';
 import { useReviewDetail } from '@/hooks/useReviewDetail';
 import { Badge } from '../common/ReviewItem.style';
@@ -18,7 +18,6 @@ import {
 } from './ReviewContent.style';
 import { formatDate } from '@/utils/format';
 import useAuthStore from '@/store/auth.store';
-import Modal from '../common/Modal';
 import {
   MODAL_TYPES,
   MODAL_TITLE,

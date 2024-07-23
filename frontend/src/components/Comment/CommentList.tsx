@@ -1,10 +1,10 @@
-import React from 'react';
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
+
 import CommentAdd from './CommentAdd';
 import CommentItem from './CommentItem';
-import { useParams } from 'react-router-dom';
+import { Loading } from '@/components/common';
 import useComments from '@/hooks/useComment';
-import Loading from '../common/Loading';
 import { IComment } from '@/models/comment.model';
 
 function CommentList() {

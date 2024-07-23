@@ -1,7 +1,8 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
+
 import { convertToBase64 } from '@/utils/base64';
-import Button from '../common/Button';
+import { Button } from '@/components/common';
 
 interface PhotoUploadProps {
   receiptImg: string;
@@ -34,7 +35,11 @@ function ReceiptUpload({ receiptImg, setReceiptImg }: PhotoUploadProps) {
         onChange={handleFileChange}
       />
       <ButtonContainer onClick={handleClick}>
-        <Button size="medium" scheme={receiptImg === '' ? 'disabled' : 'primary'} $fullWidth={true}>
+        <Button
+          size="medium"
+          scheme={receiptImg === '' ? 'disabled' : 'primary'}
+          $fullWidth={true}
+        >
           영수증 리뷰 인증
         </Button>
       </ButtonContainer>
