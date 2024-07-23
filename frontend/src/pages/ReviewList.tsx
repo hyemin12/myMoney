@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
-import ReviewList, { Title } from '@/components/common/ReviewList';
-import { useReviews } from '@/hooks/useReviews';
 import Layout from '@/layout/Layout';
-import Category from '@/components/common/Category';
+import { ReviewList, Category } from '@/components/common';
+import { useReviews } from '@/hooks/useReviews';
 
 function ReviewListPage() {
   const {

@@ -3,11 +3,11 @@ import Layout from '@/layout/Layout';
 import { useNavigate } from 'react-router-dom';
 
 import { Archive, Baby, Heart, Question, SignOut, Siren } from '@/assets/icons';
+import { Loading } from '@/components/common';
+import { withAuthenticatedUser } from '@/components/hocs/withAuthenticatedUser';
+import { LoadingContainer } from '@/components/Admin/AdminContent';
 import { useAuth } from '@/hooks/useAuth';
 import { useUser } from '@/hooks/useUser';
-import { withAuthenticatedUser } from '@/components/hocs/withAuthenticatedUser';
-import Loading from '@/components/common/Loading';
-import { LoadingContainer } from '@/components/Admin/AdminContent';
 
 function MyPage() {
   const navigate = useNavigate();

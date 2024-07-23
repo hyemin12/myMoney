@@ -1,11 +1,9 @@
-import React from 'react';
 import Layout from '@/layout/Layout';
 import { useLikedReviews } from '@/hooks/useLikedReviews';
-import ReviewList from '@/components/common/ReviewList';
+import { ReviewList } from '@/components/common';
 
 const LikedReviews = () => {
   const { data, isLoading, fetchNextPage, hasNextPage } = useLikedReviews();
-  console.log(data);
 
   return (
     <Layout showBackButton={true} title="좋아요 누른 리뷰">

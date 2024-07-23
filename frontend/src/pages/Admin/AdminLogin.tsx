@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import LoginForm from '@/components/Login/LoginForm';
 import { IUserLogin } from '@/models/user.model';
-import AuthOptions from '@/components/common/AuthOptions';
+import { AuthOptions } from '@/components/common';
 import { useAuth } from '@/hooks/useAuth';
 
 function AdminLogin() {

@@ -1,6 +1,6 @@
 import { AdminLayout, AdminContent, AdminTable } from '@/components/Admin';
 import { TableHeadItem } from '@/components/Admin/AdminTable';
-import Button from '@/components/common/Button';
+import { Button } from '@/components/common';
 import { withAdminAuthenticatedUser } from '@/components/hocs/withAdminAuthenticatedUser';
 import { useAdmin } from '@/hooks/useAdmin';
 import { ISuspendedUsers } from '@/models/admin.model';

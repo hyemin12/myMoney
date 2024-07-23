@@ -4,13 +4,12 @@ import { useForm } from 'react-hook-form';
 import { useCookies } from 'react-cookie';
 import styled from 'styled-components';
 
-import LoginForm from '@/components/Login/LoginForm';
-import AuthOptions from '@/components/common/AuthOptions';
-import { IUserLogin } from '@/models/user.model';
-import Icon from '@/components/common/Icon';
 import { TextLogo } from '@/assets/icons';
-import { useAuth } from '@/hooks/useAuth';
+import LoginForm from '@/components/Login/LoginForm';
+import { AuthOptions, Icon } from '@/components/common';
 import { withUnauthenticatedUser } from '@/components/hocs/withUnauthenticatedUser';
+import { IUserLogin } from '@/models/user.model';
+import { useAuth } from '@/hooks/useAuth';
 
 function Login() {
   const [cookies] = useCookies(['email']);

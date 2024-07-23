@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Dropdown from '@/components/common/Dropdown';
+import { Dropdown } from '@/components/common';
 import { CaretDown } from '@/assets/icons';
 
 interface CategoryOption {

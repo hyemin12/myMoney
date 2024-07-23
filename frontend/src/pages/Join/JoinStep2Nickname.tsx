@@ -1,14 +1,13 @@
 import { useForm } from 'react-hook-form';
 
-import JoinTemplate from '@/components/Join/JoinTemplate';
-import AlertText from '@/components/common/AlertText';
 import Layout from '@/layout/Layout';
+import JoinTemplate from '@/components/Join/JoinTemplate';
+import { AlertText, Input } from '@/components/common';
+import { withUnauthenticatedUser } from '@/components/hocs/withUnauthenticatedUser';
 import { IUserRegistration } from '@/models/user.model';
 import { VALIDATE } from '@/constance/validate';
-import Input from '@/components/common/Input';
 import useUserRegistrationStore from '@/store/user.registration.store';
 import { useAuth } from '@/hooks/useAuth';
-import { withUnauthenticatedUser } from '@/components/hocs/withUnauthenticatedUser';
 
 const JoinStep2Nickname = () => {
   const { errorMessage, userCheckedNickname } = useAuth();

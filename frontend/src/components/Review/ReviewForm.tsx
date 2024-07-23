@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+
 import PhotoUpload from '@/components/Review/PhotoUpload';
 import StarRating from '@/components/Review/StarRating';
 import ReceiptUpload from '@/components/Review/ReceiptUpload';
 import CategorySelector from '@/components/Review/CategorySelect';
 import CreateContent from '@/components/Review/CreateContent';
-import Input from '@/components/common/Input';
-import Button from '@/components/common/Button';
-import { useNavigate } from 'react-router-dom';
+import { Input, Button } from '@/components/common';
 import useAuthStore from '@/store/auth.store';
 import { useCategory } from '@/hooks/useCategory';
 

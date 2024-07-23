@@ -1,11 +1,9 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import Layout from '@/layout/Layout';
-import ReviewList from '@/components/common/ReviewList';
-
-import Category from '@/components/common/Category';
+import { ReviewList, Category } from '@/components/common';
 import BestReviews from '@/components/Home/BestReviews';
-import { useEffect, useState } from 'react';
 import { fetchReviews } from '@/api/review.api';
 
 export interface IResponseReviews {

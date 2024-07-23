@@ -1,11 +1,9 @@
 import { useLocation } from 'react-router-dom';
 import { UseFormRegister } from 'react-hook-form';
 
-import AlertText from '@/components/common/AlertText';
+import { AlertText, Button, Input } from '@/components/common';
 import Checkbox from './Checkbox';
-import Button from '../common/Button';
 import { IUserLogin } from '@/models/user.model';
-import Input from '../common/Input';
 import {
   FindPassword,
   FormStyle,

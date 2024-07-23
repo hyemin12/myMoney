@@ -3,14 +3,12 @@ import styled from 'styled-components';
 
 import Layout from '@/layout/Layout';
 import JoinTemplate from '@/components/Join/JoinTemplate';
-import AuthOptions from '@/components/common/AuthOptions';
-import AlertText from '@/components/common/AlertText';
+import { AuthOptions, AlertText, Input } from '@/components/common';
+import { withUnauthenticatedUser } from '@/components/hocs/withUnauthenticatedUser';
 import { IUserRegistration } from '@/models/user.model';
 import { VALIDATE } from '@/constance/validate';
-import Input from '@/components/common/Input';
 import useUserRegistrationStore from '@/store/user.registration.store';
 import { useAuth } from '@/hooks/useAuth';
-import { withUnauthenticatedUser } from '@/components/hocs/withUnauthenticatedUser';
 
 function JoinStep1Email() {
   const { errorMessage, userCheckedEmail } = useAuth();

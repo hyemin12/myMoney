@@ -1,4 +1,4 @@
-import Button from '@/components/common/Button';
+import { Button } from '@/components/common';
 import ErrorTemplate from './ErrorTemplate';
 import { ButtonContainer } from './ErrorTemplate.style';
 

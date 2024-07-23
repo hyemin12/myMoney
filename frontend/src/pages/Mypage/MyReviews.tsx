@@ -1,11 +1,10 @@
-import React from 'react';
 import Layout from '@/layout/Layout';
+import { ReviewList } from '@/components/common';
 import { useMyReviews } from '@/hooks/useMyReviews';
-import ReviewList from '@/components/common/ReviewList';
 
 const MyReviews = () => {
   const { data, isLoading, fetchNextPage, hasNextPage } = useMyReviews();
-  console.log(data);
+
   return (
     <Layout showBackButton={true} title="내가 작성한 리뷰">
       <ReviewList

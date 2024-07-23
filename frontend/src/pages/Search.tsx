@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components';
 
 import Layout from '@/layout/Layout';
 import { useReviews } from '@/hooks/useReviews';
-import ReviewList from '@/components/common/ReviewList';
+import { ReviewList } from '@/components/common';
 import NoRecentSearchResult from '@/components/Search/NoRecentSearchResult';
 import SearchInputBox from '@/components/Search/SearchInputBox';
 import RecentKeyword from '@/components/Search/RecentKeyword';
