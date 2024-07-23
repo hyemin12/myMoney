@@ -1,6 +1,5 @@
-import AdminLayout from '@/components/Admin/AdminLayout';
-import AdminContent from '@/components/Admin/AdminContent';
-import AdminTable, { TableHeadItem } from '@/components/Admin/AdminTable';
+import { AdminLayout, AdminContent, AdminTable } from '@/components/Admin';
+import { TableHeadItem } from '@/components/Admin/AdminTable';
 import Button from '@/components/common/Button';
 import { withAdminAuthenticatedUser } from '@/components/hocs/withAdminAuthenticatedUser';
 import { useAdmin } from '@/hooks/useAdmin';

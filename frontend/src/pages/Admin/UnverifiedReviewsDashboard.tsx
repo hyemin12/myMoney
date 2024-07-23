@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
 
-import AdminContent from '@/components/Admin/AdminContent';
-import AdminLayout from '@/components/Admin/AdminLayout';
-import AdminTable, { TableHeadItem } from '@/components/Admin/AdminTable';
 import { Image } from '@/assets/icons';
+import { AdminContent, AdminLayout, AdminTable } from '@/components/Admin';
+import { TableHeadItem } from '@/components/Admin/AdminTable';
 import Icon from '@/components/common/Icon';
+import Modal from '@/components/common/Modal';
 import { withAdminAuthenticatedUser } from '@/components/hocs/withAdminAuthenticatedUser';
 import { useAdmin } from '@/hooks/useAdmin';
-import Modal from '@/components/common/Modal';
 import { IUnverifiedReviewItem } from '@/models/review.model';
 
 const tableHead: TableHeadItem[] = [
