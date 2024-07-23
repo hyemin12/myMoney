@@ -6,7 +6,7 @@ import { Image } from '@/assets/icons';
 import { AdminContent, AdminLayout, AdminTable } from '@/components/Admin';
 import { TableHeadItem } from '@/components/Admin/AdminTable';
 import { Icon, Modal } from '@/components/common';
-import { withAdminAuthenticatedUser } from '@/components/hocs/withAdminAuthenticatedUser';
+import { withAdminAuthenticatedUser } from '@/components/hocs';
 import { useAdmin } from '@/hooks/useAdmin';
 import { IUnverifiedReviewItem } from '@/models/review.model';
 

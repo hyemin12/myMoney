@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import Layout from '@/layout/Layout';
 import JoinTemplate from '@/components/Join/JoinTemplate';
 import { AlertText, Input } from '@/components/common';
-import { withUnauthenticatedUser } from '@/components/hocs/withUnauthenticatedUser';
+import { withUnauthenticatedUser } from '@/components/hocs';
 import { IUserRegistration } from '@/models/user.model';
 import { VALIDATE } from '@/constance/validate';
 import useUserRegistrationStore from '@/store/user.registration.store';

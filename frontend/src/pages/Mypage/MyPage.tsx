@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Archive, Baby, Heart, Question, SignOut, Siren } from '@/assets/icons';
 import { Loading } from '@/components/common';
-import { withAuthenticatedUser } from '@/components/hocs/withAuthenticatedUser';
+import { withAuthenticatedUser } from '@/components/hocs';
 import { LoadingContainer } from '@/components/Admin/AdminContent';
 import { useAuth } from '@/hooks/useAuth';
 import { useUser } from '@/hooks/useUser';

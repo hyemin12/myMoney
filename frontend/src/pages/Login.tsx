@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import { TextLogo } from '@/assets/icons';
 import LoginForm from '@/components/Login/LoginForm';
 import { AuthOptions, Icon } from '@/components/common';
-import { withUnauthenticatedUser } from '@/components/hocs/withUnauthenticatedUser';
+import { withUnauthenticatedUser } from '@/components/hocs';
 import { IUserLogin } from '@/models/user.model';
 import { useAuth } from '@/hooks/useAuth';
 

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Layout from '@/layout/Layout';
 import JoinTemplate from '@/components/Join/JoinTemplate';
 import { AlertText, Input } from '@/components/common';
-import { withUnauthenticatedUser } from '@/components/hocs/withUnauthenticatedUser';
+import { withUnauthenticatedUser } from '@/components/hocs';
 import { IUserRegistration } from '@/models/user.model';
 import { VALIDATE } from '@/constance/validate';
 import { useAuth } from '@/hooks/useAuth';
