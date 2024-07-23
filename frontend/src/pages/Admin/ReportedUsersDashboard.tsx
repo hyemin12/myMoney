@@ -1,9 +1,9 @@
 import { AdminLayout, AdminContent, AdminTable } from '@/components/Admin';
+import AdminReportTableBody from '@/components/Admin/AdminReportTableBody';
 import { TableHeadItem } from '@/components/Admin/AdminTable';
-import { Button } from '@/components/common';
 import { withAdminAuthenticatedUser } from '@/components/hocs';
 import { useAdmin } from '@/hooks/useAdmin';
-import { ISuspendedUsers } from '@/models/admin.model';
+import { ISuspendedUsers, IFormatSuspendedUsers } from '@/models/admin.model';
 
 const tableHead: TableHeadItem[] = [
   { name: 'No', $widthRatio: 7 },
@@ -18,7 +18,9 @@ function ReportedUsersDashboard() {
   const { isLoadingSuspendedUsers, suspendedUsers, deleteReportAction } =
     useAdmin();
 
-  const transformData = (users: ISuspendedUsers[]) => {
+  const formatSuspendedUsers = (
+    users: ISuspendedUsers[],
+  ): IFormatSuspendedUsers[] => {
     return users.map((data: ISuspendedUsers) => ({
       ...data,
       status: data.isSuspended ? '정지' : '정지 종료',
@@ -28,13 +30,14 @@ function ReportedUsersDashboard() {
   const handleDeleteReport = (reportId: number) => {
     deleteReportAction(reportId);
   };
+
   return (
     <AdminLayout>
       <AdminContent
         title="신고된 유저 관리"
         isLoading={isLoadingSuspendedUsers}
       >
-        {!suspendedUsers.length && (
+        {suspendedUsers.length === 0 && (
           <tr>
             <td colSpan={tableHead.length}>신고된 유저가 없습니다.</td>
           </tr>
@@ -42,25 +45,10 @@ function ReportedUsersDashboard() {
 
         {suspendedUsers.length > 0 && (
           <AdminTable tableHead={tableHead}>
-            {transformData(suspendedUsers).map((report, idx) => (
-              <tr key={idx}>
-                <td>{idx + 1}</td>
-                <td>{report.reportedUserEmail}</td>
-                <td>{report.reportReason}</td>
-                <td>{report.reportCount}</td>
-                <td>{report.status}</td>
-                <td>
-                  <Button
-                    scheme="primary"
-                    size="small"
-                    disabled={report.status === '정지 종료'}
-                    onClick={() => handleDeleteReport(report.reportId)}
-                  >
-                    정지해제
-                  </Button>
-                </td>
-              </tr>
-            ))}
+            <AdminReportTableBody
+              suspendedUsers={formatSuspendedUsers(suspendedUsers)}
+              handleDeleteReport={handleDeleteReport}
+            />
           </AdminTable>
         )}
       </AdminContent>

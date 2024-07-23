@@ -6,3 +6,7 @@ export interface ISuspendedUsers {
   reportReason: string;
   isSuspended: boolean;
 }
+
+export interface IFormatSuspendedUsers extends ISuspendedUsers {
+  status: '정지' | '정지 종료';
+}

@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import dayjs from 'dayjs';
+import { useState } from 'react';
 
-import { Image } from '@/assets/icons';
-import { AdminContent, AdminLayout, AdminTable } from '@/components/Admin';
+import {
+  AdminContent,
+  AdminLayout,
+  AdminTable,
+  AdminUnverifiedReviewsTableBody,
+} from '@/components/Admin';
 import { TableHeadItem } from '@/components/Admin/AdminTable';
-import { Icon, Modal } from '@/components/common';
 import { withAdminAuthenticatedUser } from '@/components/hocs';
 import { useAdmin } from '@/hooks/useAdmin';
-import { IUnverifiedReviewItem } from '@/models/review.model';
 
 const tableHead: TableHeadItem[] = [
   { name: 'No', $widthRatio: 7 },
@@ -23,13 +23,17 @@ function UnverifiedReviewsDashboard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { approveReview } = useAdmin();
 
-  const approve = async (reviewId: number) => {
+  const handleApproveReview = async (reviewId: number) => {
     await approveReview(reviewId);
     setIsModalOpen(false);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
   };
 
   return (
@@ -46,48 +50,18 @@ function UnverifiedReviewsDashboard() {
 
         {unverifiedReviews.length > 0 && (
           <AdminTable tableHead={tableHead}>
-            {unverifiedReviews.map(
-              (report: IUnverifiedReviewItem, idx: number) => (
-                <React.Fragment key={idx}>
-                  <tr>
-                    <td>{idx + 1}</td>
-                    <td>{report.title}</td>
-                    <td>{report.userName}</td>
-                    <td>{dayjs(report.createdAt).format('YYYY-MM-DD')}</td>
-                    <td>
-                      <IconButton onClick={() => setIsModalOpen(true)}>
-                        <Icon width={22} icon={<Image />} />
-                      </IconButton>
-                    </td>
-                  </tr>
-                  <Modal
-                    buttonText="승인"
-                    imageSrc={report.receiptImg}
-                    isOpen={isModalOpen}
-                    onClose={closeModal}
-                    onCancel={closeModal}
-                    onConfirm={() => approve(report.id)}
-                  />
-                </React.Fragment>
-              ),
-            )}
+            <AdminUnverifiedReviewsTableBody
+              unverifiedReviews={unverifiedReviews}
+              handleApproveReview={handleApproveReview}
+              openModal={openModal}
+              closeModal={closeModal}
+              isModalOpen={isModalOpen}
+            />
           </AdminTable>
         )}
       </AdminContent>
     </AdminLayout>
   );
 }
-const IconButton = styled.div`
-  &:hover {
-    svg {
-      fill: ${({ theme }) => theme.color.primary};
-    }
-  }
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  cursor: pointer;
-`;
 
 export default withAdminAuthenticatedUser(UnverifiedReviewsDashboard);

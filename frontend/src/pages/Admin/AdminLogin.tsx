@@ -13,6 +13,7 @@ function AdminLogin() {
   const onSubmit = handleSubmit((data) => {
     userLogin(data, false);
   });
+
   return (
     <Container>
       <Inner>
@@ -23,6 +24,7 @@ function AdminLogin() {
           errorMessage={errorMessage}
         />
         <div
+          role="button"
           onClick={() =>
             alert('준비 중인 서비스입니다. 서비스 관리자에게 문의하세요')
           }
