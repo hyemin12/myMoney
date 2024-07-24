@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import styled from 'styled-components';
 
 import { ImageSlide, Loading } from '@/components/common';
-import BestReview from './BestReview';
+import BestReviewItem from './BestReviewItem';
 import { LoadingContainer } from '../Admin/AdminContent';
 import { IResponseReviews } from '@/pages/Home';
 
@@ -21,7 +21,7 @@ function BestReviews({ reviews, isLoading }: Props) {
   }
   if (!reviews) {
     return (
-      <BestReview
+      <BestReviewItem
         id={0}
         img={
           'https://i0.wp.com/millionmine.com/wp-content/uploads/2020/03/reveiws.jpg?fit=1000%2C630&ssl=1'
@@ -37,7 +37,7 @@ function BestReviews({ reviews, isLoading }: Props) {
   const items: ReactNode[] = reviews.map((item, idx, arr) => {
     let page = `${idx + 1} / ${arr.length}`;
     return (
-      <BestReview
+      <BestReviewItem
         id={item.id}
         img={item.reviewImg}
         isVerified={item.verified}

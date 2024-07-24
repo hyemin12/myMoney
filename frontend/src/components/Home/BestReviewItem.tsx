@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { Badge } from '@/components/common/ReviewItem.style';
-import BadgeImg from '@/assets/images/badge-img.png';
 import { Star, LightStar } from '@/assets/icons';
+import { Badge } from '@/components/common';
 
 interface Props {
   id: number;
@@ -28,17 +27,12 @@ function BestReview({
     <BestReviewStyle>
       <div className="wrapTop">
         <div className="badge">
-          <BadgeStyle>Best</BadgeStyle>
           {isVerified ? (
-            <BadgeStyle>
-              <img className="badgeImg" src={BadgeImg} alt="인증마크" />
-              인증
-            </BadgeStyle>
+            <Badge verifiedIcon text="인증된 후기" type="fill" position="top" />
           ) : null}
         </div>
       </div>
       <div className="imgwrap">
-        {' '}
         <img className="img" src={img} />
       </div>
 
@@ -67,6 +61,8 @@ function BestReview({
 const BestReviewStyle = styled.div`
   width: 390px;
   height: 350px;
+  border-radius: 6px;
+  overflow: hidden;
   .imgwrap {
     display: flex;
     justify-content: center;
@@ -84,10 +80,10 @@ const BestReviewStyle = styled.div`
     z-index: 15;
     width: 100%;
     height: 50px;
-    padding: 8px;
 
     .badge {
       display: flex;
+      border-top-left-radius: 6px;
       gap: 6px;
     }
   }
