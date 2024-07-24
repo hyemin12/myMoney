@@ -1,10 +1,10 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import Dropdown from './Dropdown';
+import { Dropdown, Modal, Badge } from '@/components/common';
+import { Like } from '@/components/Review';
 import { DotsThree } from '@/assets/icons';
-import BadgeImg from '@/assets/images/badge-img.png';
 import {
-  Badge,
   Container,
   Content,
   ImgContainer,
@@ -13,18 +13,14 @@ import {
   InfoContainer,
 } from './ReviewItem.style';
 import { IReviewItem } from '@/models/review.model';
-import Like from '../Review/Like';
 import { useLike } from '@/hooks/useLike';
 import { formatDate } from '@/utils/format';
 import { useReviews } from '@/hooks/useReviews';
-import { useState } from 'react';
-import Modal from './Modal';
 import {
   MODAL_BTNTEXT,
   MODAL_TITLE,
   MODAL_TYPES,
 } from '@/constance/modalString';
-import { useAuth } from '@/hooks/useAuth';
 import useAuthStore from '@/store/auth.store';
 import { handleGoLogin } from '@/utils/routingUtils';
 
@@ -136,22 +132,22 @@ function ReviewItem({
             <>
               <img src={reviewImg} alt={title} />
             </>
-          ) : (
-            <p>등록된 이미지가 없습니다.</p>
-          )}
+          ) : null}
         </Link>
+        {Boolean(verified) && (
+          <Badge
+            type="fill"
+            verifiedIcon
+            text="인증된 후기"
+            position="bottom"
+          />
+        )}
       </ImgContainer>
 
       <TitleContainer>
         <Link to={`/list/${id}`}>
           <h4 className="title">{title}</h4>
         </Link>
-        {Boolean(verified) && (
-          <Badge>
-            <img className="badgeImg" src={BadgeImg} alt="인증마크" />
-            인증
-          </Badge>
-        )}
       </TitleContainer>
 
       <Content>{stripHtmlTags(content)}</Content>
