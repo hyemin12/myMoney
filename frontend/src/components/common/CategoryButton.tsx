@@ -62,6 +62,7 @@ const CategoryButtonStyle = styled.div<{ isActive: boolean }>`
     align-items: center;
     width: 55px;
     height: 55px;
+    background-color: #f1f1f1;
     margin-bottom: 4px;
   }
 
