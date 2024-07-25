@@ -9,9 +9,10 @@ import { NextArrow, PrevArrow } from './ReviewImageSliderArrow';
 export interface ReviewImagesProps {
   reviewImages: string[];
   title: string;
+  isVerified: boolean;
 }
 
-function ReviewImages({ reviewImages, title }: ReviewImagesProps) {
+function ReviewImages({ reviewImages, title, isVerified }: ReviewImagesProps) {
   const settings = {
     dots: true,
     arrow: true,
@@ -28,14 +29,23 @@ function ReviewImages({ reviewImages, title }: ReviewImagesProps) {
     <ReviewImagesStyle>
       {/* 이미지가 하나면 이미지만 출력 */}
       {reviewImages.length === 1 && (
-        <ReviewImage title={title} imgSrc={reviewImages[0]} />
+        <ReviewImage
+          title={title}
+          imgSrc={reviewImages[0]}
+          isVerified={isVerified}
+        />
       )}
 
       {/* 이미지가 두 개 이상이면 슬라이드 형태로 출력 */}
       {reviewImages.length > 1 && (
         <ReactSlider {...settings}>
           {reviewImages.map((imgSrc, idx) => (
-            <ReviewImage key={idx} imgSrc={imgSrc} title={title} />
+            <ReviewImage
+              key={idx}
+              imgSrc={imgSrc}
+              title={title}
+              isVerified={isVerified}
+            />
           ))}
         </ReactSlider>
       )}

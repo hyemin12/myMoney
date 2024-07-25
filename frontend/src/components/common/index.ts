@@ -11,3 +11,4 @@ export { default as Loading } from './Loading';
 export { default as Modal } from './Modal';
 export { default as ReviewItem } from './ReviewItem';
 export { default as ReviewList } from './ReviewList';
+export { default as Badge } from './Badge';

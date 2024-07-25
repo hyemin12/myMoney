@@ -57,7 +57,7 @@ const Icon = styled.div`
 
 const BackIcon = styled.div`
   position: absolute;
-  left: 16px;
+  left: 6px;
   width: 24px;
   height: 24px;
   cursor: pointer;
@@ -70,7 +70,7 @@ const BackIcon = styled.div`
 
 const GoToAdminButton = styled.div`
   position: absolute;
-  right: 16px;
+  right: 6px;
   color: ${({ theme }) => theme.color.darkGray};
   font-size: ${({ theme }) => theme.text['medium'].fontSize};
   cursor: pointer;

@@ -15,6 +15,7 @@ function ReviewDetail() {
     <Layout showBackButton={true}>
       <article>
         <ReviewImageSlide
+          isVerified={Boolean(review.verified)}
           reviewImages={review.reviewImg}
           title={review.title}
         />

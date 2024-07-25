@@ -7,8 +7,6 @@ import { Icon, Modal } from '@/components/common';
 import Like from './Like';
 import { IReviewDetail } from '@/models/review.model';
 import { useReviewDetail } from '@/hooks/useReviewDetail';
-import { Badge } from '../common/ReviewItem.style';
-import BadgeImg from '@/assets/images/badge-img.png';
 import {
   Container,
   TitleContainer,
@@ -160,12 +158,6 @@ function ReviewContent() {
 
       <TitleContainer>
         <h2 className="title">{review.title}</h2>
-        {review.verified === 1 && (
-          <Badge>
-            <img className="badgeImg" src={BadgeImg} alt="인증마크" />
-            인증
-          </Badge>
-        )}
       </TitleContainer>
 
       <ReviewInfo>
