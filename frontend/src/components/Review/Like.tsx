@@ -13,7 +13,7 @@ interface Props {
 function Like({ likes, isLiked, onClick }: Props) {
   return (
     <LikeStyle>
-      <p>{likes}명에게 도움이 된 리뷰에요.</p>
+      {likes > 0 && <p>{likes}명에게 도움이 된 리뷰에요.</p>}
 
       <LikeButton
         className={isLiked ? 'liked' : ''}
@@ -34,7 +34,6 @@ const LikeStyle = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 20px 0 10px 0;
 
   p {
     padding-top: 3px;
