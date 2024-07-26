@@ -30,7 +30,7 @@ export const findSuspendedUsers = async () => {
       'report_content',
       'report_content.reported_user_id = user.id',
     )
-    .groupBy('user.id, report_content.id')
+    .groupBy('user.id')
     .having('reportCount > 0')
     .getRawMany();
 
