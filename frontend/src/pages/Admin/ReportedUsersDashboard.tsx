@@ -1,5 +1,9 @@
-import { AdminLayout, AdminContent, AdminTable } from '@/components/Admin';
-import AdminReportTableBody from '@/components/Admin/AdminReportTableBody';
+import {
+  AdminLayout,
+  AdminContent,
+  AdminTable,
+  AdminReportTableBody,
+} from '@/components/Admin';
 import { TableHeadItem } from '@/components/Admin/AdminTable';
 import { withAdminAuthenticatedUser } from '@/components/hocs';
 import { useAdmin } from '@/hooks/useAdmin';
@@ -27,6 +31,16 @@ function ReportedUsersDashboard() {
     }));
   };
 
+  const sortSuspendedUsers = (users: IFormatSuspendedUsers[]) => {
+    return users.sort((a, b) =>
+      a.status === '정지' ? -1 : b.status === '정지' ? 1 : 0,
+    );
+  };
+
+  const formattedAndSortedUsers = sortSuspendedUsers(
+    formatSuspendedUsers(suspendedUsers),
+  );
+
   const handleDeleteReport = (reportId: number) => {
     deleteReportAction(reportId);
   };
@@ -46,7 +60,7 @@ function ReportedUsersDashboard() {
         {suspendedUsers.length > 0 && (
           <AdminTable tableHead={tableHead}>
             <AdminReportTableBody
-              suspendedUsers={formatSuspendedUsers(suspendedUsers)}
+              suspendedUsers={formattedAndSortedUsers}
               handleDeleteReport={handleDeleteReport}
             />
           </AdminTable>
