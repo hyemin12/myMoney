@@ -27,7 +27,7 @@ function ReviewList({
   return (
     <>
       {title && <Title>{title}</Title>}
-      {!reviews.length &&
+      {reviews.length === 0 &&
         (typeof text === 'string' ? (
           <EmptyReviews>{text} 리뷰가 없습니다.</EmptyReviews>
         ) : (
@@ -65,7 +65,8 @@ const ObserverDiv = styled.div`
 
 export const Title = styled.h3`
   padding: 0 16px;
-  font-size: ${({ theme }) => theme.heading['small'].fontSize};
+  font-size: ${({ theme }) => theme.heading['medium'].fontSize};
+  font-weight: ${({ theme }) => theme.fontWeight['bold']};
 `;
 
 export default ReviewList;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.article`
-  padding: 14px 0;
+  padding: 14px 14px 20px;
 `;
 
 export const InfoContainer = styled.div`

@@ -31,7 +31,6 @@ const CategoryWrapper = styled.div`
   margin-bottom: 18px;
   border-bottom: 4px solid ${({ theme }) => theme.color.background};
   > div {
-    padding: 0 16px;
     .items {
       margin-bottom: 10px;
     }
