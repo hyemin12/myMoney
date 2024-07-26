@@ -79,6 +79,7 @@ const CategoryStyle = styled.div`
     grid-template-columns: repeat(5, 1fr);
     row-gap: 15px;
     column-gap: 21px;
+    padding: 0 14px;
   }
 `;
 
