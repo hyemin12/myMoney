@@ -12,7 +12,7 @@ interface Props {
 
 function Like({ likes, isLiked, onClick }: Props) {
   return (
-    <LikeStyle>
+    <LikeStyle likesempty={likes <= 0 ? 'empty' : null}>
       {likes > 0 && <p>{likes}명에게 도움이 된 리뷰에요.</p>}
 
       <LikeButton
@@ -30,10 +30,11 @@ function Like({ likes, isLiked, onClick }: Props) {
   );
 }
 
-const LikeStyle = styled.div`
+const LikeStyle = styled.div<{ likesempty: 'empty' | null }>`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: ${({ likesempty }) =>
+    likesempty === 'empty' ? 'flex-end' : 'space-between'};
 
   p {
     padding-top: 3px;

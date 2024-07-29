@@ -13,7 +13,7 @@ export const updateReview = async (id: string, reviewData: IReview) => {
   return await httpClient.patch<IReview>(`/reviews/${id}`, reviewData);
 };
 
-interface FetchReviewsParams {
+export interface IFetchReviewsParams {
   categoryId?: number;
   isVerified?: true;
   currentPage?: number;
@@ -23,7 +23,7 @@ interface FetchReviewsParams {
   limit?: number;
 }
 
-export const fetchReviews = async (params: FetchReviewsParams) => {
+export const fetchReviews = async (params: IFetchReviewsParams) => {
   const { data } = await httpClient.get('/reviews', {
     params: { ...params },
   });
