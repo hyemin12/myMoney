@@ -3,7 +3,7 @@ import { useMutation } from '@tanstack/react-query';
 import { addReport } from '@/api/report.api';
 import { IReport } from '@/models/report.model';
 
-export const useReviews = () => {
+export const useReport = () => {
   const postReportMutation = useMutation({
     mutationFn: addReport,
     onSuccess: () => {

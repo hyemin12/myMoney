@@ -11,11 +11,12 @@ import {
   LikesContainer,
   TitleContainer,
   InfoContainer,
-} from './ReviewItem.style';
+} from './ReviewItem.style.ts';
 import { IReviewItem } from '@/models/review.model';
 import { useLike } from '@/hooks/useLike';
 import { formatDate } from '@/utils/format';
 import { useReviews } from '@/hooks/useReviews';
+import { useReport } from '@/hooks/useReport';
 import {
   MODAL_BTNTEXT,
   MODAL_TITLE,
@@ -37,7 +38,8 @@ function ReviewItem({
   userId,
   isMyReview,
 }: IReviewItem) {
-  const { postReport, deleteReviewInReviews } = useReviews();
+  const { deleteReviewInReviews } = useReviews();
+  const { postReport } = useReport();
   const { likeToggle, localIsLiked, localLikes } = useLike({
     reviewId: id,
     isLikedDB: isLiked,
