@@ -1,21 +1,26 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import Home from './pages/Home';
-import Search from '@/pages/Search';
-import CreateReview from '@/pages/Review/CreateReview';
-import ReviewList from '@/pages/ReviewList';
-import MyPage from '@/pages/Mypage/MyPage';
+import Home from '@/pages/Home';
 import Login from '@/pages/Login';
+import Search from '@/pages/Search';
+
 import JoinStep1Email from '@/pages/Join/JoinStep1Email';
 import JoinStep2Nickname from '@/pages/Join/JoinStep2Nickname';
 import JoinStep3Password from '@/pages/Join/JoinStep3Password';
+
+import CreateReview from '@/pages/Review/CreateReview';
+import ReviewList from '@/pages/Review/ReviewList';
+import ReviewDetail from '@/pages/Review/ReviewDetail';
+import EditReview from '@/pages/Review/EditReview';
+
+import MyPage from '@/pages/Mypage/MyPage';
+import MyReviews from '@/pages/Mypage/MyReviews';
+import LikedReviews from '@/pages/Mypage/LikedReviews';
+
 import AdminLogin from '@/pages/Admin/AdminLogin';
 import ReportedUsersDashboard from '@/pages/Admin/ReportedUsersDashboard';
 import UnverifiedReviewsDashboard from '@/pages/Admin/UnverifiedReviewsDashboard';
-import ReviewDetail from '@/pages/ReviewDetail';
-import MyReviews from '@/pages/Mypage/MyReviews';
-import LikedReviews from '@/pages/Mypage/LikedReviews';
-import EditReview from '@/pages/Review/EditReview';
+
 import NotFoundError from './components/Error/NotFoundError';
 
 export function Router() {
