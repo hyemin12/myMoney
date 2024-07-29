@@ -5,8 +5,7 @@ export const ErrorContainer = styled.div<{ $errorStatus: boolean }>`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 100%;
-  max-width: 390px;
+  width: 390px;
   padding: 0 16px;
   display: flex;
   flex-direction: column;

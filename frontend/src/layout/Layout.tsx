@@ -20,7 +20,7 @@ function Layout({ children, showBackButton, title }: LayoutProps) {
 }
 
 const Container = styled.div`
-  max-width: 390px;
+  width: 390px;
   margin-inline: auto;
   padding-bottom: 85px;
 `;

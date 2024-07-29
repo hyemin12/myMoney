@@ -27,7 +27,6 @@ function ImageSlide({ items }: Props) {
 }
 
 const ImageSlideStyle = styled.div`
-  max-width: 390px;
   width: 390px;
   margin: auto;
   height: 350px;

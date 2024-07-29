@@ -68,8 +68,7 @@ const NavStyle = styled.div`
   gap: 40px;
   align-items: center;
   justify-content: center;
-  width: 100vw;
-  max-width: 390px;
+  width: 390px;
   height: 85px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
