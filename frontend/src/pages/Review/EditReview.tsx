@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import Header from '@/layout/Header';
 import { ReviewForm } from '@/components/Review';
 import { useReview } from '@/hooks/useReview';
+import { withAuthenticatedUser } from '@/components/hocs';
 
 function EditReview() {
   const { id } = useParams<{ id: string }>();
@@ -71,10 +72,10 @@ function EditReview() {
   );
 }
 
-export default EditReview;
-
 export const FormStyled = styled.div`
-  max-width: 390px;
+  width: 390px;
   margin-inline: auto;
   padding: ${({ theme }) => theme.padding.mainContent};
 `;
+
+export default withAuthenticatedUser(EditReview);

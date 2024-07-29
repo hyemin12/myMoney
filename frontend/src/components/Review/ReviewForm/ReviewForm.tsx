@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import {
@@ -10,7 +8,6 @@ import {
   CreateContent,
 } from '@/components/Review';
 import { Input, Button } from '@/components/common';
-import useAuthStore from '@/store/auth.store';
 import { useCategory } from '@/hooks/useCategory';
 
 interface ReviewFormProps {
@@ -46,16 +43,7 @@ function ReviewForm({
   handleSubmit,
   isFormValid,
 }: ReviewFormProps) {
-  const navigate = useNavigate();
-  const { isLoggedIn } = useAuthStore();
   const { categoryList } = useCategory();
-
-  useEffect(() => {
-    if (!isLoggedIn && '/review'.includes(location.pathname)) {
-      alert('로그인이 필요합니다.');
-      navigate('/login');
-    }
-  }, [isLoggedIn, location.pathname]);
 
   return (
     <>

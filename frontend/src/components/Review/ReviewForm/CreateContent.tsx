@@ -9,9 +9,10 @@ interface CreateContentProps {
   onChange: (value: string) => void;
 }
 
+const MAX_CONTENT_LENGTH = 1000;
+
 function CreateContent({ content, onChange }: CreateContentProps) {
-  const [charCount, setCharCount] = useState(0);
-  const MAX_CONTENT_LENGTH = 1000;
+  const [charCount, setCharCount] = useState<number>(0);
   const count = content.replace(/(<([^>]+)>)/gi, '').trim().length;
 
   useEffect(() => {

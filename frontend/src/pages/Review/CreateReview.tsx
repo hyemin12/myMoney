@@ -4,6 +4,7 @@ import { useReview } from '@/hooks/useReview';
 import Header from '@/layout/Header';
 import { ReviewForm } from '@/components/Review';
 import { FormStyled } from './EditReview';
+import { withAuthenticatedUser } from '@/components/hocs';
 
 function CreateReview() {
   const [title, setTitle] = useState<string>('');
@@ -56,4 +57,4 @@ function CreateReview() {
   );
 }
 
-export default CreateReview;
+export default withAuthenticatedUser(CreateReview);
