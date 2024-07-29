@@ -1,8 +1,9 @@
 import { InfiniteQueryObserverResult } from '@tanstack/react-query';
 import styled from 'styled-components';
-import ReviewItem from './ReviewItem';
+
+import { ReviewItem } from '@/components/Review';
+import { Loading } from '@/components/common';
 import { IReviewItem } from '@/models/review.model';
-import Loading from './Loading';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 
 export interface IReviewListProps {
@@ -27,20 +28,24 @@ function ReviewList({
   return (
     <>
       {title && <Title>{title}</Title>}
+
       {reviews.length === 0 &&
         (typeof text === 'string' ? (
           <EmptyReviews>{text} 리뷰가 없습니다.</EmptyReviews>
         ) : (
           text
         ))}
+
       {reviews.map((review) => (
         <ReviewItem key={review.id} {...review} />
       ))}
+
       {isLoading && (
         <LoadingContainer>
           <Loading />
         </LoadingContainer>
       )}
+
       {hasNextPage && <ObserverDiv id="more" ref={observerRef}></ObserverDiv>}
     </>
   );

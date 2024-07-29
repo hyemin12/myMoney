@@ -4,7 +4,7 @@ import { AiFillStar } from 'react-icons/ai';
 
 import { Siren, PencilSimple, Trash } from '@/assets/icons';
 import { Icon, Modal } from '@/components/common';
-import Like from './Like';
+import Like from '../Like';
 import { IReviewDetail } from '@/models/review.model';
 import { useReviewDetail } from '@/hooks/useReviewDetail';
 import {

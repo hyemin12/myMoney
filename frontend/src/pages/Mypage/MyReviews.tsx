@@ -1,5 +1,5 @@
 import Layout from '@/layout/Layout';
-import { ReviewList } from '@/components/common';
+import { ReviewList } from '@/components/Review';
 import { useMyReviews } from '@/hooks/useInfiniteReviews';
 import { formatReviews } from '@/utils/formatReviews';
 

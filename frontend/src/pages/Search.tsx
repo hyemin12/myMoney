@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import styled, { css } from 'styled-components';
 
 import Layout from '@/layout/Layout';
-import { ReviewList } from '@/components/common';
+import { ReviewList } from '@/components/Review';
 import {
   NoRecentSearchResult,
   SearchInputBox,

@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import Layout from '@/layout/Layout';
-import { ReviewList, Category } from '@/components/common';
+import { Category } from '@/components/common';
+import { ReviewList } from '@/components/Review';
 import BestReviews from '@/components/Home/BestReviews';
 import { fetchReviews } from '@/api/review.api';
 

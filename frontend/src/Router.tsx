@@ -16,6 +16,7 @@ import ReviewDetail from '@/pages/ReviewDetail';
 import MyReviews from '@/pages/Mypage/MyReviews';
 import LikedReviews from '@/pages/Mypage/LikedReviews';
 import EditReview from '@/pages/Review/EditReview';
+import NotFoundError from './components/Error/NotFoundError';
 
 export function Router() {
   return (
@@ -54,6 +55,8 @@ export function Router() {
           <Route path="reviews" element={<MyReviews />} />
           <Route path="liked" element={<LikedReviews />} />
         </Route>
+
+        <Route path="*" element={<NotFoundError />} />
       </Routes>
     </BrowserRouter>
   );
