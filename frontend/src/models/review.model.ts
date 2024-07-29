@@ -6,6 +6,7 @@ export interface IReview {
   reviewImg: string[];
   receiptImg: string;
 }
+
 export interface IReviewDetail extends IReview {
   id: number;
   userId: number;

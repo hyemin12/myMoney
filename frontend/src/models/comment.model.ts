@@ -9,5 +9,5 @@ export interface IComment {
 
 export type TCommentItemWrite = {
   content: IComment['content'];
-  reviewId: string;
+  reviewId: number;
 };

@@ -8,7 +8,7 @@ import { fetchReview } from '@/api/review.api';
 import { TCommentItemWrite } from '@/models/comment.model';
 import { queryClient } from '@/api/queryClient';
 
-function useComments(reviewId: string | undefined) {
+function useComments(reviewId: number) {
   if (!reviewId) {
     return {
       comments: undefined,

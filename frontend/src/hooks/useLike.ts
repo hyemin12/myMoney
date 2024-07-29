@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useMutation } from '@tanstack/react-query';
 
 import { likeReview, unlikeReview } from '@/api/review.api';
@@ -10,27 +10,27 @@ interface useLikeProps {
 }
 
 export const useLike = ({ reviewId, isLikedDB, likesDB }: useLikeProps) => {
-  const NumberLikes = Number(likesDB);
   const [isLiked, setIsLiked] = useState(isLikedDB);
-  const [likes, setLikes] = useState(NumberLikes);
+  const [likes, setLikes] = useState(likesDB);
 
-  const likeToggleAction = async () => {
+  const likeToggleAction = useCallback(async () => {
     if (isLiked) {
       await unlikeReview(reviewId);
-      setIsLiked(false);
-      setLikes(likes - 1);
-      return;
+      setLikes((prevLikes) => prevLikes - 1);
     } else {
       await likeReview(reviewId);
-      setIsLiked(true);
-      setLikes(likes + 1);
-      return;
+      setLikes((prevLikes) => prevLikes + 1);
     }
-  };
+    setIsLiked((prevIsLiked) => !prevIsLiked);
+  }, [isLiked, reviewId]);
 
   const likeToggleMutation = useMutation({
     mutationFn: likeToggleAction,
-    throwOnError: true,
+    onError: (error: any) => {
+      setIsLiked((prevIsLiked) => !prevIsLiked);
+      setLikes((prevLikes) => (isLiked ? prevLikes + 1 : prevLikes - 1));
+      console.error(error);
+    },
   });
 
   const likeToggle = () => {
