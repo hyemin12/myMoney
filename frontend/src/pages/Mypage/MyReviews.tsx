@@ -1,6 +1,7 @@
 import Layout from '@/layout/Layout';
 import { ReviewList } from '@/components/common';
-import { useMyReviews } from '@/hooks/useMyReviews';
+import { useMyReviews } from '@/hooks/useInfiniteReviews';
+import { formatReviews } from '@/utils/formatReviews';
 
 const MyReviews = () => {
   const { data, isLoading, fetchNextPage, hasNextPage } = useMyReviews();
@@ -8,13 +9,12 @@ const MyReviews = () => {
   return (
     <Layout showBackButton={true} title="내가 작성한 리뷰">
       <ReviewList
-        reviews={data?.pages.flatMap((page) => page.reviews) || []}
+        reviews={formatReviews(data)}
         isLoading={isLoading}
+        hasNextPage={hasNextPage}
+        fetchNextPage={fetchNextPage}
         text="작성한"
       />
-      {hasNextPage && (
-        <button onClick={() => fetchNextPage()}>Load More</button>
-      )}
     </Layout>
   );
 };
