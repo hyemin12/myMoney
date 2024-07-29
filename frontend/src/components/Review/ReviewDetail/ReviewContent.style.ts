@@ -7,6 +7,7 @@ export const Title = styled.h1`
 
 export const Container = styled.section`
   padding: ${({ theme }) => theme.padding.mainContent};
+  padding-bottom: 16px;
   border-bottom: 1px solid ${({ theme }) => theme.color.disabled};
 `;
 
@@ -69,6 +70,6 @@ export const ReviewInfo = styled.div`
 `;
 
 export const Content = styled.div`
-  padding: 10px 0;
+  padding: 10px 0 24px;
   line-height: 1.5;
 `;

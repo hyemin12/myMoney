@@ -24,6 +24,7 @@ import {
 } from '@/constance/modalString';
 import useAuthStore from '@/store/auth.store';
 import { handleGoLogin } from '@/utils/routingUtils';
+import useModal from '@/hooks/useModal.ts';
 
 function ReviewItem({
   title,
@@ -52,35 +53,26 @@ function ReviewItem({
     return doc.body.textContent || '';
   };
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalType, setModalType] = useState('');
   const { isLoggedIn } = useAuthStore();
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  const { openModal, modalProps } = useModal({
+    onConfirm: (option: string) => {
+      if (modalProps.title === MODAL_TITLE.REPORT) {
+        postReport({ reason: option, reportedUserId: userId });
+      } else if (modalProps.title === MODAL_TITLE.LOGIN) {
+        handleGoLogin();
+      }
+      if (modalProps.title === MODAL_TITLE.REVIEW_DELETE) {
+        deleteReviewInReviews(id);
+      }
+    },
+  });
 
   const handleReportClick = () => {
     if (!isLoggedIn) {
-      setModalType(MODAL_TYPES.LOGIN);
-      setIsModalOpen(true);
-      return;
+      openModal(MODAL_TYPES.LOGIN);
+    } else {
+      openModal(MODAL_TYPES.REPORT);
     }
-    setModalType(MODAL_TYPES.REPORT);
-    openModal();
-  };
-
-  const handleConfirm = (option: string) => {
-    if (modalType === MODAL_TYPES.LOGIN) {
-      handleGoLogin();
-    }
-    postReport({ reason: option, reportedUserId: userId });
-
-    closeModal();
   };
 
   return (
@@ -111,22 +103,8 @@ function ReviewItem({
           </ul>
         </Dropdown>
       </InfoContainer>
-      <Modal
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        title={
-          modalType === MODAL_TYPES.LOGIN
-            ? MODAL_TITLE.LOGIN
-            : MODAL_TITLE.REPORT
-        }
-        buttonText={
-          modalType === MODAL_TYPES.LOGIN
-            ? MODAL_BTNTEXT.LOGIN
-            : MODAL_BTNTEXT.REPORT
-        }
-        report={modalType === MODAL_TYPES.REPORT}
-        onConfirm={handleConfirm}
-      />
+
+      <Modal {...modalProps} />
 
       <ImgContainer>
         <Link to={`/list/${id}`}>

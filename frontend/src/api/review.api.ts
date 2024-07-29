@@ -30,7 +30,7 @@ export const fetchReviews = async (params: IFetchReviewsParams) => {
   return data;
 };
 
-export const fetchReview = async (reviewId: string) => {
+export const fetchReview = async (reviewId: number) => {
   const { data } = await httpClient.get<IReviewDetail>(`/reviews/${reviewId}`);
   return data;
 };

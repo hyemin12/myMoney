@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { AiFillStar } from 'react-icons/ai';
 
@@ -16,17 +16,16 @@ import {
 } from './ReviewContent.style';
 import { formatDate } from '@/utils/format';
 import useAuthStore from '@/store/auth.store';
-import {
-  MODAL_TYPES,
-  MODAL_TITLE,
-  MODAL_BTNTEXT,
-} from '@/constance/modalString';
+import { MODAL_TYPES, MODAL_TITLE } from '@/constance/modalString';
+import { useLike } from '@/hooks/useLike';
+import { useReport } from '@/hooks/useReport';
+import useModal from '@/hooks/useModal';
 
 export interface Props {
   reviewId?: string;
 }
 
-const Stars = (props: Pick<IReviewDetail, 'stars'>) => {
+const Stars = React.memo((props: Pick<IReviewDetail, 'stars'>) => {
   return (
     <div className="star">
       {Array.from({ length: 5 }, (_, index) => (
@@ -38,7 +37,7 @@ const Stars = (props: Pick<IReviewDetail, 'stars'>) => {
       ))}
     </div>
   );
-};
+});
 
 interface BtnProps {
   className: string;
@@ -47,7 +46,7 @@ interface BtnProps {
   onClick: () => void;
 }
 
-const Btn: React.FC<BtnProps> = ({ className, icon, label, onClick }) => {
+const Btn = ({ className, icon, label, onClick }: BtnProps) => {
   return (
     <div className={className} role="button" onClick={onClick}>
       <Icon width={20} height={20} icon={icon} />
@@ -58,63 +57,58 @@ const Btn: React.FC<BtnProps> = ({ className, icon, label, onClick }) => {
 
 function ReviewContent() {
   const { id } = useParams();
-  const { review, likeToggle, deleteToggle, reportToggle } =
-    useReviewDetail(id);
-  const navigate = useNavigate();
-  const { isLoggedIn } = useAuthStore();
-  const [modalType, setModalType] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  if (!id) return;
+
+  const NumberReviewId = Number(id);
+  const { review, deleteReviewHandler } = useReviewDetail(NumberReviewId);
+
   if (!review) return null;
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
+  const navigate = useNavigate();
+  const { postReport } = useReport();
+  const { isLoggedIn } = useAuthStore();
+  const { likeToggle, localIsLiked, localLikes } = useLike({
+    reviewId: NumberReviewId,
+    isLikedDB: review?.isLiked ?? false,
+    likesDB: review?.likes ?? 0,
+  });
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  const { openModal, modalProps } = useModal({
+    onConfirm: (option: string) => {
+      if (modalProps.title === MODAL_TITLE.REVIEW_DELETE) {
+        deleteReviewHandler();
+      }
+      if (modalProps.title === MODAL_TITLE.REPORT) {
+        postReport({ reason: option, reportedUserId: review.userId });
+      }
+      if (modalProps.title === MODAL_TITLE.LOGIN) {
+        navigate(`/login`);
+      }
+    },
+  });
 
   const handleUpdate = () => {
     if (!isLoggedIn) {
-      setModalType(MODAL_TYPES.LOGIN);
-      setIsModalOpen(true);
-      return;
+      openModal(MODAL_TYPES.LOGIN);
+    } else {
+      navigate(`/review/${id}`);
     }
-    navigate(`/review/${id}`);
   };
 
   const handleDelete = () => {
     if (!isLoggedIn) {
-      setModalType(MODAL_TYPES.LOGIN);
-      setIsModalOpen(true);
-      return;
+      openModal(MODAL_TYPES.LOGIN);
+    } else {
+      openModal(MODAL_TYPES.DELETE);
     }
-    setModalType(MODAL_TYPES.DELETE);
-    openModal();
   };
 
   const handleReport = () => {
     if (!isLoggedIn) {
-      setModalType(MODAL_TYPES.LOGIN);
-      setIsModalOpen(true);
-      return;
+      openModal(MODAL_TYPES.LOGIN);
+    } else {
+      openModal(MODAL_TYPES.REPORT);
     }
-    setModalType(MODAL_TYPES.REPORT);
-    openModal();
-  };
-
-  // 모달창 확인버튼 눌렀을 때 다음 동작
-  const handleConfirm = (option: string) => {
-    if (modalType === MODAL_TYPES.DELETE) {
-      deleteToggle();
-    }
-    if (modalType === MODAL_TYPES.REPORT) {
-      reportToggle({ reason: option, reportedUserId: review.userId });
-    }
-    if (modalType === MODAL_TYPES.LOGIN) {
-      navigate(`/login`);
-    }
-    closeModal();
   };
 
   return (
@@ -135,26 +129,7 @@ function ReviewContent() {
         )}
       </AuthorContainer>
 
-      <Modal
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        title={
-          modalType === MODAL_TYPES.LOGIN
-            ? MODAL_TITLE.LOGIN
-            : modalType === MODAL_TYPES.DELETE
-              ? MODAL_TITLE.REVIEW_DELETE
-              : MODAL_TITLE.REPORT
-        }
-        buttonText={
-          modalType === MODAL_TYPES.LOGIN
-            ? MODAL_BTNTEXT.LOGIN
-            : modalType === MODAL_TYPES.DELETE
-              ? MODAL_BTNTEXT.DELETE
-              : MODAL_BTNTEXT.REPORT
-        }
-        report={modalType === MODAL_TYPES.REPORT}
-        onConfirm={handleConfirm}
-      />
+      <Modal {...modalProps} />
 
       <TitleContainer>
         <h2 className="title">{review.title}</h2>
@@ -171,19 +146,7 @@ function ReviewContent() {
 
       <Content dangerouslySetInnerHTML={{ __html: review.content }}></Content>
 
-      <Like
-        isLiked={review.isLiked}
-        likes={review.likes}
-        onClick={
-          !isLoggedIn
-            ? () => {
-                setModalType(MODAL_TYPES.LOGIN);
-                setIsModalOpen(true);
-                return;
-              }
-            : likeToggle
-        }
-      />
+      <Like isLiked={localIsLiked} likes={localLikes} onClick={likeToggle} />
     </Container>
   );
 }
