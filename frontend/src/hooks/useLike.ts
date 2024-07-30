@@ -11,7 +11,7 @@ interface useLikeProps {
 
 export const useLike = ({ reviewId, isLikedDB, likesDB }: useLikeProps) => {
   const [isLiked, setIsLiked] = useState(isLikedDB);
-  const [likes, setLikes] = useState(likesDB);
+  const [likes, setLikes] = useState(Number(likesDB));
 
   const likeToggleAction = useCallback(async () => {
     if (isLiked) {

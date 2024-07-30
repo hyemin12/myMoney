@@ -33,7 +33,7 @@ function Search() {
     fetchReviewsNextPage,
     hasNextPageFetchReviews,
   } = useReviews();
-  const { register, handleSubmit, setValue } = useForm<ISearchForm>();
+  const { register, handleSubmit, setValue, watch } = useForm<ISearchForm>();
 
   const onSubmit = (data: ISearchForm) => {
     setSearchParams({ query: data.query });
@@ -82,6 +82,7 @@ function Search() {
         handleSubmit={handleSubmit}
         register={register}
         handleCancelSearch={handleCancelSearch}
+        watch={watch}
       />
 
       {/* 검색하지 않았을 때 보여줄 화면 (최근 검색어) */}

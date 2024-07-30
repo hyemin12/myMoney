@@ -138,7 +138,8 @@ const ItemContainer = styled.div`
 
 const LogoutButton = styled.div`
   justify-content: center;
-  width: 100%;
+  width: calc(100% - 32px);
+  margin: auto;
   padding: 12px 52px;
   text-align: center;
   background-color: #7d7d7d;

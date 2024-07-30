@@ -8,8 +8,8 @@ import { IUnverifiedReviewItem } from '@/models/review.model';
 
 interface AdminUnverifiedReviewsTableBodyProps {
   unverifiedReviews: IUnverifiedReviewItem[];
-  handleApproveReview: (reviewId: number) => void;
-  openModal: () => void;
+  handleApproveReview: () => void;
+  openModal: (reviewId: number) => void;
   closeModal: () => void;
   isModalOpen: boolean;
 }
@@ -26,23 +26,24 @@ function AdminUnverifiedReviewsTableBody({
       {unverifiedReviews.map((report: IUnverifiedReviewItem, idx: number) => (
         <React.Fragment key={idx}>
           <tr>
-            <td>{idx + 1}</td>
+            <td>{report.id}</td>
             <td>{report.title}</td>
             <td>{report.userName}</td>
             <td>{dayjs(report.createdAt).format('YYYY-MM-DD')}</td>
             <td>
-              <IconButton onClick={openModal}>
+              <IconButton onClick={() => openModal(report.id)}>
                 <Icon width={22} icon={<Image />} />
               </IconButton>
             </td>
           </tr>
           <Modal
             buttonText="승인"
-            imageSrc={report.receiptImg}
+            // imageSrc={report.receiptImg}
+            imageSrc="https://github.com/user-attachments/assets/c3f06805-5623-4bc3-8ad8-098c7c66d72f"
             isOpen={isModalOpen}
             onClose={closeModal}
             onCancel={closeModal}
-            onConfirm={() => handleApproveReview(report.id)}
+            onConfirm={handleApproveReview}
           />
         </React.Fragment>
       ))}

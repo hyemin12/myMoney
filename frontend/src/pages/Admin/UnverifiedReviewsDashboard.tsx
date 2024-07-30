@@ -20,20 +20,25 @@ const tableHead: TableHeadItem[] = [
 
 function UnverifiedReviewsDashboard() {
   const { unverifiedReviews, isLoadingUnverifiedReviews } = useAdmin();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalState, setModalState] = useState<{
+    isOpen: boolean;
+    reviewId: number | null;
+  }>({ isOpen: false, reviewId: null });
   const { approveReview } = useAdmin();
 
-  const handleApproveReview = async (reviewId: number) => {
-    await approveReview(reviewId);
-    setIsModalOpen(false);
+  const handleApproveReview = async () => {
+    if (modalState.reviewId !== null) {
+      await approveReview(modalState.reviewId!);
+      setModalState({ isOpen: false, reviewId: null });
+    }
   };
 
   const closeModal = () => {
-    setIsModalOpen(false);
+    setModalState({ isOpen: false, reviewId: null });
   };
 
-  const openModal = () => {
-    setIsModalOpen(true);
+  const openModal = (reviewId: number) => {
+    setModalState({ isOpen: true, reviewId });
   };
 
   return (
@@ -55,7 +60,7 @@ function UnverifiedReviewsDashboard() {
               handleApproveReview={handleApproveReview}
               openModal={openModal}
               closeModal={closeModal}
-              isModalOpen={isModalOpen}
+              isModalOpen={modalState.isOpen}
             />
           </AdminTable>
         )}
