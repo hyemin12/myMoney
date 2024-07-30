@@ -1,5 +1,9 @@
 import { useRef } from 'react';
-import { UseFormHandleSubmit, UseFormRegister } from 'react-hook-form';
+import {
+  UseFormHandleSubmit,
+  UseFormRegister,
+  UseFormWatch,
+} from 'react-hook-form';
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -12,6 +16,7 @@ interface SearchInputBoxProps {
   handleSubmit: UseFormHandleSubmit<{ query: string }>;
   register: UseFormRegister<ISearchForm>;
   handleCancelSearch: () => void;
+  watch: UseFormWatch<ISearchForm>;
 }
 
 function SearchInputBox({
@@ -19,10 +24,14 @@ function SearchInputBox({
   onSubmit,
   handleSubmit,
   register,
+  watch,
 }: SearchInputBoxProps) {
   const buttonRef = useRef<null | HTMLButtonElement>(null);
   const [searchParams] = useSearchParams();
 
+  const searchQueryValue = watch('query');
+
+  console.log(searchQueryValue);
   return (
     <StickyContainer>
       <Form onSubmit={handleSubmit(onSubmit)}>
@@ -38,9 +47,11 @@ function SearchInputBox({
             <MagnifyingGlass />
           </SearchIcon>
 
-          <CancelIcon onClick={handleCancelSearch}>
-            <SmallX />
-          </CancelIcon>
+          {searchQueryValue.length > 0 && (
+            <CancelIcon onClick={handleCancelSearch}>
+              <SmallX />
+            </CancelIcon>
+          )}
 
           <StyledInput
             defaultValue={String(searchParams.get('query') || '')}
@@ -69,10 +80,10 @@ const Fieldset = styled.fieldset`
 `;
 
 const StyledInput = styled(Input)`
-  padding-left: 50px;
-  height: 40px;
-  box-sizing: border-box;
   width: 100%;
+  height: 40px;
+  padding-left: 50px;
+  box-sizing: border-box;
 `;
 
 const Button = styled.button`
