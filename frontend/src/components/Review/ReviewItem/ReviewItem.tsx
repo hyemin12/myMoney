@@ -21,7 +21,7 @@ import {
   MODAL_BTNTEXT,
   MODAL_TITLE,
   MODAL_TYPES,
-} from '@/constance/modalString';
+} from '@/constants/modalString.ts';
 import useAuthStore from '@/store/auth.store';
 import { handleGoLogin } from '@/utils/routingUtils';
 import useModal from '@/hooks/useModal.ts';

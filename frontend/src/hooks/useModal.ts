@@ -4,7 +4,7 @@ import {
   MODAL_TYPES,
   MODAL_TITLE,
   MODAL_BTNTEXT,
-} from '@/constance/modalString';
+} from '@/constants/modalString';
 import { handleGoLogin } from '@/utils/routingUtils';
 
 interface UseModalProps {

@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { Button, Input, Modal } from '@/components/common';
 import { TCommentItemWrite } from '@/models/comment.model';
 import useAuthStore from '@/store/auth.store';
-import { MODAL_BTNTEXT, MODAL_TITLE } from '@/constance/modalString';
+import { MODAL_BTNTEXT, MODAL_TITLE } from '@/constants/modalString';
 
 interface Props {
   onAdd: (data: TCommentItemWrite) => void;

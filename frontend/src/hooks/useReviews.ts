@@ -2,7 +2,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useInfiniteQuery, useMutation } from '@tanstack/react-query';
 
 import { fetchReviews, IFetchReviewsParams } from '@/api/review.api';
-import { QUERYSTRING } from '@/constance/querystring';
+import { QUERYSTRING } from '@/constants/querystring';
 import { deleteReview } from '@/api/review.api';
 import { formatReviews } from '@/utils/formatReviews';
 

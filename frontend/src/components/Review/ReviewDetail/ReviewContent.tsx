@@ -16,7 +16,7 @@ import {
 } from './ReviewContent.style';
 import { formatDate } from '@/utils/format';
 import useAuthStore from '@/store/auth.store';
-import { MODAL_TYPES, MODAL_TITLE } from '@/constance/modalString';
+import { MODAL_TYPES, MODAL_TITLE } from '@/constants/modalString';
 import { useLike } from '@/hooks/useLike';
 import { useReport } from '@/hooks/useReport';
 import useModal from '@/hooks/useModal';

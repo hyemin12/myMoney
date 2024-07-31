@@ -7,7 +7,7 @@ import { formatDate } from '@/utils/format';
 import { Button, Modal } from '@/components/common';
 import useComments from '@/hooks/useComment';
 import useAuthStore from '@/store/auth.store';
-import { MODAL_BTNTEXT, MODAL_TITLE } from '@/constance/modalString';
+import { MODAL_BTNTEXT, MODAL_TITLE } from '@/constants/modalString';
 
 interface Props {
   comment: IComment;
