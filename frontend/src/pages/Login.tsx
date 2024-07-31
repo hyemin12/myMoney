@@ -5,11 +5,10 @@ import { useCookies } from 'react-cookie';
 import styled from 'styled-components';
 
 import { NaedonnaesanTextLogo } from '@/assets/icons';
-import LoginForm from '@/components/Login/LoginForm';
-import { AuthOptions, Icon } from '@/components/common';
 import { withUnauthenticatedUser } from '@/shared/hocs';
-import { IUserLogin } from '@/models/user.model';
 import { useAuth } from '@/features/auth/hooks/useAuth';
+import { IUserLogin, LoginForm, AuthOptions } from '@/features/auth';
+import { Icon } from '@/shared/components';
 
 function Login() {
   const [cookies] = useCookies(['email']);

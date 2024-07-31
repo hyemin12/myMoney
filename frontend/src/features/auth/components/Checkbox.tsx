@@ -1,17 +1,14 @@
 import styled from 'styled-components';
 
 import { CheckedIcon } from '@/assets/icons';
-import { Icon } from '@/components/common';
+import { Icon } from '@/shared/components';
 
-interface CheckboxProps {
+interface Props {
   checkedRememberEmail: boolean;
   toggleCheckedRememberEmail: () => void;
 }
 
-function Checkbox({
-  checkedRememberEmail,
-  toggleCheckedRememberEmail,
-}: CheckboxProps) {
+function Checkbox({ checkedRememberEmail, toggleCheckedRememberEmail }: Props) {
   return (
     <>
       <CheckboxLabel htmlFor="loginCheckbox">

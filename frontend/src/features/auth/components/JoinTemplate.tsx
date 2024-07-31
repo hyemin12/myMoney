@@ -6,7 +6,7 @@ import ProgressBar from './ProgressBar';
 
 const TOTAL_STEP = 3;
 
-interface JoinTemplateProps {
+interface Props {
   current: number;
   children: React.ReactNode;
   title: string;
@@ -22,7 +22,7 @@ function JoinTemplate({
   isValid,
   onSubmit,
   errorMessage,
-}: JoinTemplateProps) {
+}: Props) {
   return (
     <>
       <ProgressBar total={TOTAL_STEP} current={current} />

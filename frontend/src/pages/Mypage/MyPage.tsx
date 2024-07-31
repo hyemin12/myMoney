@@ -1,6 +1,5 @@
-import styled, { css } from 'styled-components';
-import Layout from '@/layout/Layout';
 import { useNavigate } from 'react-router-dom';
+import styled, { css } from 'styled-components';
 
 import {
   ArchiveIcon,
@@ -9,11 +8,11 @@ import {
   HelpIcon,
   ReportIcon,
 } from '@/assets/icons';
-import { Icon, Loading } from '@/components/common';
+import Layout from '@/layout/Layout';
 import { withAuthenticatedUser } from '@/shared/hocs';
+import { Icon, Loading } from '@/shared/components';
 import { LoadingContainer } from '@/features/admin/components/AdminContent';
 import { useAuth } from '@/features/auth/hooks/useAuth';
-import { useUser } from '@/hooks/useUser';
 
 const myPageNavItems = [
   { icon: <BabyIcon />, title: '내 정보 관리', path: '/mypage' },
@@ -33,7 +32,7 @@ const myPageNavItems = [
 function MyPage() {
   const navigate = useNavigate();
   const { userLogout } = useAuth();
-  const { userInfo, isLoadingUsers } = useUser();
+  const { userInfo, isLoadingUsers } = useAuth();
 
   const handleNavigation = (path: string) => {
     if (path === '/mypage' || path === '/mypage/support') {

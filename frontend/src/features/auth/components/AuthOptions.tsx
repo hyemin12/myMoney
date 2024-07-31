@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-interface AuthOptionsProps {
+interface Props {
   description: string;
   linkText: string;
   linkPath: string;
 }
 
-function AuthOptions({ description, linkText, linkPath }: AuthOptionsProps) {
+function AuthOptions({ description, linkText, linkPath }: Props) {
   return (
     <AuthOptionsStyle>
       <p>{description}</p>

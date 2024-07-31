@@ -1,10 +1,7 @@
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
-import LoginForm from '@/components/Login/LoginForm';
-import { IUserLogin } from '@/models/user.model';
-import { AuthOptions } from '@/components/common';
-import { useAuth } from '@/features/auth/hooks/useAuth';
+import { useAuth, IUserLogin, LoginForm, AuthOptions } from '@/features/auth';
 
 function AdminLogin() {
   const { errorMessage, userLogin } = useAuth();

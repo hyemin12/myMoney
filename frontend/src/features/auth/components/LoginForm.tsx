@@ -1,9 +1,8 @@
 import { useLocation } from 'react-router-dom';
 import { UseFormRegister } from 'react-hook-form';
 
-import { AlertText, Button, Input } from '@/components/common';
 import Checkbox from './Checkbox';
-import { IUserLogin } from '@/models/user.model';
+import { AlertText, Button, Input } from '@/shared/components';
 import {
   FindPassword,
   FormStyle,
@@ -11,8 +10,9 @@ import {
   InputGroup,
   OptionStyle,
 } from './LoginForm.style';
+import { IUserLogin } from '../model/auth.model';
 
-interface ILoginFormProps {
+interface Props {
   onSubmit: () => void;
   register: UseFormRegister<IUserLogin>;
   errorMessage: string | null;
@@ -26,7 +26,7 @@ function LoginForm({
   onSubmit,
   register,
   errorMessage,
-}: ILoginFormProps) {
+}: Props) {
   const { pathname } = useLocation();
   const $isUserLoginPage = pathname === '/login';
 

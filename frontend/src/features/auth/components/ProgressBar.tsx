@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-interface ProgressBarProps {
+interface Props {
   total: number;
   current: number;
 }
 
-function ProgressBar({ total, current }: ProgressBarProps) {
+function ProgressBar({ total, current }: Props) {
   return (
     <Background>
       <CurrentBar total={total} current={current} />
@@ -22,7 +22,7 @@ const Background = styled.div`
   left: 0;
 `;
 
-const CurrentBar = styled.div<ProgressBarProps>`
+const CurrentBar = styled.div<Props>`
   width: ${({ total, current }) => `calc((100% / ${total}) * ${current})`};
   height: 4px;
   background-color: ${({ theme }) => theme.color.secondary};

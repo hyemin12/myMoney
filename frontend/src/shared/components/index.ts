@@ -1,5 +1,4 @@
 export { default as AlertText } from './AlertText';
-export { default as AuthOptions } from './AuthOptions';
 export { default as Button } from './Button';
 export { default as Category } from '../../features/category/components/Category';
 export { default as CategoryButton } from '../../features/category/components/CategoryButton';

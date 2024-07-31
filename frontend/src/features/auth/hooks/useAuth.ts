@@ -1,19 +1,20 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 
+import { IUserLogin } from '../model/auth.model';
+import useUserRegistrationStore from '@/store/user.registration.store';
+import useAuthStore from '@/store/auth.store';
+import { handleGoHome } from '@/shared/utils/routingUtils';
 import {
   checkedEmail,
   checkedNickname,
+  getUserInfo,
   join,
   login,
   logout,
-} from '@/api/auth.api';
-import useUserRegistrationStore from '@/store/user.registration.store';
-import useAuthStore from '@/store/auth.store';
-import { IUserLogin } from '@/models/user.model';
-import { handleGoHome } from '@/shared/utils/routingUtils';
+} from '../api/auth.api';
 
 // 아이디 저장 만료일 (한달)
 const EXPIRATION_MAX_AGE = 30 * 24 * 60 * 60;
@@ -193,7 +194,16 @@ export const useAuth = () => {
     logoutUserMutation.mutate();
   };
 
+  /** 사용자의 정보를 조회하는 요청 */
+  const { data: userInfo, isLoading: isLoadingUsers } = useQuery({
+    queryKey: ['userInfo'],
+    queryFn: getUserInfo,
+    throwOnError: true,
+  });
+
   return {
+    userInfo,
+    isLoadingUsers,
     errorMessage,
     userJoin,
     userCheckedEmail,

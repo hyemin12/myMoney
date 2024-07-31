@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Button, AlertText } from '@/components/common';
+import { AlertText, Button } from '@/shared/components';
 
-interface JoinFormProps {
+interface Props {
   children: React.ReactNode;
   isLastStep: boolean;
   onSubmit: () => void;
@@ -17,7 +17,7 @@ function JoinForm({
   onSubmit,
   isValid,
   errorMessage,
-}: JoinFormProps) {
+}: Props) {
   return (
     <Form onSubmit={onSubmit}>
       <InputWrapper>{children}</InputWrapper>
