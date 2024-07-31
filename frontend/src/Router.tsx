@@ -21,7 +21,7 @@ import AdminLogin from '@/pages/Admin/AdminLogin';
 import ReportedUsersDashboard from '@/pages/Admin/ReportedUsersDashboard';
 import UnverifiedReviewsDashboard from '@/pages/Admin/UnverifiedReviewsDashboard';
 
-import NotFoundError from './components/Error/NotFoundError';
+import NotFoundError from './features/error/NotFoundError';
 
 export function Router() {
   return (

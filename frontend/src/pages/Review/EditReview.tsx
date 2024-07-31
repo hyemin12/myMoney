@@ -4,8 +4,8 @@ import styled from 'styled-components';
 
 import Header from '@/layout/Header';
 import { ReviewForm } from '@/components/Review';
-import { useReview } from '@/hooks/useReview';
-import { withAuthenticatedUser } from '@/components/hocs';
+import { useReview } from '@/features/review/hooks/useReview';
+import { withAuthenticatedUser } from '@/shared/hocs';
 
 function EditReview() {
   const { id } = useParams<{ id: string }>();

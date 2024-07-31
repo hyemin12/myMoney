@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import LoginForm from '@/components/Login/LoginForm';
 import { IUserLogin } from '@/models/user.model';
 import { AuthOptions } from '@/components/common';
-import { useAuth } from '@/hooks/useAuth';
+import { useAuth } from '@/features/auth/hooks/useAuth';
 
 function AdminLogin() {
   const { errorMessage, userLogin } = useAuth();

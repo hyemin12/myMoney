@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { useReview } from '@/hooks/useReview';
+import { useReview } from '@/features/review/hooks/useReview';
 
 import Header from '@/layout/Header';
 import { ReviewForm } from '@/components/Review';
 import { FormStyled } from './EditReview';
-import { withAuthenticatedUser } from '@/components/hocs';
+import { withAuthenticatedUser } from '@/shared/hocs';
 
 function CreateReview() {
   const [title, setTitle] = useState<string>('');

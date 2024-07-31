@@ -1,5 +1,5 @@
 import { IReport } from '@/models/report.model';
-import { httpClient } from './http';
+import { httpClient } from '../shared/utils/http';
 
 export const getSuspendedUsers = async () => {
   const { data } = await httpClient.get('/reports/users');

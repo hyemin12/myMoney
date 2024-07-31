@@ -10,9 +10,9 @@ import {
   ReportIcon,
 } from '@/assets/icons';
 import { Icon, Loading } from '@/components/common';
-import { withAuthenticatedUser } from '@/components/hocs';
-import { LoadingContainer } from '@/components/Admin/AdminContent';
-import { useAuth } from '@/hooks/useAuth';
+import { withAuthenticatedUser } from '@/shared/hocs';
+import { LoadingContainer } from '@/features/admin/components/AdminContent';
+import { useAuth } from '@/features/auth/hooks/useAuth';
 import { useUser } from '@/hooks/useUser';
 
 const myPageNavItems = [

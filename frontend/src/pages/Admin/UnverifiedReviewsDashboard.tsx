@@ -5,10 +5,10 @@ import {
   AdminLayout,
   AdminTable,
   AdminUnverifiedReviewsTableBody,
-} from '@/components/Admin';
+} from '@/features/admin';
 import { TableHeadItem } from '@/components/Admin/AdminTable';
-import { withAdminAuthenticatedUser } from '@/components/hocs';
-import { useAdmin } from '@/hooks/useAdmin';
+import { withAdminAuthenticatedUser } from '@/shared/hocs';
+import { useAdmin } from '@/features/admin/hooks/useAdmin';
 
 const tableHead: TableHeadItem[] = [
   { name: 'No', $widthRatio: 7 },
@@ -47,13 +47,11 @@ function UnverifiedReviewsDashboard() {
         title="미승인 후기 관리"
         isLoading={isLoadingUnverifiedReviews}
       >
-        {unverifiedReviews.length === 0 && (
+        {unverifiedReviews.length === 0 ? (
           <tr>
             <td colSpan={tableHead.length}>미승인 후기가 없습니다.</td>
           </tr>
-        )}
-
-        {unverifiedReviews.length > 0 && (
+        ) : (
           <AdminTable tableHead={tableHead}>
             <AdminUnverifiedReviewsTableBody
               unverifiedReviews={unverifiedReviews}

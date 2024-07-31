@@ -5,7 +5,7 @@ import {
   MODAL_TITLE,
   MODAL_BTNTEXT,
 } from '@/constants/modalString';
-import { handleGoLogin } from '@/utils/routingUtils';
+import { handleGoLogin } from '@/shared/utils/routingUtils';
 
 interface UseModalProps {
   onConfirm: (option: string) => void;

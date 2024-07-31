@@ -7,9 +7,9 @@ import styled from 'styled-components';
 import { NaedonnaesanTextLogo } from '@/assets/icons';
 import LoginForm from '@/components/Login/LoginForm';
 import { AuthOptions, Icon } from '@/components/common';
-import { withUnauthenticatedUser } from '@/components/hocs';
+import { withUnauthenticatedUser } from '@/shared/hocs';
 import { IUserLogin } from '@/models/user.model';
-import { useAuth } from '@/hooks/useAuth';
+import { useAuth } from '@/features/auth/hooks/useAuth';
 
 function Login() {
   const [cookies] = useCookies(['email']);

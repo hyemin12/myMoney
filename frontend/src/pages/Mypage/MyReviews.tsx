@@ -1,7 +1,7 @@
 import Layout from '@/layout/Layout';
 import { ReviewList } from '@/components/Review';
 import { useMyReviews } from '@/hooks/useInfiniteReviews';
-import { formatReviews } from '@/utils/formatReviews';
+import { formatReviews } from '@/features/reviews/formatReviews';
 
 const MyReviews = () => {
   const { data, isLoading, fetchNextPage, hasNextPage } = useMyReviews();

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import { CaretLeftIcon, NaedonnaesanTextLogo } from '@/assets/icons';
-import { handleGoAdmin, handleGoBack } from '@/utils/routingUtils';
+import { handleGoAdmin, handleGoBack } from '@/shared/utils/routingUtils';
 import useAuthStore from '@/store/auth.store';
 
 interface HeaderProps {

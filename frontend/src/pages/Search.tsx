@@ -10,7 +10,7 @@ import {
   SearchInputBox,
   RecentKeyword,
 } from '@/components/Search';
-import { useReviews } from '@/hooks/useReviews';
+import { useReviews } from '@/features/reviews/hooks/useReviews';
 
 export interface IRecentKeywordKey {
   id: number;
