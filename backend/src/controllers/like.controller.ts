@@ -1,5 +1,5 @@
 import { RequestHandler } from 'express';
-import { CustomRequest } from '../middlewares/authentication';
+import { CustomRequest } from '../middleware/authentication';
 import { serviceAddLike, serviceCancelLike } from '../services/like.service';
 import { ERROR_MESSAGE } from '../constance/errorMessage';
 

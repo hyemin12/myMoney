@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { CustomRequest } from '../middlewares/authentication';
+import { CustomRequest } from '../middleware/authentication';
 import {
   serviceCreateComment,
   serviceDeleteComment,

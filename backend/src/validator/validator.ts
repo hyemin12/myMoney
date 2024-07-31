@@ -1,6 +1,6 @@
 import { NextFunction, Response } from 'express';
 import { validationResult } from 'express-validator';
-import { CustomRequest } from '../middlewares/authentication';
+import { CustomRequest } from '../middleware/authentication';
 
 export const validator = (
   req: CustomRequest,

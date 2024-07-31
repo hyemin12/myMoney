@@ -1,6 +1,6 @@
 import { Response, Request } from 'express';
 
-import { CustomRequest } from '../middlewares/authentication';
+import { CustomRequest } from '../middleware/authentication';
 import {
   serviceDeleteReport,
   serviceCreateReport,

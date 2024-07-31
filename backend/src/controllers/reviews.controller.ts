@@ -11,7 +11,7 @@ import {
   serviceDeleteReview,
   serviceGetUnverifiedReviews,
 } from '../services/review.service';
-import { CustomRequest } from '../middlewares/authentication';
+import { CustomRequest } from '../middleware/authentication';
 import { ERROR_MESSAGE } from '../constance/errorMessage';
 
 export interface IReviewQueryParams {

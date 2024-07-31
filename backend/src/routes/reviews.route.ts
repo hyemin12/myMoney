@@ -8,8 +8,8 @@ import {
   approveReviewByAdmin,
   getUnverifiedReviews,
 } from '../controllers/reviews.controller';
-import { authentication } from '../middlewares/authentication';
-import { validateReview } from '../validators/reviews.validator';
+import { authentication } from '../middleware/authentication';
+import { validateReview } from '../validator/reviews.validator';
 
 const router = express.Router();
 

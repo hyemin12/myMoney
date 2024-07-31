@@ -1,4 +1,4 @@
-import { authentication } from './../middlewares/authentication';
+import { authentication } from '../middleware/authentication';
 import express from 'express';
 import { addLike, cancelLike } from '../controllers/like.controller';
 

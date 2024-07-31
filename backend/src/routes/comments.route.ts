@@ -1,8 +1,8 @@
 import {
   validateAddComment,
   validateEditComment,
-} from './../validators/comments.validator';
-import { authentication } from './../middlewares/authentication';
+} from '../validator/comments.validator';
+import { authentication } from '../middleware/authentication';
 import express from 'express';
 import {
   addComment,

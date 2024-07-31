@@ -1,5 +1,5 @@
 import express from 'express';
-import { authentication } from '../middlewares/authentication';
+import { authentication } from '../middleware/authentication';
 import {
   deleteReport,
   addReport,
@@ -8,7 +8,7 @@ import {
 import {
   validateAddReport,
   validateDeleteReport,
-} from '../validators/reports.validator';
+} from '../validator/reports.validator';
 
 const router = express.Router();
 

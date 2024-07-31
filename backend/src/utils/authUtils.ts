@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 import { SALT_ROUNDS, TOKEN_PRIVATE_KEY } from '../settings';
-import { IUserInfo } from '../middlewares/authentication';
+import { IUserInfo } from '../middleware/authentication';
 import { IUserWithReportInfo } from '../models/user.model';
 
 export const hashPassword = async (password: string) => {

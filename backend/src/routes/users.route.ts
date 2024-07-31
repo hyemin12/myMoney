@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { authentication } from '../middlewares/authentication';
+import { authentication } from '../middleware/authentication';
 import {
   checkedDuplicateEmail,
   checkedDuplicateNickname,
@@ -14,7 +14,7 @@ import {
   validateCheckedNickname,
   validateJoin,
   validateLogin,
-} from '../validators/users.validator';
+} from '../validator/users.validator';
 
 const router = express.Router();
 
