@@ -11,7 +11,7 @@ interface AdminLayoutProps {
 }
 
 function AdminLayout({ children }: AdminLayoutProps) {
-  const [isTabletSize, setIsTabletSize] = useState(false);
+  const [isTabletSize, setIsTabletSize] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
     const handleResize = () => {
@@ -19,6 +19,7 @@ function AdminLayout({ children }: AdminLayoutProps) {
     };
 
     window.addEventListener('resize', handleResize);
+    handleResize();
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
@@ -35,13 +36,13 @@ function AdminLayout({ children }: AdminLayoutProps) {
     );
 
   return (
-    <Container>
+    <LayoutContainer>
       <AdminSidebar />
       <AdminMainContent id="admin-main">
         <AdminHeader />
         {children}
       </AdminMainContent>
-    </Container>
+    </LayoutContainer>
   );
 }
 const AlertContainer = styled.div`
@@ -57,7 +58,7 @@ const AlertContainer = styled.div`
   }
 `;
 
-const Container = styled.div`
+const LayoutContainer = styled.div`
   width: 100%;
   min-width: 1200px;
   height: 100vh;
