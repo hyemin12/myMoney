@@ -1,5 +1,5 @@
 import BadgeImg from '@/assets/images/badge-img.png';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 interface BadgeProps {
   type: 'border' | 'fill';
@@ -18,7 +18,6 @@ function Badge({ type, text, verifiedIcon, $position }: BadgeProps) {
     </BadgeStyle>
   );
 }
-
 const BadgeStyle = styled.div<Pick<BadgeProps, 'type' | '$position'>>`
   display: flex;
   align-items: center;
@@ -31,17 +30,17 @@ const BadgeStyle = styled.div<Pick<BadgeProps, 'type' | '$position'>>`
 
   ${({ type, theme }) =>
     type === 'border' &&
-    `
-  background-color: #fff;
-  border: 1px solid ${theme.color.primary};
-  color: ${theme.color.primary};
-`}
+    css`
+      background-color: #fff;
+      border: 1px solid ${theme.color.primary};
+      color: ${theme.color.primary};
+    `}
 
   ${({ type, theme }) =>
     type === 'fill' &&
-    `
-    background-color:  ${theme.color.primary};
-    color:#fff;
+    css`
+      background-color: ${theme.color.primary};
+      color: #fff;
     `}
 
   .badgeImg {
@@ -50,18 +49,18 @@ const BadgeStyle = styled.div<Pick<BadgeProps, 'type' | '$position'>>`
 
   ${({ $position }) =>
     $position === 'top' &&
-    `
-    border-top-left-radius: 6px;
+    css`
+      border-top-left-radius: 6px;
+    `}
 
-  `}
   ${({ $position }) =>
     $position === 'bottom' &&
-    `
-    position:absolute;
-    bottom:0;
-    left:0;
-    border-bottom-left-radius: 6px;
-  `}
+    css`
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      border-bottom-left-radius: 6px;
+    `}
 `;
 
 export default Badge;
