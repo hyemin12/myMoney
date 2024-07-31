@@ -3,13 +3,14 @@ import {
   AdminContent,
   AdminTable,
   AdminReportTableBody,
+  IAdminTableHead,
+  ISuspendedUsers,
+  IFormatSuspendedUsers,
 } from '@/features/admin';
-import { TableHeadItem } from '@/components/Admin/AdminTable';
 import { withAdminAuthenticatedUser } from '@/shared/hocs';
-import { useAdmin } from '@/features/admin/hooks/useAdmin';
-import { ISuspendedUsers, IFormatSuspendedUsers } from '@/models/admin.model';
+import { useAdmin } from '@/features/admin/';
 
-const tableHead: TableHeadItem[] = [
+const tableHead: IAdminTableHead[] = [
   { name: 'No', $widthRatio: 7 },
   { name: '이메일', $widthRatio: 36 },
   { name: '신고 사유', $widthRatio: 13 },

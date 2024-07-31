@@ -5,12 +5,12 @@ import {
   AdminLayout,
   AdminTable,
   AdminUnverifiedReviewsTableBody,
+  IAdminTableHead,
 } from '@/features/admin';
-import { TableHeadItem } from '@/components/Admin/AdminTable';
 import { withAdminAuthenticatedUser } from '@/shared/hocs';
-import { useAdmin } from '@/features/admin/hooks/useAdmin';
+import { useAdmin } from '@/features/admin/';
 
-const tableHead: TableHeadItem[] = [
+const tableHead: IAdminTableHead[] = [
   { name: 'No', $widthRatio: 7 },
   { name: '제목', $widthRatio: 45 },
   { name: '작성자(닉네임)', $widthRatio: 16 },
@@ -19,12 +19,12 @@ const tableHead: TableHeadItem[] = [
 ];
 
 function UnverifiedReviewsDashboard() {
-  const { unverifiedReviews, isLoadingUnverifiedReviews } = useAdmin();
+  const { unverifiedReviews, isLoadingUnverifiedReviews, approveReview } =
+    useAdmin();
   const [modalState, setModalState] = useState<{
     isOpen: boolean;
     reviewId: number | null;
   }>({ isOpen: false, reviewId: null });
-  const { approveReview } = useAdmin();
 
   const handleApproveReview = async () => {
     if (modalState.reviewId !== null) {
