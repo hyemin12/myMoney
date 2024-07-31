@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { BigSearch } from '@/assets/icons';
+import { BigSearchIcon } from '@/assets/icons';
 
 interface NoRecentSearchResultProps {
   text: string;
@@ -9,7 +9,7 @@ interface NoRecentSearchResultProps {
 function NoRecentSearchResult({ text }: NoRecentSearchResultProps) {
   return (
     <NoRecentSearchResultStyle>
-      <BigSearch />
+      <BigSearchIcon />
       <p>{text}</p>
     </NoRecentSearchResultStyle>
   );

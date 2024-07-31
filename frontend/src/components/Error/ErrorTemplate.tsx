@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Attention } from '@/assets/icons';
+import { AttentionIcon } from '@/assets/icons';
 import { ErrorContainer } from './ErrorTemplate.style';
 
 interface ErrorTemplateProps {
@@ -18,7 +18,7 @@ function ErrorTemplate({
 }: ErrorTemplateProps) {
   return (
     <ErrorContainer $errorStatus={!!$errorStatus}>
-      <Attention />
+      <AttentionIcon />
       {$errorStatus && <p className="error-status">{$errorStatus} ERROR</p>}
       <h3 className="title">{title}</h3>
       <div>

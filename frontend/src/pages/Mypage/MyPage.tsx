@@ -2,7 +2,13 @@ import styled, { css } from 'styled-components';
 import Layout from '@/layout/Layout';
 import { useNavigate } from 'react-router-dom';
 
-import { Archive, Baby, Heart, Question, SignOut, Siren } from '@/assets/icons';
+import {
+  ArchiveIcon,
+  BabyIcon,
+  HeartIcon,
+  HelpIcon,
+  ReportIcon,
+} from '@/assets/icons';
 import { Icon, Loading } from '@/components/common';
 import { withAuthenticatedUser } from '@/components/hocs';
 import { LoadingContainer } from '@/components/Admin/AdminContent';
@@ -10,14 +16,18 @@ import { useAuth } from '@/hooks/useAuth';
 import { useUser } from '@/hooks/useUser';
 
 const myPageNavItems = [
-  { icon: <Baby />, title: '내 정보 관리', path: '/mypage' },
+  { icon: <BabyIcon />, title: '내 정보 관리', path: '/mypage' },
   {
-    icon: <Archive />,
+    icon: <ArchiveIcon />,
     title: '내가 작성한 리뷰 목록',
     path: '/mypage/reviews',
   },
-  { icon: <Heart />, title: '좋아요 누른 리뷰 목록', path: '/mypage/liked' },
-  { icon: <Question />, title: '고객센터', path: '/mypage/support' },
+  {
+    icon: <HeartIcon />,
+    title: '좋아요 누른 리뷰 목록',
+    path: '/mypage/liked',
+  },
+  { icon: <HelpIcon />, title: '고객센터', path: '/mypage/support' },
 ];
 
 function MyPage() {
@@ -50,7 +60,7 @@ function MyPage() {
 
           <ReportContainer className="item-container">
             <div>
-              <Icon icon={<Siren />} width={26} />
+              <Icon icon={<ReportIcon />} width={26} />
               <p>신고당한 횟수:</p>
             </div>
             <p>

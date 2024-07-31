@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import NoRecentSearchResult from './NoRecentSearchResult';
 import { IRecentKeywordKey, RecentKeywordCancelIcon } from '@/pages/Search';
-import { SmallX } from '@/assets/icons';
+import { CloseIcon } from '@/assets/icons';
 
 interface IRecentKeywordProps {
   keywords: IRecentKeywordKey[];
@@ -42,7 +42,7 @@ function RecentKeyword({
               handleRemoveRecentKeyword(id);
             }}
           >
-            <SmallX />
+            <CloseIcon />
           </RecentKeywordCancelIcon>
         </RecentKeywordInnerContainer>
       ))}

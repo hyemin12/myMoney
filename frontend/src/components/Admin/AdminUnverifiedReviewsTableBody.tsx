@@ -2,7 +2,7 @@ import React from 'react';
 import dayjs from 'dayjs';
 import styled from 'styled-components';
 
-import { Image } from '@/assets/icons';
+import { ImageIcon } from '@/assets/icons';
 import { Icon, Modal } from '@/components/common';
 import { IUnverifiedReviewItem } from '@/models/review.model';
 
@@ -32,7 +32,7 @@ function AdminUnverifiedReviewsTableBody({
             <td>{dayjs(report.createdAt).format('YYYY-MM-DD')}</td>
             <td>
               <IconButton onClick={() => openModal(report.id)}>
-                <Icon width={22} icon={<Image />} />
+                <Icon width={22} icon={<ImageIcon />} />
               </IconButton>
             </td>
           </tr>

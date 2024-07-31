@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { CaretLeft, TextLogo } from '@/assets/icons';
+import { CaretLeftIcon, NaedonnaesanTextLogo } from '@/assets/icons';
 import { handleGoAdmin, handleGoBack } from '@/utils/routingUtils';
 import useAuthStore from '@/store/auth.store';
 
@@ -16,7 +16,7 @@ export default function Header({ title, showBackButton = false }: HeaderProps) {
     <Container>
       {showBackButton && (
         <BackIcon onClick={handleGoBack}>
-          <CaretLeft />
+          <CaretLeftIcon />
         </BackIcon>
       )}
 
@@ -24,7 +24,7 @@ export default function Header({ title, showBackButton = false }: HeaderProps) {
         <h2>{title}</h2>
       ) : (
         <Icon>
-          <TextLogo />
+          <NaedonnaesanTextLogo />
         </Icon>
       )}
       {isAdminUser && (

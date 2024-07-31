@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { AiFillStar } from 'react-icons/ai';
 
-import { Siren, PencilSimple, Trash } from '@/assets/icons';
+import { ReportIcon, EditIcon, TrashIcon } from '@/assets/icons';
 import { Icon, Modal } from '@/components/common';
 import Like from '../Like';
 import { IReviewDetail } from '@/models/review.model';
@@ -119,13 +119,21 @@ function ReviewContent() {
           <div className="btn">
             <Btn
               className="update"
-              icon={<PencilSimple />}
+              icon={<EditIcon />}
               onClick={handleUpdate}
             />
-            <Btn className="delete" icon={<Trash />} onClick={handleDelete} />
+            <Btn
+              className="delete"
+              icon={<TrashIcon />}
+              onClick={handleDelete}
+            />
           </div>
         ) : (
-          <Btn className="report btn" icon={<Siren />} onClick={handleReport} />
+          <Btn
+            className="report btn"
+            icon={<ReportIcon />}
+            onClick={handleReport}
+          />
         )}
       </AuthorContainer>
 

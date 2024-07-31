@@ -2,10 +2,10 @@ import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 import {
-  Link as LinkIcon,
-  User as UserIcon,
-  ReceiptAuthentication,
-  TextLogo,
+  DashboardLinkIcon,
+  UserIcon,
+  DashboardUnapprovedReviewIcon,
+  NaedonnaesanTextLogo,
 } from '@/assets/icons';
 import AdminNavItem, { AdminNavItemProps } from './AdminNavItem';
 
@@ -18,7 +18,7 @@ const adminNav: AdminNavItemProps[] = [
   {
     path: '/admin/unverified-reviews',
     name: '미승인 후기 관리',
-    icon: <ReceiptAuthentication />,
+    icon: <DashboardUnapprovedReviewIcon />,
     $iconSize: 16,
   },
 ];
@@ -28,11 +28,15 @@ function AdminSidebar() {
   return (
     <Container>
       <Logo>
-        <TextLogo />
+        <NaedonnaesanTextLogo />
       </Logo>
 
       <LinkToService>
-        <AdminNavItem path="/" icon={<LinkIcon />} name="사이트 바로가기" />
+        <AdminNavItem
+          path="/"
+          icon={<DashboardLinkIcon />}
+          name="사이트 바로가기"
+        />
       </LinkToService>
 
       <div>

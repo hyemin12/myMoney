@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { Attention } from '@/assets/icons';
+import { AttentionIcon } from '@/assets/icons';
 import { Icon } from '@/components/common';
 import AdminSidebar from './AdminSidebar';
 import AdminHeader from './AdminHeader';
@@ -25,7 +25,7 @@ function AdminLayout({ children }: AdminLayoutProps) {
   if (isTabletSize)
     return (
       <AlertContainer>
-        <Icon icon={<Attention />} width={90} fill="#ffc807" />
+        <Icon icon={<AttentionIcon />} width={90} fill="#ffc807" />
         <p>
           화면의 크기가 너무 작습니다.
           <br />

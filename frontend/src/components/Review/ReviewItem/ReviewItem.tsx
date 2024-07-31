@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { Dropdown, Modal, Badge } from '@/components/common';
 import { Like } from '@/components/Review';
-import { DotsThree } from '@/assets/icons';
+import { DotsThreeIcon } from '@/assets/icons';
 import {
   Container,
   Content,
@@ -83,7 +83,7 @@ function ReviewItem({
           <p className="date">{formatDate(createdAt)}</p>
         </div>
         <Dropdown
-          toggleButton={<DotsThree />}
+          toggleButton={<DotsThreeIcon />}
           $positionLnR="right"
           $positionValue={0}
           $positionTopValue={32}
@@ -119,7 +119,7 @@ function ReviewItem({
             type="fill"
             verifiedIcon
             text="인증된 후기"
-            position="bottom"
+            $position="bottom"
           />
         )}
       </ImgContainer>

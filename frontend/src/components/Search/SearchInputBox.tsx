@@ -9,7 +9,7 @@ import styled from 'styled-components';
 
 import { Input } from '@/components/common';
 import { CancelIcon, ISearchForm } from '@/pages/Search';
-import { MagnifyingGlass, SmallX } from '@/assets/icons';
+import { MagnifyingGlassIcon, CloseIcon } from '@/assets/icons';
 
 interface SearchInputBoxProps {
   onSubmit: (data: ISearchForm) => void;
@@ -44,12 +44,12 @@ function SearchInputBox({
               }
             }}
           >
-            <MagnifyingGlass />
+            <MagnifyingGlassIcon />
           </SearchIcon>
 
           {searchQueryValue.length > 0 && (
             <CancelIcon onClick={handleCancelSearch}>
-              <SmallX />
+              <CloseIcon />
             </CancelIcon>
           )}
 

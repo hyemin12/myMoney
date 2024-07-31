@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Dropdown } from '@/components/common';
-import { CaretDown } from '@/assets/icons';
+import { CaretDownIcon } from '@/assets/icons';
 
 interface CategoryOption {
   id: number;
@@ -32,7 +32,7 @@ function CategorySelector({
       </p>
 
       <Dropdown
-        toggleButton={<CaretDown />}
+        toggleButton={<CaretDownIcon />}
         $positionLnR="right"
         $positionValue={-10}
         $positionTopValue={32}

@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
 
-import { Camera, X } from '@/assets/icons';
+import { CameraIcon, CloseIcon } from '@/assets/icons';
 import { convertToBase64 } from '@/utils/base64';
 import { Icon } from '@/components/common';
 
@@ -42,7 +42,7 @@ function PhotoUpload({ photoToAddList, setPhotoToAddList }: PhotoUploadProps) {
     return photoToAddList.map((url: string, index: number) => (
       <PhotoPreview key={index}>
         <CloseButton onClick={() => handleRemovePhoto(index)}>
-          <Icon width={12} fill="white" icon={<X />} />
+          <Icon width={12} fill="white" icon={<CloseIcon />} />
         </CloseButton>
         <img src={url} alt={`Photo ${index}`} />
       </PhotoPreview>
@@ -59,7 +59,7 @@ function PhotoUpload({ photoToAddList, setPhotoToAddList }: PhotoUploadProps) {
         multiple
       />
       <Button onClick={handleClick}>
-        <Camera />
+        <CameraIcon />
         <p>사진 첨부</p>
       </Button>
 

@@ -1,7 +1,7 @@
 import React, { ForwardedRef, useState } from 'react';
 import styled from 'styled-components';
 
-import { EyeClosed, Eye } from '@/assets/icons';
+import { EyeClosedIcon, EyeIcon } from '@/assets/icons';
 import Icon from './Icon';
 
 type TinputType = 'text' | 'email' | 'password' | 'number';
@@ -42,7 +42,9 @@ const Input = React.forwardRef(
             <Icon
               fill="#aba7af"
               width={20}
-              icon={inputTypeState === 'password' ? <EyeClosed /> : <Eye />}
+              icon={
+                inputTypeState === 'password' ? <EyeClosedIcon /> : <EyeIcon />
+              }
             />
           </IconButton>
         )}

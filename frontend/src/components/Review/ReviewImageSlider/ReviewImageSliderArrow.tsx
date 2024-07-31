@@ -1,11 +1,11 @@
-import { CaretLeft, CaretRight } from '@/assets/icons';
+import { CaretLeftIcon, CaretRightIcon } from '@/assets/icons';
 
 export const PrevArrow = (props: any) => {
   const { className, style, onClick } = props;
 
   return (
     <div className={className} style={{ ...style }} onClick={onClick}>
-      <CaretLeft />
+      <CaretLeftIcon />
     </div>
   );
 };
@@ -14,7 +14,7 @@ export const NextArrow = (props: any) => {
 
   return (
     <div className={className} style={{ ...style }} onClick={onClick}>
-      <CaretRight />
+      <CaretRightIcon />
     </div>
   );
 };

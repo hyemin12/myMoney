@@ -12,7 +12,7 @@ function ReviewImage({ imgSrc, title, isVerified }: ReviewImageProps) {
     <ReviewImageStyle>
       <img src={imgSrc} alt={title + '이미지'} />
       {isVerified ? (
-        <Badge type="fill" position="bottom" verifiedIcon text="인증된 후기" />
+        <Badge type="fill" $position="bottom" verifiedIcon text="인증된 후기" />
       ) : null}
     </ReviewImageStyle>
   );

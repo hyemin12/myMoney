@@ -2,11 +2,11 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 import {
-  User as UserLogo,
-  MagnifyingGlass,
-  Plus,
-  Archive,
-  House,
+  MagnifyingGlassIcon,
+  PlusIcon,
+  ArchiveIcon,
+  NavigationHomeIcon,
+  UserIcon,
 } from '@/assets/icons/';
 
 interface NavItem {
@@ -20,26 +20,26 @@ export default function Navigation() {
     {
       text: '홈',
       path: '/',
-      icon: <House />,
+      icon: <NavigationHomeIcon />,
     },
     {
       text: '목록',
       path: '/list',
-      icon: <Archive />,
+      icon: <ArchiveIcon />,
     },
     {
       path: '/review',
-      icon: <Plus />,
+      icon: <PlusIcon />,
     },
     {
       text: '검색',
       path: '/search',
-      icon: <MagnifyingGlass />,
+      icon: <MagnifyingGlassIcon />,
     },
     {
       text: '마이',
       path: '/mypage',
-      icon: <UserLogo />,
+      icon: <UserIcon />,
     },
   ];
 

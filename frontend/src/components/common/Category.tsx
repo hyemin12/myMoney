@@ -2,15 +2,15 @@ import styled from 'styled-components';
 import { useSearchParams } from 'react-router-dom';
 
 import {
-  Armchair,
-  HairDryer,
-  Hamburger,
-  MapPin,
-  TShirt,
-  Devices,
-  Oven,
-  FilmSlate,
-  DotsThree,
+  CategoryArmchairIcon,
+  CategoryHairDryerIcon,
+  CategoryHamburgerIcon,
+  CategoryMapPinIcon,
+  CategoryTShirtIcon,
+  CategoryDevicesIcon,
+  CategoryOvenIcon,
+  CategoryFilmSlateIcon,
+  DotsThreeIcon,
 } from '@/assets/icons';
 
 import CheckImg from '@/assets/images/logo32x32.png';
@@ -21,15 +21,15 @@ import { useCategory } from '@/hooks/useCategory';
 import { LoadingContainer } from '../Admin/AdminContent';
 
 const assetMap = {
-  디지털: <Devices />,
-  의류: <TShirt />,
-  '가구/인테리어': <Armchair />,
-  가전: <Oven />,
-  문화: <FilmSlate />,
-  식품: <Hamburger />,
-  '뷰티/미용': <HairDryer />,
-  장소: <MapPin />,
-  기타: <DotsThree />,
+  디지털: <CategoryDevicesIcon />,
+  의류: <CategoryTShirtIcon />,
+  '가구/인테리어': <CategoryArmchairIcon />,
+  가전: <CategoryOvenIcon />,
+  문화: <CategoryFilmSlateIcon />,
+  식품: <CategoryHamburgerIcon />,
+  '뷰티/미용': <CategoryHairDryerIcon />,
+  장소: <CategoryMapPinIcon />,
+  기타: <DotsThreeIcon />,
   인증: CheckImg,
 };
 

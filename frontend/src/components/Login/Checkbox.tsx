@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Checked } from '@/assets/icons';
+import { CheckedIcon } from '@/assets/icons';
 import { Icon } from '@/components/common';
 
 interface CheckboxProps {
@@ -16,7 +16,7 @@ function Checkbox({
     <>
       <CheckboxLabel htmlFor="loginCheckbox">
         {checkedRememberEmail && (
-          <Icon fill="#59b05f" width={12} icon={<Checked />} />
+          <Icon fill="#59b05f" width={12} icon={<CheckedIcon />} />
         )}
         <CheckboxInput
           onChange={toggleCheckedRememberEmail}

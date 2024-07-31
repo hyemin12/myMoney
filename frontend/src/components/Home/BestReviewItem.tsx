@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { Star, LightStar } from '@/assets/icons';
+import { StarOutlineIcon, StarFilledIcon } from '@/assets/icons';
 import { Badge } from '@/components/common';
 
 interface Props {
@@ -28,7 +28,12 @@ function BestReview({
       <div className="wrapTop">
         <div className="badge">
           {isVerified ? (
-            <Badge verifiedIcon text="인증된 후기" type="fill" position="top" />
+            <Badge
+              verifiedIcon
+              text="인증된 후기"
+              type="fill"
+              $position="top"
+            />
           ) : null}
         </div>
       </div>
@@ -45,9 +50,9 @@ function BestReview({
           <div className="stars">
             {[1, 2, 3, 4, 5].map((e, index) =>
               e <= stars ? (
-                <LightStar key={`light-star-${index}`} />
+                <StarFilledIcon key={`light-star-${index}`} />
               ) : (
-                <Star key={`star-${index}`} />
+                <StarOutlineIcon key={`star-${index}`} />
               ),
             )}
           </div>

@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useCookies } from 'react-cookie';
 import styled from 'styled-components';
 
-import { TextLogo } from '@/assets/icons';
+import { NaedonnaesanTextLogo } from '@/assets/icons';
 import LoginForm from '@/components/Login/LoginForm';
 import { AuthOptions, Icon } from '@/components/common';
 import { withUnauthenticatedUser } from '@/components/hocs';
@@ -35,7 +35,12 @@ function Login() {
   return (
     <Container>
       <Title to="/">
-        <Icon width={160} height={38} icon={<TextLogo />} fill="#59B05F" />
+        <Icon
+          width={160}
+          height={38}
+          icon={<NaedonnaesanTextLogo />}
+          fill="#59B05F"
+        />
       </Title>
       <LoginForm
         checkedRememberEmail={checkedRememberEmail}

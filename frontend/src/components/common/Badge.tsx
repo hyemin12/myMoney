@@ -5,12 +5,12 @@ interface BadgeProps {
   type: 'border' | 'fill';
   verifiedIcon: boolean;
   text: string;
-  position: 'top' | 'bottom';
+  $position: 'top' | 'bottom';
 }
 
-function Badge({ type, text, verifiedIcon, position }: BadgeProps) {
+function Badge({ type, text, verifiedIcon, $position }: BadgeProps) {
   return (
-    <BadgeStyle type={type} className="badge" position={position}>
+    <BadgeStyle type={type} className="badge" $position={$position}>
       {verifiedIcon && (
         <img className="badgeImg" src={BadgeImg} alt="인증마크" />
       )}
@@ -19,7 +19,7 @@ function Badge({ type, text, verifiedIcon, position }: BadgeProps) {
   );
 }
 
-const BadgeStyle = styled.div<Pick<BadgeProps, 'type' | 'position'>>`
+const BadgeStyle = styled.div<Pick<BadgeProps, 'type' | '$position'>>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -48,14 +48,14 @@ const BadgeStyle = styled.div<Pick<BadgeProps, 'type' | 'position'>>`
     height: 14px;
   }
 
-  ${({ position }) =>
-    position === 'top' &&
+  ${({ $position }) =>
+    $position === 'top' &&
     `
     border-top-left-radius: 6px;
 
   `}
-  ${({ position }) =>
-    position === 'bottom' &&
+  ${({ $position }) =>
+    $position === 'bottom' &&
     `
     position:absolute;
     bottom:0;
