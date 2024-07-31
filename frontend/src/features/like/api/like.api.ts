@@ -1,4 +1,4 @@
-import { httpClient } from '@/api/http';
+import { httpClient } from '@/shared/utils/http';
 
 export const likeReview = async (reviewId: number) => {
   const { data } = await httpClient.post(`/likes/${reviewId}`);

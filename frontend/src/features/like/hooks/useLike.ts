@@ -1,15 +1,15 @@
 import { useState, useCallback } from 'react';
 import { useMutation } from '@tanstack/react-query';
 
-import { likeReview, unlikeReview } from '@/api/review.api';
+import { likeReview, unlikeReview } from '../api/like.api';
 
-interface useLikeProps {
+interface Props {
   reviewId: number;
   isLikedDB: boolean;
   likesDB: number;
 }
 
-export const useLike = ({ reviewId, isLikedDB, likesDB }: useLikeProps) => {
+export const useLike = ({ reviewId, isLikedDB, likesDB }: Props) => {
   const [isLiked, setIsLiked] = useState(isLikedDB);
   const [likes, setLikes] = useState(Number(likesDB));
 

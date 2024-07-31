@@ -1,9 +1,16 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Dropdown, Modal, Badge } from '@/components/common';
-import { Like } from '@/components/Review';
 import { DotsThreeIcon } from '@/assets/icons';
+import { Dropdown, Modal, Badge } from '@/shared/components';
+import { useLike, Like } from '@/features/like/index.ts';
+import { IReviewItem } from '@/models/review.model';
+import { formatDate } from '@/shared/utils/format.ts';
+import { useReviews } from '@/features/reviews/hooks/useReviews.ts';
+import { useReport } from '@/features/report/hooks/useReport.ts';
+import { MODAL_TITLE, MODAL_TYPES } from '@/constants/modalString.ts';
+import useAuthStore from '@/store/auth.store';
+import { handleGoLogin } from '@/shared/utils/routingUtils.ts';
+import useModal from '@/hooks/useModal.ts';
 import {
   Container,
   Content,
@@ -12,19 +19,6 @@ import {
   TitleContainer,
   InfoContainer,
 } from '../../../features/reviews/components/ReviewItem.style.ts';
-import { IReviewItem } from '@/models/review.model';
-import { useLike } from '@/features/like/hooks/useLike.ts';
-import { formatDate } from '@/shared/utils/format.ts';
-import { useReviews } from '@/features/reviews/hooks/useReviews.ts';
-import { useReport } from '@/hooks/useReport';
-import {
-  MODAL_BTNTEXT,
-  MODAL_TITLE,
-  MODAL_TYPES,
-} from '@/constants/modalString.ts';
-import useAuthStore from '@/store/auth.store';
-import { handleGoLogin } from '@/shared/utils/routingUtils.ts';
-import useModal from '@/hooks/useModal.ts';
 
 function ReviewItem({
   title,

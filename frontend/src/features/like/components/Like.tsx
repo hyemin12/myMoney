@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
-import { Icon } from '@/components/common';
 import { theme } from '@/styles/theme';
+import { Icon } from '@/shared/components';
 
 interface Props {
   likes: number;
@@ -12,7 +12,7 @@ interface Props {
 
 function Like({ likes, isLiked, onClick }: Props) {
   return (
-    <LikeStyle likesempty={likes <= 0 ? 'empty' : null}>
+    <LikeStyle $likesIsEmpty={likes <= 0 ? 'empty' : null}>
       {likes > 0 && <p>{likes}명에게 도움이 된 리뷰에요.</p>}
 
       <LikeButton
@@ -30,11 +30,11 @@ function Like({ likes, isLiked, onClick }: Props) {
   );
 }
 
-const LikeStyle = styled.div<{ likesempty: 'empty' | null }>`
+const LikeStyle = styled.div<{ $likesIsEmpty: 'empty' | null }>`
   display: flex;
   align-items: center;
-  justify-content: ${({ likesempty }) =>
-    likesempty === 'empty' ? 'flex-end' : 'space-between'};
+  justify-content: ${({ $likesIsEmpty }) =>
+    $likesIsEmpty === 'empty' ? 'flex-end' : 'space-between'};
 
   p {
     padding-top: 3px;
