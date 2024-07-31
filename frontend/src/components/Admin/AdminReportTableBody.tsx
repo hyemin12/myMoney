@@ -13,7 +13,7 @@ function AdminReportTableBody({
   return (
     <>
       {suspendedUsers.map((report, idx) => (
-        <tr key={idx}>
+        <tr key={report.reportId}>
           <td>{idx + 1}</td>
           <td>{report.reportedUserEmail}</td>
           <td>{report.reportReason}</td>

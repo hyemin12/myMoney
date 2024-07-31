@@ -24,7 +24,7 @@ function AdminUnverifiedReviewsTableBody({
   return (
     <>
       {unverifiedReviews.map((report: IUnverifiedReviewItem, idx: number) => (
-        <React.Fragment key={idx}>
+        <React.Fragment key={report.id}>
           <tr>
             <td>{report.id}</td>
             <td>{report.title}</td>
@@ -38,8 +38,7 @@ function AdminUnverifiedReviewsTableBody({
           </tr>
           <Modal
             buttonText="승인"
-            // imageSrc={report.receiptImg}
-            imageSrc="https://github.com/user-attachments/assets/c3f06805-5623-4bc3-8ad8-098c7c66d72f"
+            imageSrc={report.receiptImg}
             isOpen={isModalOpen}
             onClose={closeModal}
             onCancel={closeModal}
