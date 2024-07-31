@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { AiFillStar } from 'react-icons/ai';
 
 import { ReportIcon, EditIcon, TrashIcon } from '@/assets/icons';
-import { Icon, Modal } from '@/components/common';
-import Like from '../../../like/components/Like';
+import { Icon, Modal } from '@/shared/components';
+import { useReport } from '@/features/report';
+import { Like, useLike } from '@/features/like';
 import { IReviewDetail } from '@/models/review.model';
 import { useReviewDetail } from '@/hooks/useReviewDetail';
+import { formatDate } from '@/shared/utils/format';
+import useAuthStore from '@/store/auth.store';
+import { MODAL_TYPES, MODAL_TITLE } from '@/constants/modalString';
+import useModal from '@/hooks/useModal';
 import {
   Container,
   TitleContainer,
@@ -14,12 +19,6 @@ import {
   Content,
   AuthorContainer,
 } from './ReviewContent.style';
-import { formatDate } from '@/shared/utils/format';
-import useAuthStore from '@/store/auth.store';
-import { MODAL_TYPES, MODAL_TITLE } from '@/constants/modalString';
-import { useLike } from '@/features/like/hooks/useLike';
-import { useReport } from '@/features/report/hooks/useReport';
-import useModal from '@/hooks/useModal';
 
 export interface Props {
   reviewId?: string;

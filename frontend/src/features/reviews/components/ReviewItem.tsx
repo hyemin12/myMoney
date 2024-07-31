@@ -2,11 +2,11 @@ import { Link } from 'react-router-dom';
 
 import { DotsThreeIcon } from '@/assets/icons';
 import { Dropdown, Modal, Badge } from '@/shared/components';
-import { useLike, Like } from '@/features/like/index.ts';
+import { useLike, Like } from '@/features/like';
+import { useReviews } from '@/features/reviews';
+import { useReport } from '@/features/report';
 import { IReviewItem } from '@/models/review.model';
 import { formatDate } from '@/shared/utils/format.ts';
-import { useReviews } from '@/features/reviews/hooks/useReviews.ts';
-import { useReport } from '@/features/report/hooks/useReport.ts';
 import { MODAL_TITLE, MODAL_TYPES } from '@/constants/modalString.ts';
 import useAuthStore from '@/store/auth.store';
 import { handleGoLogin } from '@/shared/utils/routingUtils.ts';
