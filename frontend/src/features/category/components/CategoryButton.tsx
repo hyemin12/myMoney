@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import Button from '../../../shared/components/Button';
-import { ICategoryItem } from '@/models/category.model';
+import { Button } from '@/shared/components';
+import { ICategoryItem } from '../model/category.model';
 
-interface CategoryButtonProps extends ICategoryItem {
+interface Props extends ICategoryItem {
   isActive: boolean;
 }
 
@@ -14,7 +14,7 @@ function CategoryButton({
   element,
   categoryName,
   isActive,
-}: CategoryButtonProps) {
+}: Props) {
   return (
     <CategoryButtonStyle className="item" key={categoryId} isActive={isActive}>
       <StyledLink

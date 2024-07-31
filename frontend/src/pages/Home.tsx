@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import Layout from '@/layout/Layout';
-import { Category } from '@/components/common';
 import { ReviewList } from '@/components/Review';
 import BestReviews from '@/components/Home/BestReviews';
 import { fetchReviews } from '@/api/review.api';
+import { Category } from '@/shared/components';
 
 export interface IResponseReviews {
   categoryId: number;

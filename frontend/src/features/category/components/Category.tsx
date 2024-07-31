@@ -12,13 +12,12 @@ import {
   CategoryFilmSlateIcon,
   DotsThreeIcon,
 } from '@/assets/icons';
-
 import CheckImg from '@/assets/images/logo32x32.png';
 import CategoryButton from './CategoryButton';
-import { ICategoryItem } from '@/models/category.model';
-import Loading from '../../../shared/components/Loading';
-import { useCategory } from '@/hooks/useCategory';
-import { LoadingContainer } from '../../admin/components/AdminContent';
+import { useCategory } from '../hooks/useCategory';
+import { LoadingContainer } from '@/features/admin/components/AdminContent';
+import { Loading } from '@/shared/components';
+import { ICategoryItem } from '../model/category.model';
 
 const assetMap = {
   디지털: <CategoryDevicesIcon />,
