@@ -1,15 +1,12 @@
-import { Button } from '@/components/common';
-import { IFormatSuspendedUsers } from '@/models/admin.model';
+import { Button } from '@/shared/components';
+import { IFormatSuspendedUsers } from '../model/admin.model';
 
-interface AdminReportTableBodyProps {
+interface Props {
   handleDeleteReport: (reportId: number) => void;
   suspendedUsers: IFormatSuspendedUsers[];
 }
 
-function AdminReportTableBody({
-  handleDeleteReport,
-  suspendedUsers,
-}: AdminReportTableBodyProps) {
+function AdminReportTableBody({ handleDeleteReport, suspendedUsers }: Props) {
   return (
     <>
       {suspendedUsers.map((report, idx) => (

@@ -1,13 +1,10 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { Icon } from '@/components/common';
+import { Icon } from '@/shared/components';
+import { IAdminNavItem } from '../model/admin.model';
 
-export interface AdminNavItemProps {
-  icon: JSX.Element;
-  name: string;
-  path: string;
-  $iconSize?: number;
+export interface Props extends IAdminNavItem {
   isActive?: boolean;
 }
 
@@ -17,7 +14,7 @@ function AdminNavItem({
   name,
   path,
   $iconSize,
-}: AdminNavItemProps) {
+}: Props) {
   return (
     <NavItem to={path} className={isActive ? 'active' : ''}>
       <Icon fill="#fff" icon={icon} width={20} $iconSize={$iconSize} />

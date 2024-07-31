@@ -7,9 +7,10 @@ import {
   DashboardUnapprovedReviewIcon,
   NaedonnaesanTextLogo,
 } from '@/assets/icons';
-import AdminNavItem, { AdminNavItemProps } from './AdminNavItem';
+import AdminNavItem from './AdminNavItem';
+import { IAdminNavItem } from '../model/admin.model';
 
-const adminNav: AdminNavItemProps[] = [
+const adminNav: IAdminNavItem[] = [
   {
     path: '/admin/report-user',
     name: '신고된 사용자 관리',

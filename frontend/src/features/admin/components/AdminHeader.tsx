@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { Button } from '@/components/common';
 import { useAuth } from '@/features/auth/hooks/useAuth';
+import { Button } from '@/shared/components';
 
 function AdminHeader() {
   const { userLogout } = useAuth();

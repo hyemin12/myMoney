@@ -1,4 +1,4 @@
-import { httpClient } from './http';
+import { httpClient } from '@/shared/utils/http';
 
 export const fetchUnverifiedReviews = async () => {
   const { data } = await httpClient.get('/reviews/unverifiedReviews');

@@ -1,13 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export interface TableHeadItem {
-  name: string;
-  $widthRatio: number;
-}
+import { IAdminTableHead } from '../model/admin.model';
 
 interface AdminTableProps {
-  tableHead: TableHeadItem[];
+  tableHead: IAdminTableHead[];
   children: React.ReactNode;
 }
 
@@ -40,7 +37,7 @@ const THead = styled.thead`
   background-color: ${({ theme }) => theme.color.background};
 `;
 
-const Th = styled.th<Pick<TableHeadItem, '$widthRatio'>>`
+const Th = styled.th<Pick<IAdminTableHead, '$widthRatio'>>`
   width: ${({ $widthRatio }) => $widthRatio}%;
   font-size: ${({ theme }) => theme.text['medium'].fontSize};
   font-weight: ${({ theme }) => theme.fontWeight.semiBold};

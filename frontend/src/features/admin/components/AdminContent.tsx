@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Loading } from '@/components/common/';
+import { Loading } from '@/shared/components';
 
-interface AdminContentProps {
+interface Props {
   title: string;
   children: React.ReactNode;
   isLoading?: boolean;
 }
 
-function AdminContent({ title, children, isLoading }: AdminContentProps) {
+function AdminContent({ title, children, isLoading }: Props) {
   return (
     <Container>
       <Title>{title}</Title>

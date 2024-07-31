@@ -3,10 +3,10 @@ import dayjs from 'dayjs';
 import styled from 'styled-components';
 
 import { ImageIcon } from '@/assets/icons';
-import { Icon, Modal } from '@/components/common';
+import { Icon, Modal } from '@/shared/components';
 import { IUnverifiedReviewItem } from '@/models/review.model';
 
-interface AdminUnverifiedReviewsTableBodyProps {
+interface Props {
   unverifiedReviews: IUnverifiedReviewItem[];
   handleApproveReview: () => void;
   openModal: (reviewId: number) => void;
@@ -20,10 +20,10 @@ function AdminUnverifiedReviewsTableBody({
   openModal,
   closeModal,
   isModalOpen,
-}: AdminUnverifiedReviewsTableBodyProps) {
+}: Props) {
   return (
     <>
-      {unverifiedReviews.map((report: IUnverifiedReviewItem, idx: number) => (
+      {unverifiedReviews.map((report: IUnverifiedReviewItem) => (
         <React.Fragment key={report.id}>
           <tr>
             <td>{report.id}</td>

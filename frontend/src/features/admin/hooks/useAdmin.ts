@@ -1,7 +1,10 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 
-import { deleteReport, getSuspendedUsers } from '@/api/report.api';
-import { fetchUnverifiedReviews, fetchApproveReview } from '@/api/admin.api';
+import {
+  deleteReport,
+  getSuspendedUsers,
+} from '@/features/report/api/report.api';
+import { fetchApproveReview, fetchUnverifiedReviews } from '../api/admin.api';
 
 export const useAdmin = () => {
   // 정지된 사용자 정보 가져오기

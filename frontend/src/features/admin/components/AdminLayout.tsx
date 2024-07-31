@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { AttentionIcon } from '@/assets/icons';
-import { Icon } from '@/components/common';
+import { Icon } from '@/shared/components';
 import AdminSidebar from './AdminSidebar';
 import AdminHeader from './AdminHeader';
 
-interface AdminLayoutProps {
+interface Props {
   children: React.ReactNode;
 }
 
-function AdminLayout({ children }: AdminLayoutProps) {
+function AdminLayout({ children }: Props) {
   const [isTabletSize, setIsTabletSize] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
