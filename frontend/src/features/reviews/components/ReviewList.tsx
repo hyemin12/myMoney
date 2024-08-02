@@ -1,9 +1,9 @@
 import { InfiniteQueryObserverResult } from '@tanstack/react-query';
 import styled from 'styled-components';
 
-import { ReviewItem } from '@/components/Review';
-import { Loading } from '@/components/common';
-import { IReviewItem } from '@/models/review.model';
+import { ReviewItem } from '@/features/reviews';
+import { IReviewItem } from '@/features/review';
+import { Loading } from '@/shared/components';
 import { useIntersectionObserver } from '@/shared/hooks/useIntersectionObserver';
 
 export interface IReviewListProps {

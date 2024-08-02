@@ -12,7 +12,7 @@ export const fetchMyReviews = async ({ pageParam = 1 }) => {
   return response.data;
 };
 
-import { httpClient } from '../shared/utils/http';
+import { httpClient } from '@/shared/utils/http';
 
 export const fetchLikedReviews = async ({ pageParam = 1 }) => {
   const response = await httpClient.get(

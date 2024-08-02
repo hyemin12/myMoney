@@ -1,16 +1,8 @@
 import { Link } from 'react-router-dom';
 
 import { DotsThreeIcon } from '@/assets/icons';
-import { Dropdown, Modal, Badge } from '@/shared/components';
+import { Dropdown, Badge, ReviewActions } from '@/shared/components';
 import { useLike, Like } from '@/features/like';
-import { useReviews } from '@/features/reviews';
-import { useReport } from '@/features/report';
-import { IReviewItem } from '@/models/review.model';
-import { formatDate } from '@/shared/utils/format.ts';
-import { MODAL_TITLE, MODAL_TYPES } from '@/constants/modalString.ts';
-import useAuthStore from '@/store/auth.store';
-import { handleGoLogin } from '@/shared/utils/routingUtils.ts';
-import useModal from '@/hooks/useModal.ts';
 import {
   Container,
   Content,
@@ -18,7 +10,10 @@ import {
   LikesContainer,
   TitleContainer,
   InfoContainer,
-} from '../../../features/reviews/components/ReviewItem.style.ts';
+} from '@/features/reviews';
+import { IReviewItem } from '@/features/review';
+import { formatDate } from '@/shared/utils';
+import useAuthStore from '@/store/auth.store';
 
 function ReviewItem({
   title,
@@ -33,8 +28,6 @@ function ReviewItem({
   userId,
   isMyReview,
 }: IReviewItem) {
-  const { deleteReviewInReviews } = useReviews();
-  const { postReport } = useReport();
   const { likeToggle, localIsLiked, localLikes } = useLike({
     reviewId: id,
     isLikedDB: isLiked,
@@ -48,26 +41,6 @@ function ReviewItem({
   };
 
   const { isLoggedIn } = useAuthStore();
-  const { openModal, modalProps } = useModal({
-    onConfirm: (option: string) => {
-      if (modalProps.title === MODAL_TITLE.REPORT) {
-        postReport({ reason: option, reportedUserId: userId });
-      } else if (modalProps.title === MODAL_TITLE.LOGIN) {
-        handleGoLogin();
-      }
-      if (modalProps.title === MODAL_TITLE.REVIEW_DELETE) {
-        deleteReviewInReviews(id);
-      }
-    },
-  });
-
-  const handleReportClick = () => {
-    if (!isLoggedIn) {
-      openModal(MODAL_TYPES.LOGIN);
-    } else {
-      openModal(MODAL_TYPES.REPORT);
-    }
-  };
 
   return (
     <Container>
@@ -81,24 +54,15 @@ function ReviewItem({
           $positionLnR="right"
           $positionValue={0}
           $positionTopValue={32}
-          $width={100}
+          $width={120}
         >
-          <ul>
-            {isMyReview ? (
-              <>
-                <li>
-                  <Link to={`/review/${id}`}>수정하기</Link>
-                </li>
-                <li onClick={() => deleteReviewInReviews(id)}>삭제하기</li>
-              </>
-            ) : (
-              <li onClick={handleReportClick}>신고하기</li>
-            )}
-          </ul>
+          <ReviewActions
+            isAuthor={isMyReview}
+            reviewId={id}
+            authorId={userId}
+          />
         </Dropdown>
       </InfoContainer>
-
-      <Modal {...modalProps} />
 
       <ImgContainer>
         <Link to={`/list/${id}`}>

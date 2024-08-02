@@ -1,4 +1,4 @@
-import { IReviewItem } from '@/models/review.model';
+import { IReviewItem } from '@/features/review/model/review.model';
 
 interface ReviewsData {
   pages: {
@@ -8,7 +8,7 @@ interface ReviewsData {
   nextPage?: number;
 }
 
-export const formatReviews = (data: ReviewsData | undefined): IReviewItem[] => {
+const formatReviews = (data: ReviewsData | undefined): IReviewItem[] => {
   if (!data) return [];
 
   return data.pages.flatMap((page) =>
@@ -20,3 +20,5 @@ export const formatReviews = (data: ReviewsData | undefined): IReviewItem[] => {
     })),
   );
 };
+
+export default formatReviews;

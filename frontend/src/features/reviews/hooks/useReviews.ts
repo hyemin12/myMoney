@@ -1,10 +1,10 @@
 import { useSearchParams } from 'react-router-dom';
 import { useInfiniteQuery, useMutation } from '@tanstack/react-query';
 
-import { fetchReviews, IFetchReviewsParams } from '@/api/review.api';
 import { QUERYSTRING } from '@/constants/querystring';
-import { deleteReview } from '@/api/review.api';
-import { formatReviews } from '@/features/reviews/formatReviews';
+import { fetchReviews } from '../api/reviews.api';
+import formatReviews from '../utils/formatReviews';
+import { deleteReview, IFetchReviewsParams } from '@/features/review';
 
 export const useReviews = () => {
   const [searchParams, setSearchParams] = useSearchParams();

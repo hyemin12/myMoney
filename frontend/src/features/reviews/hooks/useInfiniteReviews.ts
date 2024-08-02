@@ -1,7 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-import { fetchLikedReviews } from '@/api/likedReviews.api';
-import { fetchMyReviews } from '@/api/myReviews.api';
+import { fetchLikedReviews, fetchMyReviews } from '../api/reviews.api';
 
 const useInfiniteReviews = (
   queryKey: string,
