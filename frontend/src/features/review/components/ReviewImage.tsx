@@ -1,4 +1,4 @@
-import { Badge } from '@/components/common';
+import { Badge } from '@/shared/components';
 import styled from 'styled-components';
 
 interface ReviewImageProps {

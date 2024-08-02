@@ -1,36 +1,23 @@
-import { useState } from 'react';
-import { useReview } from '@/features/review/hooks/useReview';
+import { useForm } from 'react-hook-form';
 
 import Header from '@/layout/Header';
-import { ReviewForm } from '@/components/Review';
+import { IReview, ReviewForm, useReviewEditing } from '@/features/review';
 import { FormStyled } from './EditReview';
 import { withAuthenticatedUser } from '@/shared/hocs';
 
 function CreateReview() {
-  const [title, setTitle] = useState<string>('');
-  const [content, setContent] = useState<string>('');
-  const [ratingIndex, setRatingIndex] = useState<number>(3);
-  const [selectedCategoryId, setSelectedCategoryId] = useState<number>(1);
-  const [receiptImg, setReceiptImg] = useState<string>('');
-  const [photoToAddList, setPhotoToAddList] = useState<string[]>([]);
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    getValues,
+    formState: { errors, isValid },
+    watch,
+  } = useForm<IReview>({ mode: 'onChange' });
 
-  const { addToReview } = useReview();
+  const { addToReview } = useReviewEditing();
 
-  const isFormValid =
-    title.trim() !== '' &&
-    content.trim() !== '' &&
-    photoToAddList.length > 0 &&
-    receiptImg !== '';
-
-  const handleSubmit = () => {
-    const data = {
-      title,
-      content,
-      stars: ratingIndex,
-      categoryId: selectedCategoryId,
-      reviewImg: photoToAddList,
-      receiptImg,
-    };
+  const onSubmit = (data: IReview) => {
     addToReview(data);
   };
 
@@ -38,20 +25,13 @@ function CreateReview() {
     <FormStyled>
       <Header showBackButton={true} title="리뷰 작성" />
       <ReviewForm
-        titleValue={title}
-        contentValue={content}
-        setTitle={setTitle}
-        setContent={setContent}
-        ratingIndex={ratingIndex}
-        setRatingIndex={setRatingIndex}
-        selectedCategoryId={selectedCategoryId}
-        setSelectedCategoryId={setSelectedCategoryId}
-        receiptImg={receiptImg}
-        setReceiptImg={setReceiptImg}
-        photoToAddList={photoToAddList}
-        setPhotoToAddList={setPhotoToAddList}
-        handleSubmit={handleSubmit}
-        isFormValid={isFormValid}
+        register={register}
+        handleSubmit={handleSubmit(onSubmit)}
+        setValue={setValue}
+        getValues={getValues}
+        errors={errors}
+        $mode="create"
+        watch={watch}
       />
     </FormStyled>
   );

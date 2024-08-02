@@ -1,24 +1,33 @@
-import { Dispatch, SetStateAction } from 'react';
 import styled from 'styled-components';
-import { AiFillStar } from 'react-icons/ai';
 
-interface RatingSectionProps {
+import { StarFilledIcon } from '@/assets/icons';
+import { Icon } from '@/shared/components';
+import { theme } from '@/styles/theme';
+import { UseFormSetValue } from 'react-hook-form';
+import { IReview } from '../model/review.model';
+
+interface Props {
   ratingIndex: number;
-  setRatingIndex: Dispatch<SetStateAction<number>>;
+  $size: number;
+  setValue: UseFormSetValue<IReview>;
 }
 
-function StatRating({ ratingIndex, setRatingIndex }: RatingSectionProps) {
-  const ArrayIndexes = [1, 2, 3, 4, 5];
+function StatRating({ ratingIndex, setValue, $size }: Props) {
+  const ArrayIndexes = Array(5).fill(0);
 
   return (
     <RatingContainer>
-      {ArrayIndexes.map((arrayIndex, index) => (
-        <RatingStar
-          size={35}
-          key={index}
-          className={arrayIndex <= ratingIndex ? 'active' : 'inactive'}
-          onClick={() => setRatingIndex(arrayIndex)}
-        />
+      {ArrayIndexes.map((_, idx) => (
+        <span
+          key={idx}
+          onClick={() => (setValue ? setValue('stars', idx + 1) : null)}
+        >
+          <Icon
+            width={$size}
+            icon={<StarFilledIcon />}
+            fill={idx <= ratingIndex ? '#ffe600' : theme.color.disabled}
+          />
+        </span>
       ))}
     </RatingContainer>
   );
@@ -30,16 +39,4 @@ const RatingContainer = styled.div`
   display: flex;
   text-align: center;
   margin: 12px 0px;
-  justify-content: center;
-
-  .inactive {
-    color: ${({ theme }) => theme.color.disabled};
-  }
-  .active {
-    color: #ffe600;
-  }
-`;
-
-const RatingStar = styled(AiFillStar)`
-  cursor: pointer;
 `;
