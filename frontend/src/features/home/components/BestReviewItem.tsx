@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { StarOutlineIcon, StarFilledIcon } from '@/assets/icons';
-import { Badge } from '@/components/common';
+import { Badge } from '@/shared/components';
 
 interface Props {
   id: number;

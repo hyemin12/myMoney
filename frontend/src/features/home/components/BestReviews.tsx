@@ -1,10 +1,10 @@
 import { ReactNode } from 'react';
 import styled from 'styled-components';
 
-import { ImageSlide, Loading } from '@/components/common';
+import { ImageSlide, Loading } from '@/shared/components';
 import BestReviewItem from './BestReviewItem';
-import { LoadingContainer } from '../../features/admin/components/AdminContent';
-import { IResponseReviews } from '@/pages/Home';
+import { IResponseReviews } from '@/features/reviews';
+import { LoadingContainer } from '@/features/admin/components/AdminContent';
 
 interface Props {
   reviews?: IResponseReviews[];
