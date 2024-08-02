@@ -7,7 +7,7 @@ import {
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { Input } from '@/components/common';
+import { Input } from '@/shared/components';
 import { CancelIcon, ISearchForm } from '@/pages/Search';
 import { MagnifyingGlassIcon, CloseIcon } from '@/assets/icons';
 
