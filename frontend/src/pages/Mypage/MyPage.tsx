@@ -1,19 +1,19 @@
-import styled, { css } from 'styled-components';
-import Layout from '@/layout/Layout';
 import { useNavigate } from 'react-router-dom';
+import styled, { css } from 'styled-components';
 
 import {
   ArchiveIcon,
   BabyIcon,
-  HeartIcon,
+  HeartFillIcon,
   HelpIcon,
   ReportIcon,
 } from '@/assets/icons';
-import { Icon, Loading } from '@/components/common';
-import { withAuthenticatedUser } from '@/components/hocs';
-import { LoadingContainer } from '@/components/Admin/AdminContent';
-import { useAuth } from '@/hooks/useAuth';
-import { useUser } from '@/hooks/useUser';
+import Layout from '@/layout/Layout';
+import { withAuthenticatedUser } from '@/shared/hocs';
+import { Icon, Loading } from '@/shared/components';
+import { LoadingContainer } from '@/features/admin/components/AdminContent';
+import { useAuth } from '@/features/auth';
+import useModalStore from '@/store/modal.store';
 
 const myPageNavItems = [
   { icon: <BabyIcon />, title: '내 정보 관리', path: '/mypage' },
@@ -23,7 +23,7 @@ const myPageNavItems = [
     path: '/mypage/reviews',
   },
   {
-    icon: <HeartIcon />,
+    icon: <HeartFillIcon />,
     title: '좋아요 누른 리뷰 목록',
     path: '/mypage/liked',
   },
@@ -32,12 +32,12 @@ const myPageNavItems = [
 
 function MyPage() {
   const navigate = useNavigate();
-  const { userLogout } = useAuth();
-  const { userInfo, isLoadingUsers } = useUser();
+  const { userInfo, isLoadingUsers, userLogout } = useAuth();
+  const { openModal } = useModalStore();
 
   const handleNavigation = (path: string) => {
     if (path === '/mypage' || path === '/mypage/support') {
-      alert('준비중인 서비스 입니다.');
+      openModal('ALERT', { message: '준비중인 서비스 입니다.' });
       return;
     }
     navigate(path);

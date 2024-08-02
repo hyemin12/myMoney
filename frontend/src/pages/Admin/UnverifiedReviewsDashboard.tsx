@@ -1,16 +1,15 @@
-import { useState } from 'react';
-
 import {
   AdminContent,
   AdminLayout,
   AdminTable,
   AdminUnverifiedReviewsTableBody,
-} from '@/components/Admin';
-import { TableHeadItem } from '@/components/Admin/AdminTable';
-import { withAdminAuthenticatedUser } from '@/components/hocs';
-import { useAdmin } from '@/hooks/useAdmin';
+  IAdminTableHead,
+} from '@/features/admin';
+import { withAdminAuthenticatedUser } from '@/shared/hocs';
+import { useAdmin } from '@/features/admin/';
+import useModalStore from '@/store/modal.store';
 
-const tableHead: TableHeadItem[] = [
+const tableHead: IAdminTableHead[] = [
   { name: 'No', $widthRatio: 7 },
   { name: '제목', $widthRatio: 45 },
   { name: '작성자(닉네임)', $widthRatio: 16 },
@@ -19,26 +18,16 @@ const tableHead: TableHeadItem[] = [
 ];
 
 function UnverifiedReviewsDashboard() {
-  const { unverifiedReviews, isLoadingUnverifiedReviews } = useAdmin();
-  const [modalState, setModalState] = useState<{
-    isOpen: boolean;
-    reviewId: number | null;
-  }>({ isOpen: false, reviewId: null });
-  const { approveReview } = useAdmin();
+  const { unverifiedReviews, isLoadingUnverifiedReviews, approveReview } =
+    useAdmin();
 
-  const handleApproveReview = async () => {
-    if (modalState.reviewId !== null) {
-      await approveReview(modalState.reviewId!);
-      setModalState({ isOpen: false, reviewId: null });
-    }
-  };
+  const { openModal } = useModalStore();
 
-  const closeModal = () => {
-    setModalState({ isOpen: false, reviewId: null });
-  };
-
-  const openModal = (reviewId: number) => {
-    setModalState({ isOpen: true, reviewId });
+  const handleApproveReview = async (reviewId: number, receiptImg: string) => {
+    openModal('APPROVE_REVIEW', {
+      approveReview: approveReview(reviewId),
+      receiptImg,
+    });
   };
 
   return (
@@ -47,20 +36,15 @@ function UnverifiedReviewsDashboard() {
         title="미승인 후기 관리"
         isLoading={isLoadingUnverifiedReviews}
       >
-        {unverifiedReviews.length === 0 && (
+        {unverifiedReviews.length === 0 ? (
           <tr>
             <td colSpan={tableHead.length}>미승인 후기가 없습니다.</td>
           </tr>
-        )}
-
-        {unverifiedReviews.length > 0 && (
+        ) : (
           <AdminTable tableHead={tableHead}>
             <AdminUnverifiedReviewsTableBody
               unverifiedReviews={unverifiedReviews}
               handleApproveReview={handleApproveReview}
-              openModal={openModal}
-              closeModal={closeModal}
-              isModalOpen={modalState.isOpen}
             />
           </AdminTable>
         )}

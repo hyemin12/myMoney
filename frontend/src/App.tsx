@@ -5,10 +5,10 @@ import {
 } from '@tanstack/react-query';
 import { ThemeProvider } from 'styled-components';
 
-import { theme } from './style/theme';
-import { GlobalStyle } from './style/global';
+import { theme } from './styles/theme';
+import { GlobalStyle } from './styles/global';
 import { Router } from './Router';
-import { queryClient } from './api/queryClient';
+import { queryClient } from './shared/utils/queryClient';
 import Error from './pages/Error';
 
 function App() {

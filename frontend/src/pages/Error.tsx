@@ -1,8 +1,6 @@
 import { AxiosError } from 'axios';
 
-import ForbiddenError from '@/components/Error/ForbiddenError';
-import InternalError from '@/components/Error/InternalError';
-import NotFoundError from '@/components/Error/NotFoundError';
+import { ForbiddenError, InternalError, NotFoundError } from '@/features/error';
 
 interface ErrorProps {
   error: unknown;

@@ -3,13 +3,14 @@ import {
   AdminContent,
   AdminTable,
   AdminReportTableBody,
-} from '@/components/Admin';
-import { TableHeadItem } from '@/components/Admin/AdminTable';
-import { withAdminAuthenticatedUser } from '@/components/hocs';
-import { useAdmin } from '@/hooks/useAdmin';
-import { ISuspendedUsers, IFormatSuspendedUsers } from '@/models/admin.model';
+  IAdminTableHead,
+  ISuspendedUsers,
+  IFormatSuspendedUsers,
+} from '@/features/admin';
+import { withAdminAuthenticatedUser } from '@/shared/hocs';
+import { useAdmin } from '@/features/admin/';
 
-const tableHead: TableHeadItem[] = [
+const tableHead: IAdminTableHead[] = [
   { name: 'No', $widthRatio: 7 },
   { name: '이메일', $widthRatio: 36 },
   { name: '신고 사유', $widthRatio: 13 },
@@ -51,13 +52,11 @@ function ReportedUsersDashboard() {
         title="신고된 유저 관리"
         isLoading={isLoadingSuspendedUsers}
       >
-        {suspendedUsers.length === 0 && (
+        {suspendedUsers.length === 0 ? (
           <tr>
             <td colSpan={tableHead.length}>신고된 유저가 없습니다.</td>
           </tr>
-        )}
-
-        {suspendedUsers.length > 0 && (
+        ) : (
           <AdminTable tableHead={tableHead}>
             <AdminReportTableBody
               suspendedUsers={formattedAndSortedUsers}

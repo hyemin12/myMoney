@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
 import Layout from '@/layout/Layout';
-import { Category } from '@/components/common';
-import { ReviewList } from '@/components/Review';
-import { useReviews } from '@/hooks/useReviews';
+import { ReviewList, useReviews } from '@/features/reviews';
+import { Category } from '@/features/category';
 
 function ReviewListPage() {
   const {

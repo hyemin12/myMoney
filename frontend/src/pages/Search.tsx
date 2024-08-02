@@ -4,13 +4,12 @@ import { useForm } from 'react-hook-form';
 import styled, { css } from 'styled-components';
 
 import Layout from '@/layout/Layout';
-import { ReviewList } from '@/components/Review';
+import { ReviewList, useReviews } from '@/features/reviews';
 import {
   NoRecentSearchResult,
   SearchInputBox,
   RecentKeyword,
-} from '@/components/Search';
-import { useReviews } from '@/hooks/useReviews';
+} from '@/features/search';
 
 export interface IRecentKeywordKey {
   id: number;

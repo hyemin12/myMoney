@@ -2,25 +2,9 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import Layout from '@/layout/Layout';
-import { Category } from '@/components/common';
-import { ReviewList } from '@/components/Review';
-import BestReviews from '@/components/Home/BestReviews';
-import { fetchReviews } from '@/api/review.api';
-
-export interface IResponseReviews {
-  categoryId: number;
-  content: string;
-  createdAt: Date;
-  id: number;
-  isMyReview: number;
-  likes: number;
-  reviewImg: string;
-  stars: number;
-  title: string;
-  userId: number;
-  userName: string;
-  verified: number;
-}
+import { ReviewList, fetchReviews, IResponseReviews } from '@/features/reviews';
+import { BestReviews } from '@/features/home';
+import { Category } from '@/features/category';
 
 function Home() {
   const [bestReviews, setBestReviews] = useState<IResponseReviews[]>([]);

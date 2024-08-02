@@ -3,12 +3,10 @@ import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
 import Layout from '@/layout/Layout';
-import JoinTemplate from '@/components/Join/JoinTemplate';
-import { AlertText, Input } from '@/components/common';
-import { withUnauthenticatedUser } from '@/components/hocs';
-import { IUserRegistration } from '@/models/user.model';
+import { JoinTemplate, IUserRegistration, useAuth } from '@/features/auth';
+import { AlertText, Input } from '@/shared/components';
+import { withUnauthenticatedUser } from '@/shared/hocs';
 import { VALIDATE } from '@/constants/validate';
-import { useAuth } from '@/hooks/useAuth';
 
 const JoinStep3Password = () => {
   const { errorMessage, userJoin } = useAuth();

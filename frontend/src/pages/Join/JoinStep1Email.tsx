@@ -2,13 +2,16 @@ import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
 import Layout from '@/layout/Layout';
-import JoinTemplate from '@/components/Join/JoinTemplate';
-import { AuthOptions, AlertText, Input } from '@/components/common';
-import { withUnauthenticatedUser } from '@/components/hocs';
-import { IUserRegistration } from '@/models/user.model';
+import {
+  IUserRegistration,
+  JoinTemplate,
+  useAuth,
+  AuthOptions,
+} from '@/features/auth';
+import { AlertText, Input } from '@/shared/components';
+import { withUnauthenticatedUser } from '@/shared/hocs';
 import { VALIDATE } from '@/constants/validate';
 import useUserRegistrationStore from '@/store/user.registration.store';
-import { useAuth } from '@/hooks/useAuth';
 
 function JoinStep1Email() {
   const { errorMessage, userCheckedEmail } = useAuth();
