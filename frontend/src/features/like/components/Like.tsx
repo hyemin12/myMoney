@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
+import { HeartFillIcon, HeartOutlineIcon } from '@/assets/icons';
 import { theme } from '@/styles/theme';
 import { Icon } from '@/shared/components';
 
@@ -21,9 +21,9 @@ function Like({ likes, isLiked, onClick }: Props) {
         onClick={onClick}
       >
         {isLiked ? (
-          <Icon width={24} icon={<AiFillHeart />} fill={theme.color.danger} />
+          <Icon width={24} icon={<HeartFillIcon />} fill={theme.color.danger} />
         ) : (
-          <Icon width={24} icon={<AiOutlineHeart />} />
+          <Icon width={24} icon={<HeartOutlineIcon />} />
         )}
       </LikeButton>
     </LikeStyle>
