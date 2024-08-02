@@ -15,6 +15,7 @@ import {
   login,
   logout,
 } from '../api/auth.api';
+import useModalStore from '@/store/modal.store';
 
 // 아이디 저장 만료일 (한달)
 const EXPIRATION_MAX_AGE = 30 * 24 * 60 * 60;
@@ -26,6 +27,7 @@ export const useAuth = () => {
   const { storeLogin, storeLogout, setIsAdminUser } = useAuthStore();
   const { storeEmail, storeNickname, setStoreEmail, setStoreNickname } =
     useUserRegistrationStore();
+  const { openModal } = useModalStore();
 
   /** 이메일 중복 검사
    * - 성공하면 스토어에 이메일을 저장하고, 다음단계로 이동
@@ -94,7 +96,7 @@ export const useAuth = () => {
       setStoreEmail(null);
       setStoreNickname(null);
       setErrorMessage(null);
-      alert('회원가입에 성공했습니다.');
+      openModal('ALERT', { message: '회원가입에 성공했습니다.' });
       navigate('/login');
     },
     throwOnError: true,
@@ -102,12 +104,12 @@ export const useAuth = () => {
 
   const userJoin = (password: string) => {
     if (!storeEmail) {
-      alert('이메일을 입력하지 않으셨습니다.');
+      openModal('ALERT', { message: '이메일을 입력하지 않으셨습니다.' });
       navigate('/join/step1');
       return;
     }
     if (!storeNickname) {
-      alert('닉네임을 입력하지 않으셨습니다.');
+      openModal('ALERT', { message: '닉네임을 입력하지 않으셨습니다.' });
       navigate('/join/step2');
       return;
     }
@@ -199,6 +201,7 @@ export const useAuth = () => {
     queryKey: ['userInfo'],
     queryFn: getUserInfo,
     throwOnError: true,
+    enabled: false,
   });
 
   return {

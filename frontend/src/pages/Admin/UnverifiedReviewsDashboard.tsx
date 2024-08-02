@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import {
   AdminContent,
   AdminLayout,
@@ -9,6 +7,7 @@ import {
 } from '@/features/admin';
 import { withAdminAuthenticatedUser } from '@/shared/hocs';
 import { useAdmin } from '@/features/admin/';
+import useModalStore from '@/store/modal.store';
 
 const tableHead: IAdminTableHead[] = [
   { name: 'No', $widthRatio: 7 },
@@ -21,24 +20,14 @@ const tableHead: IAdminTableHead[] = [
 function UnverifiedReviewsDashboard() {
   const { unverifiedReviews, isLoadingUnverifiedReviews, approveReview } =
     useAdmin();
-  const [modalState, setModalState] = useState<{
-    isOpen: boolean;
-    reviewId: number | null;
-  }>({ isOpen: false, reviewId: null });
 
-  const handleApproveReview = async () => {
-    if (modalState.reviewId !== null) {
-      await approveReview(modalState.reviewId!);
-      setModalState({ isOpen: false, reviewId: null });
-    }
-  };
+  const { openModal } = useModalStore();
 
-  const closeModal = () => {
-    setModalState({ isOpen: false, reviewId: null });
-  };
-
-  const openModal = (reviewId: number) => {
-    setModalState({ isOpen: true, reviewId });
+  const handleApproveReview = async (reviewId: number, receiptImg: string) => {
+    openModal('APPROVE_REVIEW', {
+      approveReview: approveReview(reviewId),
+      receiptImg,
+    });
   };
 
   return (
@@ -56,9 +45,6 @@ function UnverifiedReviewsDashboard() {
             <AdminUnverifiedReviewsTableBody
               unverifiedReviews={unverifiedReviews}
               handleApproveReview={handleApproveReview}
-              openModal={openModal}
-              closeModal={closeModal}
-              isModalOpen={modalState.isOpen}
             />
           </AdminTable>
         )}

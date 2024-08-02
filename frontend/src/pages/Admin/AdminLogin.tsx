@@ -2,9 +2,11 @@ import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
 import { useAuth, IUserLogin, LoginForm, AuthOptions } from '@/features/auth';
+import useModalStore from '@/store/modal.store';
 
 function AdminLogin() {
   const { errorMessage, userLogin } = useAuth();
+  const { openModal } = useModalStore();
   const { register, handleSubmit } = useForm<IUserLogin>();
 
   const onSubmit = handleSubmit((data) => {
@@ -23,7 +25,9 @@ function AdminLogin() {
         <div
           role="button"
           onClick={() =>
-            alert('준비 중인 서비스입니다. 서비스 관리자에게 문의하세요')
+            openModal('ALERT', {
+              message: '준비 중인 서비스입니다. 서비스 관리자에게 문의하세요',
+            })
           }
         >
           <AuthOptions

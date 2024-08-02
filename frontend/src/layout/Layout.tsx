@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 import Navigation from './Navigation';
 import Header from './Header';
+import { Modal } from '@/shared/components';
+import useModalStore from '@/store/modal.store';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -10,8 +12,12 @@ interface LayoutProps {
 }
 
 function Layout({ children, showBackButton, title }: LayoutProps) {
+  const { $isOpen } = useModalStore();
+
   return (
     <Container>
+      {$isOpen && <Modal />}
+
       <Header title={title} showBackButton={showBackButton} />
       <div id="main">{children}</div>
       <Navigation />

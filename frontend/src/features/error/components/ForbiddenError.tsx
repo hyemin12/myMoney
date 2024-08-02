@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { AxiosError } from 'axios';
 import dayjs from 'dayjs';
 
-import { Button, AlertText } from '@/components/common';
+import { Button, AlertText } from '@/shared/components';
 import ErrorTemplate from './ErrorTemplate';
 import { ButtonContainer } from './ErrorTemplate.style';
 import { handleGoHome } from '@/shared/utils/routingUtils';

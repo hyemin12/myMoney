@@ -3,23 +3,17 @@ import dayjs from 'dayjs';
 import styled from 'styled-components';
 
 import { ImageIcon } from '@/assets/icons';
-import { Icon, Modal } from '@/shared/components';
-import { IUnverifiedReviewItem } from '@/models/review.model';
+import { Icon } from '@/shared/components';
+import { IUnverifiedReviewItem } from '@/features/review';
 
 interface Props {
   unverifiedReviews: IUnverifiedReviewItem[];
-  handleApproveReview: () => void;
-  openModal: (reviewId: number) => void;
-  closeModal: () => void;
-  isModalOpen: boolean;
+  handleApproveReview: (reviewId: number, receiptImg: string) => void;
 }
 
 function AdminUnverifiedReviewsTableBody({
   unverifiedReviews,
   handleApproveReview,
-  openModal,
-  closeModal,
-  isModalOpen,
 }: Props) {
   return (
     <>
@@ -31,19 +25,15 @@ function AdminUnverifiedReviewsTableBody({
             <td>{report.userName}</td>
             <td>{dayjs(report.createdAt).format('YYYY-MM-DD')}</td>
             <td>
-              <IconButton onClick={() => openModal(report.id)}>
+              <IconButton
+                onClick={() =>
+                  handleApproveReview(report.id, report.receiptImg)
+                }
+              >
                 <Icon width={22} icon={<ImageIcon />} />
               </IconButton>
             </td>
           </tr>
-          <Modal
-            buttonText="승인"
-            imageSrc={report.receiptImg}
-            isOpen={isModalOpen}
-            onClose={closeModal}
-            onCancel={closeModal}
-            onConfirm={handleApproveReview}
-          />
         </React.Fragment>
       ))}
     </>

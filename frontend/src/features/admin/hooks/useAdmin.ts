@@ -5,8 +5,10 @@ import {
   getSuspendedUsers,
 } from '@/features/report/api/report.api';
 import { fetchApproveReview, fetchUnverifiedReviews } from '../api/admin.api';
+import useModalStore from '@/store/modal.store';
 
 export const useAdmin = () => {
+  const { openModal } = useModalStore();
   // 정지된 사용자 정보 가져오기
   const {
     data: suspendedUsersData,
@@ -24,7 +26,7 @@ export const useAdmin = () => {
     throwOnError: true,
     onSuccess: () => {
       refetchSuspendedUsers();
-      alert('신고가 취소되었습니다.');
+      openModal('ALERT', { message: '신고가 취소되었습니다.' });
     },
   });
   const deleteReportAction = (reportId: number) => {
@@ -47,7 +49,7 @@ export const useAdmin = () => {
     mutationFn: fetchApproveReview,
     onSuccess: () => {
       refetchUnverifiedReviews();
-      alert('후기를 승인처리했습니다.');
+      openModal('ALERT', { message: '정상적으로 처리되었습니다.' });
     },
     throwOnError: true,
   });

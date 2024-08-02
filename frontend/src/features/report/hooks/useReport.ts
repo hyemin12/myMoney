@@ -1,23 +1,23 @@
-import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 
 import { addReport } from '../api/report.api';
 import { IReport } from '../model/report.model';
 import useAuthStore from '@/store/auth.store';
+import useModalStore from '@/store/modal.store';
 
 export const useReport = () => {
   const { isLoggedIn } = useAuthStore();
-  const navigate = useNavigate();
+  const { openModal } = useModalStore();
 
   const postReportMutation = useMutation({
     mutationFn: addReport,
     onSuccess: () => {
-      alert('신고되었습니다.');
+      openModal('ALERT', { message: '신고되었습니다.' });
     },
     onError: (error: any) => {
       console.log(error);
       if (error?.response?.status === 409) {
-        alert('이미 신고한 유저입니다.');
+        openModal('ALERT', { message: '이미 신고한 유저입니다.' });
       }
     },
     throwOnError: (error: any) => {
@@ -28,9 +28,9 @@ export const useReport = () => {
   });
   const postReport = (data: IReport) => {
     if (!isLoggedIn) {
-      alert('로그인이 필요한 기능입니다.');
-      navigate('/login');
+      openModal('LOGIN');
     }
+
     postReportMutation.mutate(data);
   };
 

@@ -1,4 +1,4 @@
-import { Button } from '@/components/common';
+import { Button } from '@/shared/components';
 import { ButtonContainer } from './ErrorTemplate.style';
 import ErrorTemplate from './ErrorTemplate';
 import { handleGoBack, handleGoHome } from '@/shared/utils/routingUtils';
