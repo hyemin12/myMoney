@@ -1,14 +1,15 @@
 import { useQuery, useMutation } from '@tanstack/react-query';
+
+import { queryClient } from '@/shared/utils/queryClient';
+import { TCommentItemWrite } from '../model/comment.model';
 import {
   addReviewComment,
   deleteReviewComment,
   updateReviewComment,
-} from '@/api/comment.api';
-import { fetchReview } from '@/api/review.api';
-import { TCommentItemWrite } from '@/models/comment.model';
-import { queryClient } from '@/shared/utils/queryClient';
+} from '../api/comment.api';
+import { fetchReview } from '@/features/review';
 
-function useComments(reviewId: number) {
+export function useComment(reviewId: number) {
   if (!reviewId) {
     return {
       comments: undefined,
@@ -57,4 +58,3 @@ function useComments(reviewId: number) {
     deleteComment,
   };
 }
-export default useComments;

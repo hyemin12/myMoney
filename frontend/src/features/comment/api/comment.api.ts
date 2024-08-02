@@ -1,5 +1,5 @@
-import { TCommentItemWrite } from '@/models/comment.model';
-import { httpClient } from './http';
+import { httpClient } from '@/shared/utils/http';
+import { TCommentItemWrite } from '../model/comment.model';
 
 export const addReviewComment = async (data: TCommentItemWrite) => {
   return await httpClient.post(`/comments`, data);

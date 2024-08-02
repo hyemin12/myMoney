@@ -3,21 +3,20 @@ import { useParams } from 'react-router-dom';
 
 import CommentAdd from './CommentAdd';
 import CommentItem from './CommentItem';
-import { Loading } from '@/components/common';
-import useComments from '@/features/comment/hooks/useComment';
-import { IComment } from '@/models/comment.model';
+import { Loading } from '@/shared/components';
+import { useComment, IComment } from '@/features/comment';
 
 function CommentList() {
   const { id } = useParams(); // reviewId
   const { commentList, isReviewLoading, addComment, updateComment } =
-    useComments(id);
+    useComment(Number(id));
 
   if (isReviewLoading) return <Loading />;
 
   const handleUpdateComment = (commentId: number, content: string) => {
     if (!id) return;
     const data = { content, reviewId: id };
-    updateComment({ commentId, data });
+    // updateComment({ commentId, data });
   };
 
   return (

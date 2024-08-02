@@ -1,12 +1,10 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
-import { Button, Input, Modal } from '@/components/common';
-import { TCommentItemWrite } from '@/models/comment.model';
 import useAuthStore from '@/store/auth.store';
-import { MODAL_BTNTEXT, MODAL_TITLE } from '@/constants/modalString';
+import { TCommentItemWrite } from '../model/comment.model';
+import { AlertText, Button, Input } from '@/shared/components';
+import useModalStore from '@/store/modal.store';
 
 interface Props {
   onAdd: (data: TCommentItemWrite) => void;
@@ -20,33 +18,18 @@ function CommentAdd({ onAdd }: Props) {
     formState: { errors },
   } = useForm<TCommentItemWrite>();
   const { isLoggedIn } = useAuthStore();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const navigate = useNavigate();
-
-  const openModal = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    reset();
-    setIsModalOpen(false);
-  };
+  const { openModal } = useModalStore();
 
   const onSubmit = (data: TCommentItemWrite) => {
+    if (!isLoggedIn) {
+      openModal('LOGIN');
+    }
     onAdd(data);
     reset();
   };
 
   return (
     <CommentAddStyle>
-      <Modal
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        buttonText={MODAL_BTNTEXT.LOGIN}
-        title={MODAL_TITLE.LOGIN}
-        onConfirm={() => navigate(`/login`)}
-      />
       <form>
         <fieldset>
           <Input
@@ -55,14 +38,14 @@ function CommentAdd({ onAdd }: Props) {
             {...register('content', { required: 'true' })}
           ></Input>
           {errors.content && (
-            <p className="error-text">댓글 내용을 입력해주세요.</p>
+            <AlertText size="medium">댓글 내용을 입력해주세요.</AlertText>
           )}
         </fieldset>
         <ButtonContainer>
           <Button
             size="small"
             scheme="primary"
-            onClick={!isLoggedIn ? openModal : handleSubmit(onSubmit)}
+            onClick={handleSubmit(onSubmit)}
           >
             등록
           </Button>
@@ -78,11 +61,6 @@ const CommentAddStyle = styled.div`
   form {
     display: flex;
     flex-direction: column;
-
-    .error-text {
-      font-size: ${({ theme }) => theme.text.small.fontSize};
-      color: red;
-    }
   }
 `;
 

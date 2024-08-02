@@ -2,12 +2,10 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { IComment } from '@/models/comment.model';
-import { formatDate } from '@/shared/utils/format';
-import { Button, Modal } from '@/components/common';
-import useComments from '@/features/comment/hooks/useComment';
+import { formatDate } from '@/shared/utils';
+import { Button, Modal } from '@/shared/components';
+import { useComment, IComment } from '@/features/comment';
 import useAuthStore from '@/store/auth.store';
-import { MODAL_BTNTEXT, MODAL_TITLE } from '@/constants/modalString';
 
 interface Props {
   comment: IComment;
@@ -16,11 +14,15 @@ interface Props {
 
 function CommentItem({ comment, onUpdate }: Props) {
   const { id } = useParams();
+
+  if (!id) return;
+
   const [isEdit, setIsEdit] = useState(false);
   const [editedContent, setEditedContent] = useState(comment.content);
-  const [isOpen, setIsOpen] = useState(false);
-  const { deleteComment } = useComments(id);
+  const { deleteComment } = useComment(Number(id));
   const { isLoggedIn } = useAuthStore();
+
+  const handleDelete = () => {};
 
   const handleEdit = () => {
     setIsEdit(true);
@@ -42,9 +44,34 @@ function CommentItem({ comment, onUpdate }: Props) {
     setEditedContent(event.target.value);
   };
 
-  const handleDelete = () => {
-    deleteComment(comment.id);
-    setIsOpen(false);
+  const renderButtons = () => {
+    if (isEdit) {
+      return (
+        <>
+          <Button size="small" scheme="primary" onClick={handleSubmit}>
+            수정 완료
+          </Button>
+          <Button size="small" scheme="border" onClick={handleCancel}>
+            취소
+          </Button>
+        </>
+      );
+    }
+
+    if (comment.isAuthor) {
+      return (
+        <>
+          <Button size="small" scheme="primary" onClick={handleEdit}>
+            수정
+          </Button>
+          <Button size="small" scheme="border" onClick={handleDelete}>
+            삭제
+          </Button>
+        </>
+      );
+    }
+
+    return null;
   };
 
   return (
@@ -53,6 +80,7 @@ function CommentItem({ comment, onUpdate }: Props) {
         <span>{comment.name}</span>
         <span>{formatDate(comment.createdAt)}</span>
       </div>
+
       {isEdit ? (
         <input
           className="editInput"
@@ -63,40 +91,6 @@ function CommentItem({ comment, onUpdate }: Props) {
         />
       ) : (
         <div className="cont">{comment.content}</div>
-      )}
-      {isLoggedIn && (
-        <ButtonContainer>
-          <Modal
-            isOpen={isOpen}
-            onClose={() => setIsOpen(false)}
-            title={MODAL_TITLE.COMMENT_DELETE}
-            buttonText={MODAL_BTNTEXT.DELETE}
-            onConfirm={handleDelete}
-          ></Modal>
-          {isEdit ? (
-            <>
-              <Button size="small" scheme="primary" onClick={handleSubmit}>
-                수정 완료
-              </Button>
-              <Button size="small" scheme="border" onClick={handleCancel}>
-                취소
-              </Button>
-            </>
-          ) : comment.isAuthor ? (
-            <>
-              <Button size="small" scheme="primary" onClick={handleEdit}>
-                수정
-              </Button>
-              <Button
-                size="small"
-                scheme="border"
-                onClick={() => setIsOpen(true)}
-              >
-                삭제
-              </Button>
-            </>
-          ) : null}
-        </ButtonContainer>
       )}
     </Container>
   );
