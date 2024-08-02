@@ -9,7 +9,7 @@ import { IReview } from '../model/review.model';
 interface Props {
   ratingIndex: number;
   $size: number;
-  setValue: UseFormSetValue<IReview>;
+  setValue?: UseFormSetValue<IReview>;
 }
 
 function StatRating({ ratingIndex, setValue, $size }: Props) {
