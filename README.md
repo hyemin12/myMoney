@@ -44,8 +44,8 @@
 
 ### 관리자페이지 - 신고 유저 관리
 
-![admin1](https://github.com/user-attachments/assets/31074748-6f49-4097-b08e-4df1c418322d)
+![admin11](https://github.com/user-attachments/assets/3014c290-520e-4b40-ba8e-1642f1927ae2)
 
 ### 관리자페이지 - 후기 승인 (인증처리)
 
-![admin2](https://github.com/user-attachments/assets/7e201adc-7251-479a-b9a2-ee7a82a1f864)
+![admin22](https://github.com/user-attachments/assets/e69ccecf-fa57-4e86-bdd6-bc8cf3db51a3)
