@@ -2,15 +2,17 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { AttentionIcon } from '@/assets/icons';
-import { Icon } from '@/shared/components';
+import { Icon, Modal } from '@/shared/components';
 import AdminSidebar from './AdminSidebar';
 import AdminHeader from './AdminHeader';
+import useModalStore from '@/store/modal.store';
 
 interface Props {
   children: React.ReactNode;
 }
 
 function AdminLayout({ children }: Props) {
+  const { $isOpen } = useModalStore();
   const [isTabletSize, setIsTabletSize] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
@@ -37,6 +39,7 @@ function AdminLayout({ children }: Props) {
 
   return (
     <LayoutContainer>
+      {$isOpen && <Modal />}
       <AdminSidebar />
       <AdminMainContent id="admin-main">
         <AdminHeader />
