@@ -31,7 +31,6 @@ function SearchInputBox({
 
   const searchQueryValue = watch('query');
 
-  console.log(searchQueryValue);
   return (
     <StickyContainer>
       <Form onSubmit={handleSubmit(onSubmit)}>

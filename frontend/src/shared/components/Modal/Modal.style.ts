@@ -89,3 +89,8 @@ export const ModalContents = styled.div`
 `;
 
 export const RadioButton = styled.div``;
+
+export const ReceiptImageStyle = styled.div`
+  height: 60vh;
+  overflow-y: scroll;
+`;

@@ -30,7 +30,6 @@ function ReceiptUpload({ register, setValue, getValues }: Props) {
   };
 
   const handleClick = () => {
-    console.log(fileInputRef);
     if (fileInputRef.current) {
       fileInputRef.current.click();
     }

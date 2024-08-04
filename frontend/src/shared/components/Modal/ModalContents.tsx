@@ -5,7 +5,7 @@ import Button from '../Button';
 import { TReportReason } from '@/features/report/model/report.model';
 import { useState } from 'react';
 import { useReport } from '@/features/report';
-import { RadioButton } from './Modal.style';
+import { RadioButton, ReceiptImageStyle } from './Modal.style';
 
 interface ILoginModalProps {
   closeModal: () => void;
@@ -165,12 +165,14 @@ export const ApproveReviewModal = ({
 }: IApproveReviewModalProps) => {
   return (
     <>
-      <img src="receiptImg" alt="영수증 이미지" />
+      <ReceiptImageStyle>
+        <img src={receiptImg} alt="영수증 이미지" />
+      </ReceiptImageStyle>
       <div className="button-group">
         <Button size="medium" scheme="border" onClick={closeModal}>
           취소
         </Button>
-        <Button size="medium" scheme="primary" onClick={() => approveReview}>
+        <Button size="medium" scheme="primary" onClick={approveReview}>
           승인
         </Button>
       </div>

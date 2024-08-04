@@ -20,7 +20,6 @@ const useModalStore = create<ModalState>((set) => ({
   mode: null,
   contentProps: {},
   openModal: (mode, contentProps) => {
-    console.log(contentProps);
     set({ $isOpen: true, mode, contentProps });
   },
   closeModal: () => set({ $isOpen: false, mode: null, contentProps: {} }),

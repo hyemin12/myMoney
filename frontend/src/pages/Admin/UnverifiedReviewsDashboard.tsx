@@ -22,10 +22,9 @@ function UnverifiedReviewsDashboard() {
     useAdmin();
 
   const { openModal } = useModalStore();
-
   const handleApproveReview = async (reviewId: number, receiptImg: string) => {
     openModal('APPROVE_REVIEW', {
-      approveReview: approveReview(reviewId),
+      approveReview: () => approveReview(reviewId),
       receiptImg,
     });
   };
