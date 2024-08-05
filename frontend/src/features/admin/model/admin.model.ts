@@ -1,14 +1,17 @@
 export interface ISuspendedUsers {
   reportId: number;
-  reportedUserId: number;
+  reporterUserEmail: number;
   reportedUserEmail: string;
   reportCount: number;
   reportReason: string;
-  isSuspended: boolean;
+  reportedAt: string;
 }
 
 export interface IFormatSuspendedUsers extends ISuspendedUsers {
-  status: '정지' | '정지 종료';
+  isFalseReport: boolean;
+  handledAt: string;
+  result: null | '처리 완료';
+  status: '대기' | '허위 신고' | '승인';
 }
 
 export interface IAdminNavItem {

@@ -8,3 +8,15 @@ export const fetchUnverifiedReviews = async () => {
 export const fetchApproveReview = async (reviewId: number) => {
   return await httpClient.patch(`/reviews/${reviewId}/approve`);
 };
+
+export interface IHandleReportProps {
+  reportId: number;
+  result: '허위 신고' | '승인';
+}
+
+export const handleReport = async ({
+  reportId,
+  result,
+}: IHandleReportProps) => {
+  return await httpClient.patch(`/reports/${reportId}`, { result });
+};
