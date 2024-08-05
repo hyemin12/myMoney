@@ -1,12 +1,19 @@
 import { httpClient } from '@/shared/utils/http';
 
-export const fetchUnverifiedReviews = async () => {
-  const { data } = await httpClient.get('/reviews/unverifiedReviews');
+export const fetchUnverifiedReviews = async (page: number) => {
+  const { data } = await httpClient.get(
+    `/reviews/unverifiedReviews?page=${page}`,
+  );
   return data;
 };
 
 export const fetchApproveReview = async (reviewId: number) => {
   return await httpClient.patch(`/reviews/${reviewId}/approve`);
+};
+
+export const fetchSuspendedUsers = async (page: number) => {
+  const { data } = await httpClient.get(`/reports/users?page=${page}`);
+  return data;
 };
 
 export interface IHandleReportProps {
@@ -21,6 +28,7 @@ export const handleReport = async ({
   return await httpClient.patch(`/reports/${reportId}`, { result });
 };
 
-export const fetchAllUsers = async () => {
-  return await httpClient.get('/users/all');
+export const fetchAllUsers = async (page: number) => {
+  const { data } = await httpClient.get(`/users/all?page=${page}`);
+  return data;
 };

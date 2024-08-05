@@ -1,3 +1,4 @@
+import { ADMIN_LIMIT } from '../constance/pagination';
 import { AppDataSource } from '../data-source';
 import { Report } from '../entity/report_content.entity';
 
@@ -7,8 +8,9 @@ export const createReportInDB = async (report: Report) => {
   return await reportRepository.save(report);
 };
 
-export const findAllReports = async () => {
-  return await reportRepository
+export const findAllReports = async (page: number) => {
+  const offset = (page - 1) * ADMIN_LIMIT;
+  const reports = await reportRepository
     .createQueryBuilder('report')
     .leftJoinAndSelect('report.reporterUser', 'reporterUser')
     .leftJoinAndSelect('report.reportedUser', 'reportedUser')
@@ -24,7 +26,15 @@ export const findAllReports = async () => {
       'reportedUser.email AS reportedUserEmail',
     ])
     .orderBy('report.reportedAt', 'DESC')
+    .skip(offset)
+    .take(ADMIN_LIMIT)
     .getRawMany();
+
+  const totalCount = await reportRepository
+    .createQueryBuilder('report')
+    .getCount();
+
+  return { reports, totalCount };
 };
 
 export const findReportById = async (id: number) => {

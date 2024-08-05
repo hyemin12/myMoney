@@ -2,23 +2,26 @@ import { Button } from '@/shared/components';
 import { IFormatSuspendedUsers } from '../model/admin.model';
 import { formatDate } from '@/shared/utils';
 import styled from 'styled-components';
+import { calcIndex } from '../utils/calcTableIndex';
 
 interface Props {
   approveReport: (reviewId: number) => void;
   cancelReport: (reviewId: number) => void;
   suspendedUsers: IFormatSuspendedUsers[];
+  currentPage: number;
 }
 
 function AdminReportTableBody({
   cancelReport,
   approveReport,
   suspendedUsers,
+  currentPage,
 }: Props) {
   return (
     <>
       {suspendedUsers.map((report, idx) => (
         <tr key={report.reportId}>
-          <td>{idx + 1}</td>
+          <td>{calcIndex(currentPage, idx)}</td>
           <td>{report.reporterUserEmail}</td>
           <td>{report.reportReason}</td>
           <td>{report.reportedUserEmail}</td>
@@ -60,6 +63,7 @@ const TdButtonGroup = styled.td`
   gap: 6px;
   justify-content: center;
   button {
+    flex-shrink: 0;
     margin: 0 !important;
   }
 `;

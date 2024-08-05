@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import {
   AdminContent,
   AdminLayout,
@@ -18,8 +20,14 @@ const tableHead: IAdminTableHead[] = [
 ];
 
 function UnverifiedReviewsDashboard() {
-  const { unverifiedReviews, isLoadingUnverifiedReviews, approveReview } =
-    useAdmin();
+  const {
+    refetchUnverifiedReviews,
+    unverifiedReviews,
+    isLoadingUnverifiedReviews,
+    unverifiedReviewsPagination,
+    approveReview,
+    currentPage,
+  } = useAdmin();
 
   const { openModal } = useModalStore();
   const handleApproveReview = async (reviewId: number, receiptImg: string) => {
@@ -34,14 +42,16 @@ function UnverifiedReviewsDashboard() {
       <AdminContent
         title="미승인 후기 관리"
         isLoading={isLoadingUnverifiedReviews}
+        totalPage={unverifiedReviewsPagination?.totalCount}
       >
         {unverifiedReviews.length === 0 ? (
-          <tr>
-            <td colSpan={tableHead.length}>미승인 후기가 없습니다.</td>
-          </tr>
+          <div>
+            <p>미승인 후기가 없습니다.</p>
+          </div>
         ) : (
           <AdminTable tableHead={tableHead}>
             <AdminUnverifiedReviewsTableBody
+              currentPage={currentPage}
               unverifiedReviews={unverifiedReviews}
               handleApproveReview={handleApproveReview}
             />

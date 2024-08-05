@@ -1,22 +1,26 @@
+import { useSearchParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@tanstack/react-query';
 
-import { getSuspendedUsers } from '@/features/report/api/report.api';
 import {
   fetchAllUsers,
   fetchApproveReview,
+  fetchSuspendedUsers,
   fetchUnverifiedReviews,
   handleReport,
-  IHandleReportProps,
 } from '../api/admin.api';
 import useModalStore from '@/store/modal.store';
 
 export const useAdmin = () => {
+  const [searchParams] = useSearchParams();
+  const currentPage = Number(searchParams.get('page')) || 1;
   const { openModal } = useModalStore();
+
   // 모든 사용자 정보 가져오기
   const { data: allUsers, isLoading: isLoadingAllUsers } = useQuery({
-    queryKey: ['getAllUsers'],
-    queryFn: fetchAllUsers,
+    queryKey: ['getAllUsers', currentPage],
+    queryFn: () => fetchAllUsers(currentPage),
     throwOnError: true,
+    enabled: true,
   });
 
   // 정지된 사용자 정보 가져오기
@@ -25,8 +29,8 @@ export const useAdmin = () => {
     isLoading: isLoadingSuspendedUsers,
     refetch: refetchSuspendedUsers,
   } = useQuery({
-    queryKey: ['getSuspendedUsers'],
-    queryFn: getSuspendedUsers,
+    queryKey: ['getSuspendedUsers', currentPage],
+    queryFn: () => fetchSuspendedUsers(currentPage),
     throwOnError: true,
     enabled: false,
   });
@@ -70,10 +74,9 @@ export const useAdmin = () => {
     isLoading: isLoadingUnverifiedReviews,
     refetch: refetchUnverifiedReviews,
   } = useQuery({
-    queryKey: ['unverifiedReviews'],
-    queryFn: fetchUnverifiedReviews,
+    queryKey: ['unverifiedReviews', currentPage],
+    queryFn: () => fetchUnverifiedReviews(currentPage),
     throwOnError: true,
-    enabled: false,
   });
 
   // 미인증 후기 인증 처리하기
@@ -91,14 +94,20 @@ export const useAdmin = () => {
   };
 
   return {
-    suspendedUsers: suspendedUsersData ?? [],
+    suspendedUsers: suspendedUsersData?.reports ?? [],
+    suspendedUsersPagination: suspendedUsersData?.pagination,
     isLoadingSuspendedUsers,
     cancelReport,
     approveReport,
     approveReview,
+    refetchUnverifiedReviews,
+    refetchSuspendedUsers,
     isLoadingUnverifiedReviews,
     unverifiedReviews: unverifiedReviewsData?.reviews ?? [],
-    allUsers: allUsers?.data ?? [],
+    unverifiedReviewsPagination: unverifiedReviewsData?.pagination,
+    allUsers: allUsers?.users ?? [],
+    allUsersPagination: allUsers?.pagination,
     isLoadingAllUsers,
+    currentPage,
   };
 };

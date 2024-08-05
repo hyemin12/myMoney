@@ -1,17 +1,18 @@
 import { IFullUser } from '@/features/auth';
 import { formatDate } from '@/shared/utils';
-import React from 'react';
+import { calcIndex } from '../utils/calcTableIndex';
 
 interface Props {
   allUsers: IFullUser[];
+  currentPage: number;
 }
 
-function AdminUserManagementTableBody({ allUsers }: Props) {
+function AdminUserManagementTableBody({ allUsers, currentPage }: Props) {
   return (
     <>
       {allUsers.map((user, idx) => (
-        <tr>
-          <td>{idx + 1}</td>
+        <tr key={user.id}>
+          <td>{calcIndex(currentPage, idx)}</td>
           <td>{user.email}</td>
           <td>{user.nickname}</td>
           <td>{user.id}</td>

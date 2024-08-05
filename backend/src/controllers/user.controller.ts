@@ -10,6 +10,7 @@ import {
   serviceFindUsers,
 } from '../services/user.service';
 import { ERROR_MESSAGE } from '../constance/errorMessage';
+import { createPagination } from '../services/review.service';
 
 export const loginUser = async (req: Request, res: Response) => {
   try {
@@ -102,15 +103,37 @@ export const getUserInfo = async (req: CustomRequest, res: Response) => {
   }
 };
 
+interface FullUserInfo {
+  id: number;
+  email: string;
+  nickname: string;
+  isAdmin: boolean;
+  suspensionCount: number;
+  status: string;
+  banEndDate: Date | null;
+}
+
 export const getAllUsers = async (req: CustomRequest, res: Response) => {
   const { isAdmin } = req.user!;
   if (!isAdmin) {
     throw new Error(ERROR_MESSAGE.DENIED);
   }
+  const { page } = req.query;
 
   try {
-    const users = await serviceFindUsers();
-    res.status(200).send(users);
+    const numberPage = Number(page) || 1;
+    const result = await serviceFindUsers(numberPage);
+
+    const { users, totalCount } = result as {
+      users: FullUserInfo[];
+      totalCount: number;
+    };
+    const pagination = await createPagination(numberPage, 12, totalCount);
+
+    return res.status(200).send({
+      users,
+      pagination,
+    });
   } catch (error: any) {
     throw new Error(error.message);
   }

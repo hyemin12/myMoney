@@ -35,20 +35,8 @@ export const createReport = async ({
   return await createReportInDB(report);
 };
 
-export const getAllReports = async () => {
-  return await findAllReports();
-};
-
-export const markReportAsFalse = async (reportId: number) => {
-  const report = await findReportById(reportId);
-  if (!report) throw new Error(ERROR_MESSAGE.INVALID_DATA);
-
-  report.isFalseReport = true;
-  report.status = '허위 신고';
-  report.result = '처리 완료';
-  report.handledAt = new Date();
-
-  return await updateReportInDB(report);
+export const getAllReports = async (numberPage: number) => {
+  return await findAllReports(numberPage);
 };
 
 export const handleReport = async (

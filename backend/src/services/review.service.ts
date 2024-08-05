@@ -182,6 +182,12 @@ export const approveReview = async (reviewId: number) => {
   return await approve(reviewId);
 };
 
-export const serviceGetUnverifiedReviews = async () => {
-  return await findUnverifiedReviews();
+export const serviceGetUnverifiedReviews = async (page: number) => {
+  const { reviews, totalCount } = await findUnverifiedReviews(page);
+  const formatReviews = reviews.map((review) => ({
+    ...review,
+    userId: review.user.id,
+    userName: review.user.nickname,
+  }));
+  return { reviews: formatReviews, totalCount };
 };

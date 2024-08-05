@@ -59,6 +59,6 @@ export const serviceGetUserInfo = async (email: string) => {
   return { user };
 };
 
-export const serviceFindUsers = async () => {
-  return await findUsers();
+export const serviceFindUsers = async (page?: number) => {
+  return await findUsers(page);
 };

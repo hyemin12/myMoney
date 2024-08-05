@@ -11,5 +11,5 @@ export const handleGoLogin = () => {
 };
 
 export const handleGoAdmin = () => {
-  window.location.href = '/admin/report-user';
+  window.location.href = '/admin/users';
 };

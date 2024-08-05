@@ -1,3 +1,4 @@
+import { ADMIN_LIMIT } from '../constance/pagination';
 import { AppDataSource } from '../data-source';
 import { Report } from '../entity/report_content.entity';
 import { User } from '../entity/users.entity';
@@ -53,20 +54,44 @@ export const findUserById = async (id: number) => {
 };
 
 // 비밀번호 제외 및 모든 정보 가져오기
-export const findUsers = async () => {
-  return await userRepository
-    .createQueryBuilder('user')
-    .where('user.isAdmin = :isAdmin', { isAdmin: false })
-    .select([
-      'user.id',
-      'user.email',
-      'user.nickname',
-      'user.isAdmin',
-      'user.suspensionCount',
-      'user.status',
-      'user.banEndDate',
-    ])
-    .getMany();
+export const findUsers = async (page?: number) => {
+  if (page) {
+    const offset = (page - 1) * ADMIN_LIMIT;
+    const users = await userRepository
+      .createQueryBuilder('user')
+      .where('user.isAdmin = :isAdmin', { isAdmin: false })
+      .select([
+        'user.id',
+        'user.email',
+        'user.nickname',
+        'user.isAdmin',
+        'user.suspensionCount',
+        'user.status',
+        'user.banEndDate',
+      ])
+      .skip(offset)
+      .take(ADMIN_LIMIT)
+      .getMany();
+    const totalCount = await userRepository
+      .createQueryBuilder('user')
+      .where('user.isAdmin = :isAdmin', { isAdmin: false })
+      .getCount();
+    return { users, totalCount };
+  } else {
+    return await userRepository
+      .createQueryBuilder('user')
+      .where('user.isAdmin = :isAdmin', { isAdmin: false })
+      .select([
+        'user.id',
+        'user.email',
+        'user.nickname',
+        'user.isAdmin',
+        'user.suspensionCount',
+        'user.status',
+        'user.banEndDate',
+      ])
+      .getMany();
+  }
 };
 
 export const updateUserInDB = async (user: User) => {

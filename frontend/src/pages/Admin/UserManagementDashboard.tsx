@@ -1,5 +1,3 @@
-import React from 'react';
-
 import {
   AdminContent,
   AdminLayout,
@@ -21,7 +19,8 @@ const tableHead: IAdminTableHead[] = [
 ];
 
 function UserManagementDashboard() {
-  const { allUsers, isLoadingAllUsers } = useAdmin();
+  const { allUsers, isLoadingAllUsers, allUsersPagination, currentPage } =
+    useAdmin();
 
   const calcAllUsers = (users: IFullUser[]) => {
     return users.map((user) => {
@@ -37,9 +36,16 @@ function UserManagementDashboard() {
   };
   return (
     <AdminLayout>
-      <AdminContent title="사용자 관리" isLoading={isLoadingAllUsers}>
+      <AdminContent
+        title="사용자 관리"
+        isLoading={isLoadingAllUsers}
+        totalPage={allUsersPagination?.totalCount || 1}
+      >
         <AdminTable tableHead={tableHead}>
-          <AdminUserManagementTableBody allUsers={calcAllUsers(allUsers)} />
+          <AdminUserManagementTableBody
+            currentPage={currentPage}
+            allUsers={calcAllUsers(allUsers)}
+          />
         </AdminTable>
       </AdminContent>
     </AdminLayout>

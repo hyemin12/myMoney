@@ -13,6 +13,7 @@ import {
 } from '../services/review.service';
 import { CustomRequest } from '../middleware/authentication';
 import { ERROR_MESSAGE } from '../constance/errorMessage';
+import { ADMIN_LIMIT } from '../constance/pagination';
 
 export interface IReviewQueryParams {
   categoryId?: number;
@@ -208,13 +209,23 @@ export const getUnverifiedReviews = async (
   req: CustomRequest,
   res: Response,
 ) => {
+  const { page } = req.query;
+  const numberPage = Number(page) || 1;
+  console.log(numberPage);
   const { isAdmin } = req.user!;
   if (!isAdmin) {
     throw new Error(ERROR_MESSAGE.DENIED);
   }
   try {
-    const reviews = await serviceGetUnverifiedReviews();
-    res.status(200).send({ message: 'success', reviews });
+    const { reviews, totalCount } =
+      await serviceGetUnverifiedReviews(numberPage);
+    const pagination = await createPagination(
+      numberPage,
+      ADMIN_LIMIT,
+      totalCount,
+    );
+    console.log(reviews, totalCount, pagination);
+    res.status(200).send({ message: 'success', reviews, pagination });
   } catch (error: any) {
     throw new Error(error.message);
   }

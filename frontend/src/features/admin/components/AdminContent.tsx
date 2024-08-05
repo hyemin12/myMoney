@@ -2,14 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Loading } from '@/shared/components';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import Pagination from '@/shared/components/Pagination';
 
 interface Props {
   title: string;
   children: React.ReactNode;
   isLoading?: boolean;
+  totalPage?: number;
 }
 
-function AdminContent({ title, children, isLoading }: Props) {
+function AdminContent({ title, children, isLoading, totalPage }: Props) {
   return (
     <Container>
       <Title>{title}</Title>
@@ -18,7 +21,10 @@ function AdminContent({ title, children, isLoading }: Props) {
           <Loading />
         </LoadingContainer>
       ) : (
-        <>{children}</>
+        <>
+          {children}
+          {totalPage && <Pagination totalPages={totalPage} />}
+        </>
       )}
     </Container>
   );
