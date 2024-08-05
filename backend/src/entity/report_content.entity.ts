@@ -5,6 +5,7 @@ import {
   JoinColumn,
   PrimaryGeneratedColumn,
   CreateDateColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { User } from './users.entity';
 
@@ -16,13 +17,36 @@ export class Report {
   @Column({ comment: '신고 카테고리', type: 'varchar', length: 50 })
   reason!: string;
 
-  @Column({ comment: '신고한 유저 아이디' })
-  reporterUserId!: number;
-
   @CreateDateColumn({ comment: '신고한 날짜' })
-  createdAt!: Date;
+  reportedAt!: Date;
 
-  @ManyToOne(() => User, (user) => user.reportContents)
+  @Column({
+    comment: '처리 상태',
+    type: 'varchar',
+    length: 50,
+    default: '대기',
+  })
+  status!: string;
+
+  @Column({
+    comment: '처리 결과',
+    type: 'varchar',
+    nullable: true,
+    default: null,
+  })
+  result!: string | null;
+
+  @UpdateDateColumn({ comment: '처리한 날짜', nullable: true, default: null })
+  handledAt!: Date | null;
+
+  @Column({ comment: '허위 신고 여부', type: 'boolean', default: false })
+  isFalseReport!: boolean;
+
+  @ManyToOne(() => User, (user) => user.reportsMade)
+  @JoinColumn({ name: 'reporter_user_id' })
+  reporterUser!: User;
+
+  @ManyToOne(() => User, (user) => user.reportsReceived)
   @JoinColumn({ name: 'reported_user_id' })
-  user!: User;
+  reportedUser!: User;
 }

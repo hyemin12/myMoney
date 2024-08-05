@@ -13,7 +13,7 @@ const validateReportReason = body('reason')
   .notEmpty()
   .withMessage('Reason is required');
 
-const validateReportId = param('id')
+const validateReportId = param('reportId')
   .trim()
   .notEmpty()
   .withMessage('ReportID is required')

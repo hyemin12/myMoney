@@ -1,10 +1,9 @@
-// 비즈니스 로직 작성
 import { ERROR_MESSAGE } from '../constance/errorMessage';
 import {
   findUserByEmail,
-  findUserByNickname,
-  createUser as createNewUser,
   findUserWithReportInfo,
+  createUser as createNewUser,
+  findUserByNickname,
 } from '../models/user.model';
 import {
   hashPassword,

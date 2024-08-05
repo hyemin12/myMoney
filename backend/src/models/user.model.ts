@@ -13,7 +13,7 @@ export interface IUser {
 
 export interface IUserWithReportInfo extends IUser {
   reportReason?: string | null;
-  reportedDate: string | null;
+  reportedDate: Date | string | null;
 }
 
 const userRepository = AppDataSource.getRepository(User);
@@ -27,8 +27,6 @@ export const findUserWithReportInfo = async (email: string) => {
       'user.email as email',
       'user.password as password',
       'user.isAdmin as isAdmin',
-      'COUNT(report_content.id) AS reportCount',
-      'MAX(report_content.created_at) AS reportedDate',
     ])
     .leftJoin(
       Report,
@@ -52,6 +50,10 @@ export const findUserByNickname = async (nickname: string) => {
 
 export const findUserById = async (id: number) => {
   return await userRepository.findOneBy({ id });
+};
+
+export const updateUserInDB = async (user: User) => {
+  return await userRepository.save(user);
 };
 
 export const createUser = async (userData: {
