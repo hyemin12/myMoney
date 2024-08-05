@@ -7,6 +7,7 @@ import {
   serviceGetUserInfo,
   serviceLogin,
   serviceJoin,
+  serviceFindUsers,
 } from '../services/user.service';
 import { ERROR_MESSAGE } from '../constance/errorMessage';
 
@@ -96,6 +97,20 @@ export const getUserInfo = async (req: CustomRequest, res: Response) => {
       nickname: user.nickname,
       reportCount: user.reportCount,
     });
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
+};
+
+export const getAllUsers = async (req: CustomRequest, res: Response) => {
+  const { isAdmin } = req.user!;
+  if (!isAdmin) {
+    throw new Error(ERROR_MESSAGE.DENIED);
+  }
+
+  try {
+    const users = await serviceFindUsers();
+    res.status(200).send(users);
   } catch (error: any) {
     throw new Error(error.message);
   }

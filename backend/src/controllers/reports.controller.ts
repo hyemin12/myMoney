@@ -5,6 +5,7 @@ import {
   handleReport,
 } from '../services/report.service';
 import { ERROR_MESSAGE } from '../constance/errorMessage';
+import { CustomRequest } from '../middleware/authentication';
 
 export const createReportHandler = async (req: Request, res: Response) => {
   const { reportedUserId, reporterUserId, reason } = req.body;
@@ -21,7 +22,14 @@ export const createReportHandler = async (req: Request, res: Response) => {
   }
 };
 
-export const getAllReportsHandler = async (req: Request, res: Response) => {
+export const getAllReportsHandler = async (
+  req: CustomRequest,
+  res: Response,
+) => {
+  const { isAdmin } = req.user!;
+  if (!isAdmin) {
+    throw new Error(ERROR_MESSAGE.DENIED);
+  }
   try {
     const reports = await getAllReports();
     res.status(200).json(reports);
@@ -30,7 +38,14 @@ export const getAllReportsHandler = async (req: Request, res: Response) => {
   }
 };
 
-export const handleReportHandler = async (req: Request, res: Response) => {
+export const handleReportHandler = async (
+  req: CustomRequest,
+  res: Response,
+) => {
+  const { isAdmin } = req.user!;
+  if (!isAdmin) {
+    throw new Error(ERROR_MESSAGE.DENIED);
+  }
   const { reportId } = req.params;
   const { result } = req.body;
   console.log(reportId, result);

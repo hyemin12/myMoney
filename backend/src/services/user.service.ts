@@ -4,6 +4,7 @@ import {
   findUserWithReportInfo,
   createUser as createNewUser,
   findUserByNickname,
+  findUsers,
 } from '../models/user.model';
 import {
   hashPassword,
@@ -56,4 +57,8 @@ export const serviceGetUserInfo = async (email: string) => {
   }
 
   return { user };
+};
+
+export const serviceFindUsers = async () => {
+  return await findUsers();
 };

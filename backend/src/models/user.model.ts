@@ -52,6 +52,23 @@ export const findUserById = async (id: number) => {
   return await userRepository.findOneBy({ id });
 };
 
+// 비밀번호 제외 및 모든 정보 가져오기
+export const findUsers = async () => {
+  return await userRepository
+    .createQueryBuilder('user')
+    .where('user.isAdmin = :isAdmin', { isAdmin: false })
+    .select([
+      'user.id',
+      'user.email',
+      'user.nickname',
+      'user.isAdmin',
+      'user.suspensionCount',
+      'user.status',
+      'user.banEndDate',
+    ])
+    .getMany();
+};
+
 export const updateUserInDB = async (user: User) => {
   return await userRepository.save(user);
 };
