@@ -89,6 +89,32 @@ export const AlertModal = ({ closeModal, message }: IAlertModalProps) => {
   );
 };
 
+export interface IConfirmationModalProps {
+  closeModal: () => void;
+  message: string;
+  approve: () => void;
+}
+
+export const ConfirmationModal = ({
+  message,
+  closeModal,
+  approve,
+}: IConfirmationModalProps) => {
+  return (
+    <>
+      <p>{message}</p>
+      <div className="button-group">
+        <Button size="medium" scheme="border" onClick={closeModal}>
+          취소
+        </Button>
+        <Button size="medium" scheme="primary" onClick={approve}>
+          확인
+        </Button>
+      </div>
+    </>
+  );
+};
+
 interface IReportUserModalProps {
   closeModal: () => void;
   reportedUserId: number;

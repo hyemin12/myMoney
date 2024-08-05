@@ -4,6 +4,7 @@ import {
   LoginModal,
   ApproveReviewModal,
   ReportUserModal,
+  ConfirmationModal,
 } from './ModalContents';
 import { ModalBody, ModalContents, ModalStyle } from './Modal.style';
 import useModalStore from '@/store/modal.store';
@@ -41,6 +42,15 @@ const Modal = () => {
         <ReportUserModal
           closeModal={closeModal}
           reportedUserId={contentProps.reportedUserId}
+        />
+      );
+      break;
+    case 'CONFIRM':
+      content = (
+        <ConfirmationModal
+          closeModal={closeModal}
+          approve={contentProps.approve}
+          message={contentProps.message}
         />
       );
       break;
