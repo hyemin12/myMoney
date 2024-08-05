@@ -16,7 +16,11 @@ export interface IFormatSuspendedUsers extends ISuspendedUsers {
 
 export interface IAdminNavItem {
   path: string;
-  name: '신고된 사용자 관리' | '미승인 후기 관리' | '사이트 바로가기';
+  name:
+    | '사용자 관리'
+    | '신고된 사용자 관리'
+    | '미승인 후기 관리'
+    | '사이트 바로가기';
   icon: JSX.Element;
   $iconSize?: number;
 }

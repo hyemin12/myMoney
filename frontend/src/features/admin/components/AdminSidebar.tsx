@@ -6,15 +6,21 @@ import {
   UserIcon,
   DashboardUnapprovedReviewIcon,
   NaedonnaesanTextLogo,
+  ReportIcon,
 } from '@/assets/icons';
 import AdminNavItem from './AdminNavItem';
 import { IAdminNavItem } from '../model/admin.model';
 
 const adminNav: IAdminNavItem[] = [
   {
+    path: '/admin/users',
+    name: '사용자 관리',
+    icon: <UserIcon />,
+  },
+  {
     path: '/admin/report-user',
     name: '신고된 사용자 관리',
-    icon: <UserIcon />,
+    icon: <ReportIcon />,
   },
   {
     path: '/admin/unverified-reviews',

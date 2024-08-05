@@ -2,6 +2,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 
 import { getSuspendedUsers } from '@/features/report/api/report.api';
 import {
+  fetchAllUsers,
   fetchApproveReview,
   fetchUnverifiedReviews,
   handleReport,
@@ -11,6 +12,12 @@ import useModalStore from '@/store/modal.store';
 
 export const useAdmin = () => {
   const { openModal } = useModalStore();
+  // 모든 사용자 정보 가져오기
+  const { data: allUsers, isLoading: isLoadingAllUsers } = useQuery({
+    queryKey: ['getAllUsers'],
+    queryFn: fetchAllUsers,
+    throwOnError: true,
+  });
 
   // 정지된 사용자 정보 가져오기
   const {
@@ -21,6 +28,7 @@ export const useAdmin = () => {
     queryKey: ['getSuspendedUsers'],
     queryFn: getSuspendedUsers,
     throwOnError: true,
+    enabled: false,
   });
 
   // 신고 취소 처리하기
@@ -55,6 +63,7 @@ export const useAdmin = () => {
       approve: () => approveReportMutation.mutate({ reportId, result: '승인' }),
     });
   };
+
   // 미인증 후기 가져오기
   const {
     data: unverifiedReviewsData,
@@ -82,12 +91,14 @@ export const useAdmin = () => {
   };
 
   return {
-    suspendedUsers: suspendedUsersData || [],
+    suspendedUsers: suspendedUsersData ?? [],
     isLoadingSuspendedUsers,
     cancelReport,
     approveReport,
     approveReview,
     isLoadingUnverifiedReviews,
-    unverifiedReviews: unverifiedReviewsData?.reviews || [],
+    unverifiedReviews: unverifiedReviewsData?.reviews ?? [],
+    allUsers: allUsers?.data ?? [],
+    isLoadingAllUsers,
   };
 };

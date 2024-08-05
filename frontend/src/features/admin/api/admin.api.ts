@@ -20,3 +20,7 @@ export const handleReport = async ({
 }: IHandleReportProps) => {
   return await httpClient.patch(`/reports/${reportId}`, { result });
 };
+
+export const fetchAllUsers = async () => {
+  return await httpClient.get('/users/all');
+};

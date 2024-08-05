@@ -21,6 +21,7 @@ import AdminLogin from '@/pages/Admin/AdminLogin';
 import ReportedUsersDashboard from '@/pages/Admin/ReportedUsersDashboard';
 import UnverifiedReviewsDashboard from '@/pages/Admin/UnverifiedReviewsDashboard';
 import { NotFoundError } from './features/error';
+import UserManagementDashboard from './pages/Admin/UserManagementDashboard';
 
 export function Router() {
   return (
@@ -39,6 +40,7 @@ export function Router() {
         <Route path="/admin">
           <Route index element={<AdminLogin />} />
           <Route path="report-user" element={<ReportedUsersDashboard />} />
+          <Route path="users" element={<UserManagementDashboard />} />
           <Route
             path="unverified-reviews"
             element={<UnverifiedReviewsDashboard />}
