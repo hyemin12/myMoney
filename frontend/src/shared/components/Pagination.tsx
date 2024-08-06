@@ -11,7 +11,6 @@ function Pagination({ totalPages }: Props) {
   const handlePageClick = (page: number) => {
     setSearchParams({ page: page.toString() });
   };
-  console.log(currentPage);
 
   return (
     <PaginationStyle>
