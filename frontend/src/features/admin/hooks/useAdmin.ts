@@ -58,7 +58,7 @@ export const useAdmin = () => {
     throwOnError: true,
     onSuccess: () => {
       refetchSuspendedUsers();
-      openModal('ALERT', { message: '신고가 취소되었습니다.' });
+      openModal('ALERT', { message: '정상적으로 처리되었습니다.' });
     },
   });
   const approveReport = (reportId: number) => {

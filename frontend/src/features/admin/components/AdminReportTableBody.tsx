@@ -27,7 +27,9 @@ function AdminReportTableBody({
           <td>{report.reportedUserEmail}</td>
           <td>{formatDate(report.reportedAt)}</td>
           <td>{report.status}</td>
-          <td>{report.handledAt ? formatDate(report.handledAt) : ''}</td>
+          <td>
+            {report.result === '처리 완료' ? formatDate(report.handledAt) : ''}
+          </td>
           <TdButtonGroup className="td-button-group">
             {report.result === '처리 완료' ? (
               <Button disabled size="small" scheme="disabled">
