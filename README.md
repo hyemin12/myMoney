@@ -42,10 +42,14 @@
 
 ![mypage](https://github.com/user-attachments/assets/3f883f60-377b-4490-96a4-d893b97f9c8a)
 
+### 관리자페이지 - 모든 유저 정보 조회
+
+![admin1](https://github.com/user-attachments/assets/cadc5b6b-1654-47d6-a4c6-df0c642f0e04)
+
 ### 관리자페이지 - 신고 유저 관리
 
-![admin11](https://github.com/user-attachments/assets/3014c290-520e-4b40-ba8e-1642f1927ae2)
+![admin2](https://github.com/user-attachments/assets/13139523-b423-4624-af15-82acab829eda)
 
 ### 관리자페이지 - 후기 승인 (인증처리)
 
-![admin22](https://github.com/user-attachments/assets/e69ccecf-fa57-4e86-bdd6-bc8cf3db51a3)
+![admin3](https://github.com/user-attachments/assets/6a721de8-5a95-41e2-b0c3-86e32028e3b1)
