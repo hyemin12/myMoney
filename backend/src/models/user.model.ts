@@ -1,3 +1,4 @@
+import { ADMIN_LIMIT } from '../constance/pagination';
 import { AppDataSource } from '../data-source';
 import { Report } from '../entity/report_content.entity';
 import { User } from '../entity/users.entity';
@@ -13,7 +14,7 @@ export interface IUser {
 
 export interface IUserWithReportInfo extends IUser {
   reportReason?: string | null;
-  reportedDate: string | null;
+  reportedDate: Date | string | null;
 }
 
 const userRepository = AppDataSource.getRepository(User);
@@ -27,8 +28,6 @@ export const findUserWithReportInfo = async (email: string) => {
       'user.email as email',
       'user.password as password',
       'user.isAdmin as isAdmin',
-      'COUNT(report_content.id) AS reportCount',
-      'MAX(report_content.created_at) AS reportedDate',
     ])
     .leftJoin(
       Report,
@@ -52,6 +51,51 @@ export const findUserByNickname = async (nickname: string) => {
 
 export const findUserById = async (id: number) => {
   return await userRepository.findOneBy({ id });
+};
+
+// 비밀번호 제외 및 모든 정보 가져오기
+export const findUsers = async (page?: number) => {
+  if (page) {
+    const offset = (page - 1) * ADMIN_LIMIT;
+    const users = await userRepository
+      .createQueryBuilder('user')
+      .where('user.isAdmin = :isAdmin', { isAdmin: false })
+      .select([
+        'user.id',
+        'user.email',
+        'user.nickname',
+        'user.isAdmin',
+        'user.suspensionCount',
+        'user.status',
+        'user.banEndDate',
+      ])
+      .skip(offset)
+      .take(ADMIN_LIMIT)
+      .getMany();
+    const totalCount = await userRepository
+      .createQueryBuilder('user')
+      .where('user.isAdmin = :isAdmin', { isAdmin: false })
+      .getCount();
+    return { users, totalCount };
+  } else {
+    return await userRepository
+      .createQueryBuilder('user')
+      .where('user.isAdmin = :isAdmin', { isAdmin: false })
+      .select([
+        'user.id',
+        'user.email',
+        'user.nickname',
+        'user.isAdmin',
+        'user.suspensionCount',
+        'user.status',
+        'user.banEndDate',
+      ])
+      .getMany();
+  }
+};
+
+export const updateUserInDB = async (user: User) => {
+  return await userRepository.save(user);
 };
 
 export const createUser = async (userData: {

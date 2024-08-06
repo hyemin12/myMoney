@@ -5,7 +5,8 @@ export type TModalMode =
   | 'DELETE'
   | 'LOGIN'
   | 'APPROVE_REVIEW'
-  | 'REPORT';
+  | 'REPORT'
+  | 'CONFIRM';
 
 interface ModalState {
   $isOpen: boolean;

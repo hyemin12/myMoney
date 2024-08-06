@@ -1,10 +1,10 @@
-// 비즈니스 로직 작성
 import { ERROR_MESSAGE } from '../constance/errorMessage';
 import {
   findUserByEmail,
-  findUserByNickname,
-  createUser as createNewUser,
   findUserWithReportInfo,
+  createUser as createNewUser,
+  findUserByNickname,
+  findUsers,
 } from '../models/user.model';
 import {
   hashPassword,
@@ -57,4 +57,8 @@ export const serviceGetUserInfo = async (email: string) => {
   }
 
   return { user };
+};
+
+export const serviceFindUsers = async (page?: number) => {
+  return await findUsers(page);
 };

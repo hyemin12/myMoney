@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 import { SALT_ROUNDS, TOKEN_PRIVATE_KEY } from '../settings';
 import { IUserInfo } from '../middleware/authentication';
 import { IUserWithReportInfo } from '../models/user.model';
+import { ERROR_MESSAGE } from '../constance/errorMessage';
 
 export const hashPassword = async (password: string) => {
   return await bcrypt.hash(password, SALT_ROUNDS);
@@ -25,11 +26,11 @@ export const generateToken = (loginUser: IUserInfo) => {
 
 /** 정지 종료일 계산
  * @param count : number
- * @param date : string
+ * @param date : str
  * @returns remainingSeconds (초단위의 정지 종료일)
  */
-export const calcSuspensionEndDate = (count: number, date: string) => {
-  let suspensionEndDate = new Date(date);
+export const calcSuspensionEndDate = (count: number, date: Date | null) => {
+  let suspensionEndDate = date ? new Date(date) : new Date();
 
   switch (count) {
     case 5:
@@ -45,11 +46,7 @@ export const calcSuspensionEndDate = (count: number, date: string) => {
       break; // 하루 후
   }
 
-  const remainingMilliseconds =
-    suspensionEndDate.getTime() - new Date().getTime();
-  const remainingSeconds = Math.ceil(remainingMilliseconds / 1000);
-
-  return remainingSeconds;
+  return suspensionEndDate;
 };
 
 export interface ISuspendedUser {
@@ -63,7 +60,15 @@ export interface ISuspendedUser {
 export const suspendedUser = (user: IUserWithReportInfo) => {
   const { reportReason, reportedDate } = user;
 
-  const remainingDays = calcSuspensionEndDate(user.reportCount, reportedDate!);
+  if (!reportedDate) throw new Error(ERROR_MESSAGE.INVALID_DATA);
+
+  const reportedDateAsDate =
+    typeof reportedDate === 'string' ? new Date(reportedDate) : reportedDate;
+
+  const remainingDays = calcSuspensionEndDate(
+    user.reportCount,
+    reportedDateAsDate,
+  );
 
   const suspendedUser = {
     email: user.email,
@@ -72,5 +77,6 @@ export const suspendedUser = (user: IUserWithReportInfo) => {
     reportReason,
     suspensionRemainingDays: remainingDays,
   };
+
   return { suspendedUser };
 };

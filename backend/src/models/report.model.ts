@@ -1,79 +1,51 @@
+import { ADMIN_LIMIT } from '../constance/pagination';
 import { AppDataSource } from '../data-source';
 import { Report } from '../entity/report_content.entity';
-import { User } from '../entity/users.entity';
-import { ERROR_MESSAGE } from '../constance/errorMessage';
 
 const reportRepository = AppDataSource.getRepository(Report);
-const userRepository = AppDataSource.getRepository(User);
 
-export interface ICreateReviewProps {
-  reportedUserId: number;
-  reporterUserId: number;
-  reason: string;
-}
-
-export const findSuspendedUsers = async () => {
-  const users = await userRepository
-    .createQueryBuilder('user')
-    .select([
-      'user.id AS reportedUserId',
-      'user.nickname AS nickname',
-      'user.email AS reportedUserEmail',
-      'user.isAdmin AS isAdmin',
-      'report_content.id AS reportId',
-      'COUNT(report_content.id) AS reportCount',
-      'MAX(report_content.created_at) AS reportedDate',
-      'MAX(report_content.reason) AS reportReason',
-    ])
-    .leftJoin(
-      Report,
-      'report_content',
-      'report_content.reported_user_id = user.id',
-    )
-    .groupBy('user.id')
-    .having('reportCount > 0')
-    .getRawMany();
-
-  return users;
-};
-
-export const deleteReport = async (id: number) => {
-  const report = await reportRepository.findOneBy({ id });
-  if (!report) {
-    throw new Error(ERROR_MESSAGE.INVALID_DATA);
-  }
-  return await reportRepository.remove(report);
-};
-
-export const createReport = async ({
-  reportedUserId,
-  reporterUserId,
-  reason,
-}: ICreateReviewProps) => {
-  const reportedUser = await userRepository.findOneBy({ id: reportedUserId });
-  if (!reportedUser) throw new Error(ERROR_MESSAGE.INVALID_USER);
-
-  const report = new Report();
-  report.reporterUserId = reporterUserId;
-  report.reason = reason;
-  report.user = reportedUser;
-
+export const createReportInDB = async (report: Report) => {
   return await reportRepository.save(report);
 };
 
-export const checkDuplicateReport = async ({
-  reportedUserId,
-  reporterUserId,
-}: {
-  reportedUserId: number;
-  reporterUserId: number;
-}) => {
-  const report = await reportRepository.find({
-    where: {
-      user: { id: reportedUserId },
-      reporterUserId: reporterUserId,
-    },
-  });
+export const findAllReports = async (page: number) => {
+  const offset = (page - 1) * ADMIN_LIMIT;
+  const reports = await reportRepository
+    .createQueryBuilder('report')
+    .leftJoinAndSelect('report.reporterUser', 'reporterUser')
+    .leftJoinAndSelect('report.reportedUser', 'reportedUser')
+    .select([
+      'report.id as reportId',
+      'report.reason as reportReason',
+      'report.reportedAt as reportedAt',
+      'report.status as status',
+      'report.result as result',
+      'report.handledAt as handledAt',
+      'report.isFalseReport as isFalseReport',
+      'reporterUser.email AS reporterUserEmail',
+      'reportedUser.email AS reportedUserEmail',
+    ])
+    .orderBy('report.reportedAt', 'DESC')
+    .skip(offset)
+    .take(ADMIN_LIMIT)
+    .getRawMany();
 
-  return report.length > 0;
+  const totalCount = await reportRepository
+    .createQueryBuilder('report')
+    .getCount();
+
+  return { reports, totalCount };
+};
+
+export const findReportById = async (id: number) => {
+  return await reportRepository
+    .createQueryBuilder('report')
+    .leftJoinAndSelect('report.reporterUser', 'reporterUser')
+    .leftJoinAndSelect('report.reportedUser', 'reportedUser')
+    .where('report.id = :id', { id })
+    .getOne();
+};
+
+export const updateReportInDB = async (report: Report) => {
+  return await reportRepository.save(report);
 };

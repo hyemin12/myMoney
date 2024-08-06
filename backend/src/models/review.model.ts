@@ -1,4 +1,5 @@
 import { ERROR_MESSAGE } from '../constance/errorMessage';
+import { ADMIN_LIMIT } from '../constance/pagination';
 import { AppDataSource } from '../data-source';
 import { Like } from '../entity/likes.entity';
 import { ReviewImg } from '../entity/review_img.entity';
@@ -289,20 +290,43 @@ export const approve = async (reviewId: number) => {
 };
 
 // 미인증 후기 목록 조회
-export const findUnverifiedReviews = async () => {
+export const findUnverifiedReviews = async (page: number) => {
+  const offset = (page - 1) * ADMIN_LIMIT;
+  // const reviews = await reviewRepository
+  // .createQueryBuilder('reviews')
+  // .leftJoinAndSelect('reviews.user', 'user')
+  // .where('reviews.verified = false')
+  // .select([
+  //   'reviews.id AS reviewId',
+  //   'reviews.title AS reviewTitle',
+  //   'reviews.createdAt AS reviewCreatedAt',
+  //   'reviews.receiptImg AS reviewReceiptImg',
+  //   'user.id AS userId',
+  //   'user.nickname AS userNickname',
+  // ])
+  // .skip(offset)
+  // .take(ADMIN_LIMIT)
+  // .getMany();
+
   const reviews = await reviewRepository
     .createQueryBuilder('reviews')
     .leftJoinAndSelect('reviews.user', 'user')
     .select([
-      'reviews.id AS id',
-      'reviews.title AS title',
-      'reviews.createdAt AS createdAt',
-      'reviews.receiptImg AS receiptImg',
-      'user.id AS userId',
-      'user.nickname AS userName',
+      'reviews.id',
+      'reviews.title',
+      'reviews.createdAt',
+      'reviews.receiptImg',
+      'user.id',
+      'user.nickname',
     ])
     .where('reviews.verified = false')
-    .getRawMany();
+    .skip(offset)
+    .take(ADMIN_LIMIT)
+    .getMany();
 
-  return reviews;
+  const totalCount = await await reviewRepository
+    .createQueryBuilder('reviews')
+    .where('reviews.verified = false')
+    .getCount();
+  return { reviews, totalCount };
 };

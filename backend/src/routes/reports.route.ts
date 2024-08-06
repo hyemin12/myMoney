@@ -1,9 +1,9 @@
 import express from 'express';
 import { authentication } from '../middleware/authentication';
 import {
-  deleteReport,
-  addReport,
-  getSuspendedUsers,
+  createReportHandler,
+  getAllReportsHandler,
+  handleReportHandler,
 } from '../controllers/reports.controller';
 import {
   validateAddReport,
@@ -12,8 +12,18 @@ import {
 
 const router = express.Router();
 
-router.post('/', validateAddReport, authentication(true), addReport);
-router.delete('/:id', validateDeleteReport, authentication(true), deleteReport);
-router.get('/users', authentication(true), getSuspendedUsers);
+// 신고 추가
+router.post('/', validateAddReport, authentication(true), createReportHandler);
+
+// 모든 신고 조회
+router.get('/users', authentication(true), getAllReportsHandler);
+
+// 신고 처리
+router.patch(
+  '/:reportId',
+  validateDeleteReport,
+  authentication(true),
+  handleReportHandler,
+);
 
 export { router as reportsRouter };

@@ -8,6 +8,7 @@ import {
   loginUser,
   logoutUser,
   getUserInfo,
+  getAllUsers,
 } from '../controllers/user.controller';
 import {
   validateCheckedEmail,
@@ -28,5 +29,6 @@ router.post(
 );
 router.post('/join', validateJoin, joinUser);
 router.get('/me', authentication(true), getUserInfo);
+router.get('/all', authentication(true), getAllUsers);
 
 export { router as usersRouter };

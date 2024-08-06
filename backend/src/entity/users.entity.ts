@@ -30,17 +30,23 @@ export class User {
   })
   isAdmin!: boolean;
 
-  @Column({
-    comment: '신고 횟수',
-    default: 0,
-  })
-  reportCount!: number;
+  @Column({ type: 'int', comment: '정지된 횟수', default: 0 })
+  suspensionCount!: number;
+
+  @Column({ type: 'varchar', length: 50, default: '이용' })
+  status!: string;
+
+  @Column({ type: 'timestamp', nullable: true })
+  banEndDate!: Date | null;
 
   @OneToMany(() => Comment, (comment) => comment.user)
   comments!: Comment[];
 
-  @OneToMany(() => Report, (reportContent) => reportContent.user)
-  reportContents!: Report[];
+  @OneToMany(() => Report, (report) => report.reporterUser)
+  reportsMade!: Report[];
+
+  @OneToMany(() => Report, (report) => report.reportedUser)
+  reportsReceived!: Report[];
 
   @OneToMany(() => Review, (review) => review.user)
   reviews!: Review[];

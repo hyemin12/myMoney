@@ -1,19 +1,26 @@
 export interface ISuspendedUsers {
   reportId: number;
-  reportedUserId: number;
+  reporterUserEmail: number;
   reportedUserEmail: string;
   reportCount: number;
   reportReason: string;
-  isSuspended: boolean;
+  reportedAt: string;
 }
 
 export interface IFormatSuspendedUsers extends ISuspendedUsers {
-  status: '정지' | '정지 종료';
+  isFalseReport: boolean;
+  handledAt: string;
+  result: null | '처리 완료';
+  status: '대기' | '허위 신고' | '승인';
 }
 
 export interface IAdminNavItem {
   path: string;
-  name: '신고된 사용자 관리' | '미승인 후기 관리' | '사이트 바로가기';
+  name:
+    | '사용자 관리'
+    | '신고된 사용자 관리'
+    | '미승인 후기 관리'
+    | '사이트 바로가기';
   icon: JSX.Element;
   $iconSize?: number;
 }

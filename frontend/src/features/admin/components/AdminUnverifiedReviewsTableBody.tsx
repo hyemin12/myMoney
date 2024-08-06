@@ -5,22 +5,25 @@ import styled from 'styled-components';
 import { ImageIcon } from '@/assets/icons';
 import { Icon } from '@/shared/components';
 import { IUnverifiedReviewItem } from '@/features/review';
+import { calcIndex } from '../utils/calcTableIndex';
 
 interface Props {
   unverifiedReviews: IUnverifiedReviewItem[];
   handleApproveReview: (reviewId: number, receiptImg: string) => void;
+  currentPage: number;
 }
 
 function AdminUnverifiedReviewsTableBody({
   unverifiedReviews,
   handleApproveReview,
+  currentPage,
 }: Props) {
   return (
     <>
-      {unverifiedReviews.map((report: IUnverifiedReviewItem) => (
+      {unverifiedReviews.map((report: IUnverifiedReviewItem, idx) => (
         <React.Fragment key={report.id}>
           <tr>
-            <td>{report.id}</td>
+            <td>{calcIndex(currentPage, idx)}</td>
             <td>{report.title}</td>
             <td>{report.userName}</td>
             <td>{dayjs(report.createdAt).format('YYYY-MM-DD')}</td>
