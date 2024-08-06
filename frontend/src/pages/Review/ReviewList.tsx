@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 
 import Layout from '@/layout/Layout';
-import { ReviewList, useReviews } from '@/features/reviews';
+import {
+  ReviewList,
+  useInfiniteReviewListWithParams,
+} from '@/features/reviews';
 import { Category } from '@/features/category';
 
 function ReviewListPage() {
@@ -10,7 +13,7 @@ function ReviewListPage() {
     isLoadingFetchReviews,
     fetchReviewsNextPage,
     hasNextPageFetchReviews,
-  } = useReviews();
+  } = useInfiniteReviewListWithParams();
 
   return (
     <Layout title="리뷰 목록" showBackButton={false}>

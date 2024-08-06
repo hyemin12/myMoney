@@ -6,7 +6,7 @@ import { fetchReviews } from '../api/reviews.api';
 import formatReviews from '../utils/formatReviews';
 import { deleteReview, IFetchReviewsParams } from '@/features/review';
 
-export const useReviews = () => {
+export const useInfiniteReviewListWithParams = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   /** 쿼리스트링 분석

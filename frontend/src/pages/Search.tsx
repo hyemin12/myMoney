@@ -4,7 +4,10 @@ import { useForm } from 'react-hook-form';
 import styled, { css } from 'styled-components';
 
 import Layout from '@/layout/Layout';
-import { ReviewList, useReviews } from '@/features/reviews';
+import {
+  ReviewList,
+  useInfiniteReviewListWithParams,
+} from '@/features/reviews';
 import {
   NoRecentSearchResult,
   SearchInputBox,
@@ -31,7 +34,7 @@ function Search() {
     isLoadingFetchReviews,
     fetchReviewsNextPage,
     hasNextPageFetchReviews,
-  } = useReviews();
+  } = useInfiniteReviewListWithParams();
   const { register, handleSubmit, setValue, watch } = useForm<ISearchForm>();
 
   const onSubmit = (data: ISearchForm) => {
