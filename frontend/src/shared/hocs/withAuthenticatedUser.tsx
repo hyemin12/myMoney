@@ -14,7 +14,7 @@ export default function withAuthenticatedUser(
 
     useEffect(() => {
       if (!isLoggedIn) {
-        openModal('LOGIN');
+        openModal('LOGIN', { shouldNavigateBack: true });
       }
     }, [isLoggedIn, openModal]);
 

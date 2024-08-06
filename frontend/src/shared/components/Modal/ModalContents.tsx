@@ -1,19 +1,20 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import Button from '../Button';
-
-import { TReportReason } from '@/features/report/models/report.model';
-import { useState } from 'react';
-import { useReport } from '@/features/report';
+import { TReportReason, useReport } from '@/features/report';
 import { RadioButton, ReceiptImageStyle } from './Modal.style';
 
 interface ILoginModalProps {
   closeModal: () => void;
+  shouldNavigateBack: boolean;
 }
 
-export const LoginModal = ({ closeModal }: ILoginModalProps) => {
+export const LoginModal = ({
+  closeModal,
+  shouldNavigateBack,
+}: ILoginModalProps) => {
   const navigate = useNavigate();
-  const { pathname } = useLocation();
   return (
     <>
       <h4>
@@ -27,7 +28,7 @@ export const LoginModal = ({ closeModal }: ILoginModalProps) => {
           size="medium"
           scheme="border"
           onClick={() => {
-            if (pathname === '/review') {
+            if (shouldNavigateBack) {
               navigate(-1);
             }
             closeModal();

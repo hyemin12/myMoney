@@ -22,7 +22,7 @@ function CommentAdd({ onAdd }: Props) {
 
   const onSubmit = (data: TCommentItemWrite) => {
     if (!isLoggedIn) {
-      openModal('LOGIN');
+      openModal('LOGIN', { shouldNavigateBack: false });
     }
     onAdd(data);
     reset();

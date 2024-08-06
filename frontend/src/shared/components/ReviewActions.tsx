@@ -48,7 +48,7 @@ function ReviewActions({
 
   const handleAction = (action: string) => {
     if (!isLoggedIn) {
-      openModal('LOGIN');
+      openModal('LOGIN', { shouldNavigateBack: false });
     }
     switch (action) {
       case 'update': {

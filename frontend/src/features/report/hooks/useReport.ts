@@ -28,7 +28,7 @@ export const useReport = () => {
   });
   const postReport = (data: IReport) => {
     if (!isLoggedIn) {
-      openModal('LOGIN');
+      openModal('LOGIN', { shouldNavigateBack: false });
     }
 
     postReportMutation.mutate(data);
