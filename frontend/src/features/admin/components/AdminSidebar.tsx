@@ -9,7 +9,7 @@ import {
   ReportIcon,
 } from '@/assets/icons';
 import AdminNavItem from './AdminNavItem';
-import { IAdminNavItem } from '../model/admin.model';
+import { IAdminNavItem } from '../models/admin.model';
 
 const adminNav: IAdminNavItem[] = [
   {

@@ -6,4 +6,4 @@ export * from './api/comment.api';
 
 export * from './hooks/useComment';
 
-export * from './model/comment.model';
+export * from './models/comment.model';

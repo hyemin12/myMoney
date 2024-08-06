@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { useMutation, useQuery } from '@tanstack/react-query';
 
-import { IUserLogin } from '../model/auth.model';
+import { IUserLogin } from '../models/auth.model';
 import useUserRegistrationStore from '@/store/user.registration.store';
 import useAuthStore from '@/store/auth.store';
 import { handleGoHome } from '@/shared/utils/routingUtils';

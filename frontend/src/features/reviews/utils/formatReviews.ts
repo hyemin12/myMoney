@@ -1,4 +1,4 @@
-import { IReviewItem } from '@/features/review/model/review.model';
+import { IReviewItem } from '@/features/review/models/review.model';
 
 interface ReviewsData {
   pages: {

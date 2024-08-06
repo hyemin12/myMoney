@@ -2,7 +2,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import Button from '../Button';
 
-import { TReportReason } from '@/features/report/model/report.model';
+import { TReportReason } from '@/features/report/models/report.model';
 import { useState } from 'react';
 import { useReport } from '@/features/report';
 import { RadioButton, ReceiptImageStyle } from './Modal.style';

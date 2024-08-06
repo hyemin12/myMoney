@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Icon } from '@/shared/components';
-import { IAdminNavItem } from '../model/admin.model';
+import { IAdminNavItem } from '../models/admin.model';
 
 export interface Props extends IAdminNavItem {
   isActive?: boolean;

@@ -17,7 +17,7 @@ import CategoryButton from './CategoryButton';
 import { useCategory } from '../hooks/useCategory';
 import { LoadingContainer } from '@/features/admin/components/AdminContent';
 import { Loading } from '@/shared/components';
-import { ICategoryItem } from '../model/category.model';
+import { ICategoryItem } from '../models/category.model';
 
 const assetMap = {
   디지털: <CategoryDevicesIcon />,

@@ -17,6 +17,6 @@ export * from './review-detail/components/ReviewContent.style';
 export * from './review-editing/api/reviewEditing.api';
 export * from './review-editing/hooks/useReviewEditing';
 
-export * from './model/review.model';
+export * from './models/review.model';
 
 export { default as convertToBase64 } from './utils/convertToBase64';

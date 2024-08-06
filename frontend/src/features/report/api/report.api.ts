@@ -1,4 +1,4 @@
-import { IReport } from '@/features/report/model/report.model';
+import { IReport } from '@/features/report/models/report.model';
 import { httpClient } from '@/shared/utils/http';
 
 export const addReport = async (data: IReport) => {

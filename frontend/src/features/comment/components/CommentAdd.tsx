@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
 import useAuthStore from '@/store/auth.store';
-import { TCommentItemWrite } from '../model/comment.model';
+import { TCommentItemWrite } from '../models/comment.model';
 import { AlertText, Button, Input } from '@/shared/components';
 import useModalStore from '@/store/modal.store';
 

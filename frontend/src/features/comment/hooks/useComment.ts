@@ -1,7 +1,7 @@
 import { useQuery, useMutation } from '@tanstack/react-query';
 
 import { queryClient } from '@/shared/utils/queryClient';
-import { TCommentItemWrite } from '../model/comment.model';
+import { TCommentItemWrite } from '../models/comment.model';
 import {
   addReviewComment,
   deleteReviewComment,
