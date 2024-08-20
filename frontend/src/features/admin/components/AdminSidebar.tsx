@@ -1,4 +1,3 @@
-import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 import {
@@ -9,29 +8,8 @@ import {
   ReportIcon,
 } from '@/assets/icons';
 import AdminNavItem from './AdminNavItem';
-import { IAdminNavItem } from '../models/admin.model';
-
-const adminNav: IAdminNavItem[] = [
-  {
-    path: '/admin/users',
-    name: '사용자 관리',
-    icon: <UserIcon />,
-  },
-  {
-    path: '/admin/report-user',
-    name: '신고된 사용자 관리',
-    icon: <ReportIcon />,
-  },
-  {
-    path: '/admin/unverified-reviews',
-    name: '미승인 후기 관리',
-    icon: <DashboardUnapprovedReviewIcon />,
-    $iconSize: 16,
-  },
-];
 
 function AdminSidebar() {
-  const { pathname } = useLocation();
   return (
     <Container>
       <Logo>
@@ -49,13 +27,22 @@ function AdminSidebar() {
       <div>
         <NavSectionTitle>사이트관리</NavSectionTitle>
         <nav>
-          {adminNav.map((nav) => (
-            <AdminNavItem
-              isActive={pathname === nav.path}
-              {...nav}
-              key={nav.name}
-            />
-          ))}
+          <AdminNavItem
+            path="/admin/users"
+            name="사용자 관리"
+            icon={<UserIcon />}
+          />
+          <AdminNavItem
+            path="/admin/report-user"
+            name="신고된 사용자 관리"
+            icon={<ReportIcon />}
+          />
+          <AdminNavItem
+            path="/admin/unverified-reviews"
+            name="미승인 후기 관리"
+            icon={<DashboardUnapprovedReviewIcon />}
+            $iconSize={16}
+          />
         </nav>
       </div>
     </Container>
