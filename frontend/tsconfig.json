@@ -26,9 +26,10 @@
       "@/*": ["src/*"]
     },
 
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "types": ["jest", "@testing-library/jest-dom"]
   },
-  "include": ["src"],
+  "include": ["src", "./jest-setup.ts"],
   "references": [{ "path": "./tsconfig.node.json" }],
   "exclude": ["src/**/*.test.ts", "src/**/__mocks__/*.ts"]
 }

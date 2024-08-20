@@ -6,9 +6,10 @@ export default {
   },
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
-    '^.+\\.svg$': 'jest-svg-transformer',
+    '\\.(jpg|jpeg|png|gif|webp|svg)$': '<rootDir>/__mocks__/fileMock.js',
     '\\.(css|less|sass|scss)$': 'identity-obj-proxy',
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   extensionsToTreatAsEsm: ['.ts', '.tsx'],
+  transformIgnorePatterns: ['/node_modules/'],
 };
