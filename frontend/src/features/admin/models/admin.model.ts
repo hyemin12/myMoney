@@ -1,9 +1,11 @@
+import { TReportReason } from '@/features/report';
+
 export interface ISuspendedUsers {
   reportId: number;
-  reporterUserEmail: number;
+  reporterUserEmail: string;
   reportedUserEmail: string;
   reportCount: number;
-  reportReason: string;
+  reportReason: TReportReason;
   reportedAt: string;
 }
 

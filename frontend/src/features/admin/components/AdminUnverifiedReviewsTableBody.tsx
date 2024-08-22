@@ -29,6 +29,7 @@ function AdminUnverifiedReviewsTableBody({
             <td>{dayjs(report.createdAt).format('YYYY-MM-DD')}</td>
             <td>
               <IconButton
+                role="button"
                 onClick={() =>
                   handleApproveReview(report.id, report.receiptImg)
                 }

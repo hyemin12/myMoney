@@ -12,7 +12,7 @@ import AdminNavItem from './AdminNavItem';
 function AdminSidebar() {
   return (
     <Container>
-      <Logo>
+      <Logo className="service-logo">
         <NaedonnaesanTextLogo />
       </Logo>
 
