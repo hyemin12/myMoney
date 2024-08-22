@@ -1,4 +1,3 @@
-import { useLocation } from 'react-router-dom';
 import { UseFormRegister } from 'react-hook-form';
 
 import Checkbox from './Checkbox';
@@ -27,12 +26,9 @@ function LoginForm({
   register,
   errorMessage,
 }: Props) {
-  const { pathname } = useLocation();
-  const $isUserLoginPage = pathname === '/login';
-
   return (
     <FormStyle onSubmit={onSubmit}>
-      <InputGroup $isUserLoginPage={$isUserLoginPage}>
+      <InputGroup>
         <fieldset>
           <Input
             $inputType="text"
@@ -50,7 +46,7 @@ function LoginForm({
         </fieldset>
       </InputGroup>
 
-      {$isUserLoginPage && toggleCheckedRememberEmail && (
+      {toggleCheckedRememberEmail && (
         <OptionStyle>
           <IDCheckbox>
             <Checkbox
