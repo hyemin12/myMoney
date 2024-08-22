@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { EyeClosedIcon, EyeIcon } from '@/assets/icons';
 import Icon from './Icon';
 
-type TinputType = 'text' | 'email' | 'password' | 'number';
+export type TinputType = 'text' | 'email' | 'password' | 'number';
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   placeholder?: string;

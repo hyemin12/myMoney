@@ -13,7 +13,6 @@ import {
 } from '@/features/reviews';
 import { IReviewItem } from '@/features/review';
 import { formatDate } from '@/shared/utils';
-import useAuthStore from '@/store/auth.store';
 
 function ReviewItem({
   title,
@@ -39,8 +38,6 @@ function ReviewItem({
     const doc = parser.parseFromString(html, 'text/html');
     return doc.body.textContent || '';
   };
-
-  const { isLoggedIn } = useAuthStore();
 
   return (
     <Container>

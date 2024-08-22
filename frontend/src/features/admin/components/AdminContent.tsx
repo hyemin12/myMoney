@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Loading } from '@/shared/components';
-import { useNavigate, useSearchParams } from 'react-router-dom';
 import Pagination from '@/shared/components/Pagination';
 
 interface Props {

@@ -59,7 +59,7 @@ export const DeleteModal = ({
 }: IDeleteModalProps) => {
   return (
     <>
-      <h4>{type === 'review' ? '후기를' : '댓글을'}삭제하시겠습니까?</h4>
+      <h4>{type === 'review' ? '후기를' : '댓글을'} 삭제하시겠습니까?</h4>
       <div className="button-group">
         <Button size="medium" scheme="border" onClick={closeModal}>
           취소
@@ -121,7 +121,7 @@ interface IReportUserModalProps {
   reportedUserId: number;
 }
 
-const reportReasons: TReportReason[] = [
+export const reportReasons: TReportReason[] = [
   '같은 내용 반복 작성(도배)',
   '선정성/음란성',
   '욕설/인신공격',

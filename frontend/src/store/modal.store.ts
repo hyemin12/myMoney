@@ -8,7 +8,7 @@ export type TModalMode =
   | 'REPORT'
   | 'CONFIRM';
 
-interface ModalState {
+export interface IModalState {
   $isOpen: boolean;
   mode: TModalMode | null;
   contentProps?: any;
@@ -16,7 +16,7 @@ interface ModalState {
   closeModal: () => void;
 }
 
-const useModalStore = create<ModalState>((set) => ({
+const useModalStore = create<IModalState>((set) => ({
   $isOpen: false,
   mode: null,
   contentProps: {},

@@ -1,3 +1,6 @@
+import { IFetchReviewsParams } from '@/features/review/review-detail/api/reviewDetail.api';
+import { httpClient } from '@/shared/utils/http';
+
 export const fetchReviews = async (params: IFetchReviewsParams) => {
   const { data } = await httpClient.get('/reviews', {
     params: { ...params },
@@ -11,8 +14,6 @@ export const fetchMyReviews = async ({ pageParam = 1 }) => {
   );
   return response.data;
 };
-
-import { httpClient } from '@/shared/utils/http';
 
 export const fetchLikedReviews = async ({ pageParam = 1 }) => {
   const response = await httpClient.get(

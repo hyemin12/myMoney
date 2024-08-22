@@ -29,7 +29,7 @@
     "esModuleInterop": true,
     "types": ["jest", "@testing-library/jest-dom"]
   },
-  "include": ["src", "./jest-setup.ts"],
+  "include": ["src", "./jest.setup.ts", "__mocks__"],
   "references": [{ "path": "./tsconfig.node.json" }],
   "exclude": ["src/**/*.test.ts", "src/**/__mocks__/*.ts"]
 }
