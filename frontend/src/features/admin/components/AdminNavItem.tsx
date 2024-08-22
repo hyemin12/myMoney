@@ -1,22 +1,13 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Icon } from '@/shared/components';
-import { IAdminNavItem } from '../model/admin.model';
+import { IAdminNavItem } from '../models/admin.model';
 
-export interface Props extends IAdminNavItem {
-  isActive?: boolean;
-}
-
-function AdminNavItem({
-  isActive = false,
-  icon,
-  name,
-  path,
-  $iconSize,
-}: Props) {
+function AdminNavItem({ icon, name, path, $iconSize }: IAdminNavItem) {
+  const { pathname } = useLocation();
   return (
-    <NavItem to={path} className={isActive ? 'active' : ''}>
+    <NavItem to={path} className={pathname === path ? 'active' : ''}>
       <Icon fill="#fff" icon={icon} width={20} $iconSize={$iconSize} />
       <Title>{name}</Title>
     </NavItem>

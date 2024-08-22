@@ -5,7 +5,7 @@ import 'react-quill/dist/quill.snow.css';
 
 import { IFormControlProps } from './ReviewForm';
 import { UseFormGetValues } from 'react-hook-form';
-import { IReview } from '../../model/review.model';
+import { IReview } from '../../models/review.model';
 
 const MAX_CONTENT_LENGTH = 1000;
 

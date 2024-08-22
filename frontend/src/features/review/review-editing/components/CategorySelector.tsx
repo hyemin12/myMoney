@@ -5,7 +5,7 @@ import { CaretDownIcon } from '@/assets/icons';
 import { Dropdown } from '@/shared/components';
 import { TCategoryNames } from '@/features/category';
 import { IFormControlProps } from './ReviewForm';
-import { IReview } from '../../model/review.model';
+import { IReview } from '../../models/review.model';
 
 interface Props extends IFormControlProps {
   categoryOptions: { id: number; name: TCategoryNames }[];

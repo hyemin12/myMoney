@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 
 import { addReport } from '../api/report.api';
-import { IReport } from '../model/report.model';
+import { IReport } from '../models/report.model';
 import useAuthStore from '@/store/auth.store';
 import useModalStore from '@/store/modal.store';
 
@@ -28,7 +28,7 @@ export const useReport = () => {
   });
   const postReport = (data: IReport) => {
     if (!isLoggedIn) {
-      openModal('LOGIN');
+      openModal('LOGIN', { shouldNavigateBack: false });
     }
 
     postReportMutation.mutate(data);

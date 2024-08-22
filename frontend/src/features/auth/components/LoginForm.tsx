@@ -10,7 +10,7 @@ import {
   InputGroup,
   OptionStyle,
 } from './LoginForm.style';
-import { IUserLogin } from '../model/auth.model';
+import { IUserLogin } from '../models/auth.model';
 
 interface Props {
   onSubmit: () => void;

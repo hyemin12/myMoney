@@ -8,12 +8,8 @@ import {
   CreateContent,
   IReview,
 } from '@/features/review';
-import { Input, Button, Loading } from '@/shared/components';
-import {
-  ICategoryItem,
-  TCategoryNames,
-  useCategory,
-} from '@/features/category';
+import { Input, Button } from '@/shared/components';
+import { TCategoryNames, useCategory } from '@/features/category';
 import {
   FieldErrors,
   UseFormGetValues,

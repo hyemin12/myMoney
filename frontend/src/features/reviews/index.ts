@@ -3,10 +3,10 @@ export { default as ReviewList } from './components/ReviewList';
 
 export * from './api/reviews.api';
 
-export * from './hooks/useReviews';
-export * from './hooks/useInfiniteReviews';
+export * from './hooks/useInfiniteReviewListWithParams';
+export * from './hooks/useInfiniteReviewListWithoutParams';
 
-export * from './model/reviews.model';
+export * from './models/reviews.model';
 
 export * from './components/ReviewItem.style';
 

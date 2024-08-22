@@ -26,7 +26,7 @@ export const useReviewDetail = (reviewId: number) => {
 
   const deleteReviewHandler = () => {
     if (!isLoggedIn) {
-      openModal('LOGIN');
+      openModal('LOGIN', { shouldNavigateBack: false });
     }
 
     deleteReviewMutation.mutate(reviewId);

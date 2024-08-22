@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import { HeartFillIcon, HeartOutlineIcon } from '@/assets/icons';
-import { theme } from '@/styles/theme';
 import { Icon } from '@/shared/components';
 
 interface Props {
@@ -21,7 +20,7 @@ function Like({ likes, isLiked, onClick }: Props) {
         onClick={onClick}
       >
         {isLiked ? (
-          <Icon width={24} icon={<HeartFillIcon />} fill={theme.color.danger} />
+          <Icon width={24} icon={<HeartFillIcon />} />
         ) : (
           <Icon width={24} icon={<HeartOutlineIcon />} />
         )}
@@ -43,6 +42,11 @@ const LikeStyle = styled.div<{ $likesIsEmpty: 'empty' | null }>`
 `;
 const LikeButton = styled.div`
   cursor: pointer;
+  &.liked {
+    svg {
+      fill: ${({ theme }) => theme.color.danger};
+    }
+  }
 
   &:hover {
     svg {

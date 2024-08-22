@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Button } from '@/shared/components';
-import { ICategoryItem } from '../model/category.model';
+import { ICategoryItem } from '../models/category.model';
 
 interface Props extends ICategoryItem {
   isActive: boolean;

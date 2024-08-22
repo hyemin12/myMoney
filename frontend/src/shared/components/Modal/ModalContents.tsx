@@ -1,19 +1,20 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import Button from '../Button';
-
-import { TReportReason } from '@/features/report/model/report.model';
-import { useState } from 'react';
-import { useReport } from '@/features/report';
+import { TReportReason, useReport } from '@/features/report';
 import { RadioButton, ReceiptImageStyle } from './Modal.style';
 
 interface ILoginModalProps {
   closeModal: () => void;
+  shouldNavigateBack: boolean;
 }
 
-export const LoginModal = ({ closeModal }: ILoginModalProps) => {
+export const LoginModal = ({
+  closeModal,
+  shouldNavigateBack,
+}: ILoginModalProps) => {
   const navigate = useNavigate();
-  const { pathname } = useLocation();
   return (
     <>
       <h4>
@@ -27,7 +28,7 @@ export const LoginModal = ({ closeModal }: ILoginModalProps) => {
           size="medium"
           scheme="border"
           onClick={() => {
-            if (pathname === '/review') {
+            if (shouldNavigateBack) {
               navigate(-1);
             }
             closeModal();
@@ -58,7 +59,7 @@ export const DeleteModal = ({
 }: IDeleteModalProps) => {
   return (
     <>
-      <h4>{type === 'review' ? '후기를' : '댓글을'}삭제하시겠습니까?</h4>
+      <h4>{type === 'review' ? '후기를' : '댓글을'} 삭제하시겠습니까?</h4>
       <div className="button-group">
         <Button size="medium" scheme="border" onClick={closeModal}>
           취소
@@ -120,7 +121,7 @@ interface IReportUserModalProps {
   reportedUserId: number;
 }
 
-const reportReasons: TReportReason[] = [
+export const reportReasons: TReportReason[] = [
   '같은 내용 반복 작성(도배)',
   '선정성/음란성',
   '욕설/인신공격',

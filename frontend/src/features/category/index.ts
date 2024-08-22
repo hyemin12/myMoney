@@ -5,4 +5,4 @@ export * from './api/category.api';
 
 export * from './hooks/useCategory';
 
-export * from './model/category.model';
+export * from './models/category.model';

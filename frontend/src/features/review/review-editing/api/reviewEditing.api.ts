@@ -1,5 +1,5 @@
 import { httpClient } from '@/shared/utils/http';
-import { IReview } from '../../model/review.model';
+import { IReview } from '../../models/review.model';
 
 export const createReview = async (reviewData: IReview) => {
   return await httpClient.post<IReview>('/reviews', reviewData);

@@ -46,7 +46,7 @@ function SearchInputBox({
             <MagnifyingGlassIcon />
           </SearchIcon>
 
-          {searchQueryValue.length > 0 && (
+          {searchQueryValue?.length > 0 && (
             <CancelIcon onClick={handleCancelSearch}>
               <CloseIcon />
             </CancelIcon>

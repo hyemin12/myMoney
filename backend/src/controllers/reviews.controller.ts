@@ -211,7 +211,6 @@ export const getUnverifiedReviews = async (
 ) => {
   const { page } = req.query;
   const numberPage = Number(page) || 1;
-  console.log(numberPage);
   const { isAdmin } = req.user!;
   if (!isAdmin) {
     throw new Error(ERROR_MESSAGE.DENIED);
@@ -224,7 +223,6 @@ export const getUnverifiedReviews = async (
       ADMIN_LIMIT,
       totalCount,
     );
-    console.log(reviews, totalCount, pagination);
     res.status(200).send({ message: 'success', reviews, pagination });
   } catch (error: any) {
     throw new Error(error.message);

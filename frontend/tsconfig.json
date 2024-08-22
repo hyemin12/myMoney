@@ -7,7 +7,7 @@
     "skipLibCheck": true,
 
     /* Bundler mode */
-    "moduleResolution": "bundler",
+    "moduleResolution": "Bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -24,9 +24,12 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+
+    "esModuleInterop": true,
+    "types": ["jest", "@testing-library/jest-dom"]
   },
-  "include": ["src"],
+  "include": ["src", "./jest.setup.ts", "__mocks__"],
   "references": [{ "path": "./tsconfig.node.json" }],
   "exclude": ["src/**/*.test.ts", "src/**/__mocks__/*.ts"]
 }

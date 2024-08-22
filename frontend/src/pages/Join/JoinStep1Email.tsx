@@ -10,7 +10,7 @@ import {
 } from '@/features/auth';
 import { AlertText, Input } from '@/shared/components';
 import { withUnauthenticatedUser } from '@/shared/hocs';
-import { VALIDATE } from '@/constants/validate';
+import { VALIDATE } from '@/shared/constants/validate';
 import useUserRegistrationStore from '@/store/user.registration.store';
 
 function JoinStep1Email() {

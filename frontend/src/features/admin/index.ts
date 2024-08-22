@@ -11,4 +11,4 @@ export * from './api/admin.api';
 
 export * from './hooks/useAdmin';
 
-export * from './model/admin.model';
+export * from './models/admin.model';

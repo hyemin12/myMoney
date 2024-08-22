@@ -4,7 +4,7 @@ import Layout from '@/layout/Layout';
 import { JoinTemplate, IUserRegistration, useAuth } from '@/features/auth';
 import { AlertText, Input } from '@/shared/components';
 import { withUnauthenticatedUser } from '@/shared/hocs';
-import { VALIDATE } from '@/constants/validate';
+import { VALIDATE } from '@/shared/constants/validate';
 import useUserRegistrationStore from '@/store/user.registration.store';
 
 const JoinStep2Nickname = () => {

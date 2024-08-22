@@ -12,12 +12,11 @@ import {
   CategoryFilmSlateIcon,
   DotsThreeIcon,
 } from '@/assets/icons';
-import CheckImg from '@/assets/images/logo32x32.png';
 import CategoryButton from './CategoryButton';
 import { useCategory } from '../hooks/useCategory';
 import { LoadingContainer } from '@/features/admin/components/AdminContent';
 import { Loading } from '@/shared/components';
-import { ICategoryItem } from '../model/category.model';
+import { ICategoryItem } from '../models/category.model';
 
 const assetMap = {
   디지털: <CategoryDevicesIcon />,
@@ -29,7 +28,7 @@ const assetMap = {
   '뷰티/미용': <CategoryHairDryerIcon />,
   장소: <CategoryMapPinIcon />,
   기타: <DotsThreeIcon />,
-  인증: CheckImg,
+  인증: './logo32x32.png',
 };
 
 function Category() {

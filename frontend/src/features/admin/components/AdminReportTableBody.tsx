@@ -1,5 +1,5 @@
 import { Button } from '@/shared/components';
-import { IFormatSuspendedUsers } from '../model/admin.model';
+import { IFormatSuspendedUsers } from '../models/admin.model';
 import { formatDate } from '@/shared/utils';
 import styled from 'styled-components';
 import { calcIndex } from '../utils/calcTableIndex';

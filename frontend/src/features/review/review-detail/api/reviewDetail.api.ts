@@ -1,5 +1,5 @@
 import { httpClient } from '@/shared/utils/http';
-import { IReviewDetail } from '../../model/review.model';
+import { IReviewDetail } from '../../models/review.model';
 
 export interface IFetchReviewsParams {
   categoryId?: number;

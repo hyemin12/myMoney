@@ -7,7 +7,7 @@ import {
   getReviewById,
   updateReview,
 } from '../api/reviewEditing.api';
-import { IReview } from '../../model/review.model';
+import { IReview } from '../../models/review.model';
 import useModalStore from '@/store/modal.store';
 
 export const useReviewEditing = (id?: string) => {

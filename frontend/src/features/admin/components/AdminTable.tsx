@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { IAdminTableHead } from '../model/admin.model';
+import { IAdminTableHead } from '../models/admin.model';
 
 interface AdminTableProps {
   tableHead: IAdminTableHead[];

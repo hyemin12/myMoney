@@ -55,7 +55,12 @@ const Modal = () => {
       );
       break;
     default:
-      content = <LoginModal closeModal={closeModal} />;
+      content = (
+        <LoginModal
+          shouldNavigateBack={contentProps.shouldNavigateBack}
+          closeModal={closeModal}
+        />
+      );
   }
 
   return (

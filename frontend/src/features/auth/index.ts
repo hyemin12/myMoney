@@ -11,4 +11,4 @@ export * from './components/LoginForm.style';
 
 export * from './hooks/useAuth';
 
-export * from './model/auth.model';
+export * from './models/auth.model';
