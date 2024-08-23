@@ -37,7 +37,7 @@ function Category() {
   const categoryId = searchParams.get('categoryId');
   if (isLoading) {
     return (
-      <LoadingContainer>
+      <LoadingContainer data-testid="loading-container">
         <Loading />
       </LoadingContainer>
     );
