@@ -13,12 +13,14 @@ function AdminUserManagementTableBody({ allUsers, currentPage }: Props) {
       {allUsers.map((user, idx) => (
         <tr key={user.id}>
           <td>{calcIndex(currentPage, idx)}</td>
-          <td>{user.email}</td>
-          <td>{user.nickname}</td>
-          <td>{user.id}</td>
-          <td>{user.status}</td>
-          <td>{user.suspensionCount}</td>
-          <td>{user.banEndDate ? formatDate(user.banEndDate) : '-'}</td>
+          <td data-testid="user-email">{user.email}</td>
+          <td data-testid="user-nickname">{user.nickname}</td>
+          <td data-testid="user-id">{user.id}</td>
+          <td data-testid="user-status">{user.status}</td>
+          <td data-testid="user-suspensionCount">{user.suspensionCount}</td>
+          <td data-testid="user-banEndDate">
+            {user.banEndDate ? formatDate(user.banEndDate) : '-'}
+          </td>
         </tr>
       ))}
     </>

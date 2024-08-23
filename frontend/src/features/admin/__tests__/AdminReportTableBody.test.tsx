@@ -1,8 +1,9 @@
-import { screen, render, fireEvent } from '@testing-library/react';
+import { screen, render, fireEvent, within } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
 import AdminReportTableBody from '../components/AdminReportTableBody';
 import { IFormatSuspendedUsers } from '../models/admin.model';
 import { theme } from '@/styles/theme';
+import { formatDate } from '@/shared/utils';
 
 const mockData: IFormatSuspendedUsers[] = [
   {
@@ -67,36 +68,40 @@ describe('AdminReportTableBody 컴포넌트 테스트', () => {
   test('올바르게 렌더링 되는지 확인', () => {
     setup();
 
-    expect(screen.getByText('reporter1@example.com')).toBeInTheDocument();
-    expect(screen.getByText('같은 내용 반복 작성(도배)')).toBeInTheDocument();
-    expect(screen.getByText('reported1@example.com')).toBeInTheDocument();
-    expect(screen.getByText('2024.08.15')).toBeInTheDocument();
+    mockData.forEach((report) => {
+      const row = screen.getByText(report.reporterUserEmail).closest('tr');
+      expect(row).toBeInTheDocument();
 
-    expect(screen.getByText('reporter2@example.com')).toBeInTheDocument();
-    expect(screen.getByText('욕설/인신공격')).toBeInTheDocument();
-    expect(screen.getByText('reported2@example.com')).toBeInTheDocument();
-    expect(screen.getByText('2024.08.17')).toBeInTheDocument();
+      const utils = within(row!);
+      expect(utils.getByTestId('report-reporterEmail')).toHaveTextContent(
+        report.reporterUserEmail,
+      );
+      expect(utils.getByTestId('report-reportedEmail')).toHaveTextContent(
+        report.reportedUserEmail,
+      );
+      expect(utils.getByTestId('report-reportReason')).toHaveTextContent(
+        report.reportReason,
+      );
+      expect(utils.getByTestId('report-reportedAt')).toHaveTextContent(
+        formatDate(report.reportedAt),
+      );
+      expect(utils.getByTestId('report-handledAt')).toHaveTextContent(
+        report.handledAt ? formatDate(report.handledAt) : '',
+      );
+      expect(utils.getByTestId('report-status')).toHaveTextContent(
+        report.status,
+      );
 
-    expect(screen.getByText('reporter3@example.com')).toBeInTheDocument();
-    expect(screen.getByText('영리목적/홍보성')).toBeInTheDocument();
-    expect(screen.getByText('reported3@example.com')).toBeInTheDocument();
-    expect(screen.getByText('2024.08.18')).toBeInTheDocument();
-  });
-
-  test('결과(null)에 따라 적절한 버튼이 표시되는지 확인', () => {
-    setup([mockData[2]]);
-
-    const buttonElements = screen.getAllByRole('button');
-    expect(buttonElements[0]).toHaveTextContent('취소');
-    expect(buttonElements[1]).toHaveTextContent('승인');
-  });
-
-  test('결과(처리 완료)에 따라 적절한 버튼이 표시되는지 확인', () => {
-    setup([mockData[1]]);
-
-    const buttonElement = screen.getByRole('button');
-    expect(buttonElement).toHaveTextContent('완료');
-    expect(buttonElement).toBeDisabled();
+      if (report.result === '처리 완료') {
+        const buttonElement = utils.getByRole('button', { name: '완료' });
+        expect(buttonElement).toBeInTheDocument();
+        expect(buttonElement).toBeDisabled();
+      } else {
+        const buttonElements = utils.getAllByRole('button');
+        expect(buttonElements[0]).toHaveTextContent('취소');
+        expect(buttonElements[1]).toHaveTextContent('승인');
+      }
+    });
   });
 
   test('신고처리 기능과 허위신고(신고내역 삭제) 기능이 올바르게 작동하는지 확인', () => {

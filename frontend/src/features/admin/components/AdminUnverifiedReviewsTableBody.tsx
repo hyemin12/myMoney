@@ -1,11 +1,11 @@
 import React from 'react';
-import dayjs from 'dayjs';
 import styled from 'styled-components';
 
 import { ImageIcon } from '@/assets/icons';
 import { Icon } from '@/shared/components';
 import { IUnverifiedReviewItem } from '@/features/review';
 import { calcIndex } from '../utils/calcTableIndex';
+import { formatDate } from '@/shared/utils';
 
 interface Props {
   unverifiedReviews: IUnverifiedReviewItem[];
@@ -24,9 +24,11 @@ function AdminUnverifiedReviewsTableBody({
         <React.Fragment key={report.id}>
           <tr>
             <td>{calcIndex(currentPage, idx)}</td>
-            <td>{report.title}</td>
-            <td>{report.userName}</td>
-            <td>{dayjs(report.createdAt).format('YYYY-MM-DD')}</td>
+            <td data-testid="review-title">{report.title}</td>
+            <td data-testid="review-author">{report.userName}</td>
+            <td data-testid="review-createdAt">
+              {formatDate(report.createdAt)}
+            </td>
             <td>
               <IconButton
                 role="button"

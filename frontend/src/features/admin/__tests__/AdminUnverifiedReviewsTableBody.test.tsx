@@ -1,7 +1,8 @@
-import { screen, render, fireEvent } from '@testing-library/react';
+import { screen, render, fireEvent, within } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
 import AdminUnverifiedReviewsTableBody from '../components/AdminUnverifiedReviewsTableBody';
 import { theme } from '@/styles/theme';
+import { formatDate } from '@/shared/utils';
 
 const mockUnverifiedReviews = [
   {
@@ -22,7 +23,6 @@ const mockUnverifiedReviews = [
   },
 ];
 
-// 아이콘 클릭 시 함수 호출
 describe('AdminUnverifiedReviewsTableBody 컴포넌트 테스트', () => {
   const mockOnApproveReview = jest.fn();
   const setup = () => {
@@ -44,16 +44,20 @@ describe('AdminUnverifiedReviewsTableBody 컴포넌트 테스트', () => {
   test('올바르게 렌더링 되는지 확인', () => {
     setup();
 
-    expect(screen.getByText('Test Review 1')).toBeInTheDocument();
-    expect(screen.getByText('User1')).toBeInTheDocument();
-    expect(screen.getByText('2023-08-21')).toBeInTheDocument();
+    mockUnverifiedReviews.forEach((review) => {
+      const row = screen.getByText(review.title).closest('tr');
+      expect(row).toBeInTheDocument();
 
-    expect(screen.getByText('Test Review 2')).toBeInTheDocument();
-    expect(screen.getByText('User2')).toBeInTheDocument();
-    expect(screen.getByText('2023-08-20')).toBeInTheDocument();
-
-    const buttons = screen.getAllByRole('button');
-    expect(buttons.length).toBe(mockUnverifiedReviews.length);
+      const utils = within(row!);
+      expect(utils.getByTestId('review-title')).toHaveTextContent(review.title);
+      expect(utils.getByTestId('review-author')).toHaveTextContent(
+        review.userName,
+      );
+      expect(utils.getByTestId('review-createdAt')).toHaveTextContent(
+        formatDate(review.createdAt),
+      );
+      expect(utils.getByRole('button')).toBeInTheDocument();
+    });
   });
 
   test('영수증 인증처리 버튼이 올바르게 작동하는지 확인', () => {
