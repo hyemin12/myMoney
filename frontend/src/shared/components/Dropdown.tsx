@@ -49,7 +49,11 @@ function Dropdown({
       $positionTopValue={$positionTopValue}
       $width={$width}
     >
-      <button className="toggle" onClick={() => setOpen(!open)}>
+      <button
+        aria-label="dropdown-toggle"
+        className="toggle"
+        onClick={() => setOpen(!open)}
+      >
         {toggleButton}
       </button>
       {open && <div className="panel">{children}</div>}

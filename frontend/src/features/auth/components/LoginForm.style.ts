@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
-export const InputGroup = styled.div<{ $isUserLoginPage: boolean }>`
+export const InputGroup = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
-  margin-bottom: ${({ $isUserLoginPage }) =>
-    !$isUserLoginPage ? '26px' : '6px'};
+  margin-bottom: '26px';
 `;
 
 export const FormStyle = styled.form`

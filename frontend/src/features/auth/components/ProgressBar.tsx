@@ -7,7 +7,7 @@ interface Props {
 
 function ProgressBar({ total, current }: Props) {
   return (
-    <Background>
+    <Background role="progressbar">
       <CurrentBar total={total} current={current} />
     </Background>
   );

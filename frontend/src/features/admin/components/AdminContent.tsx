@@ -16,7 +16,7 @@ function AdminContent({ title, children, isLoading, totalPage }: Props) {
     <Container>
       <Title>{title}</Title>
       {isLoading ? (
-        <LoadingContainer>
+        <LoadingContainer data-testid="loading-container">
           <Loading />
         </LoadingContainer>
       ) : (

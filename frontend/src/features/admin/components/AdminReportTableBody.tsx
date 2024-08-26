@@ -22,12 +22,14 @@ function AdminReportTableBody({
       {suspendedUsers.map((report, idx) => (
         <tr key={report.reportId}>
           <td>{calcIndex(currentPage, idx)}</td>
-          <td>{report.reporterUserEmail}</td>
-          <td>{report.reportReason}</td>
-          <td>{report.reportedUserEmail}</td>
-          <td>{formatDate(report.reportedAt)}</td>
-          <td>{report.status}</td>
-          <td>
+          <td data-testid="report-reporterEmail">{report.reporterUserEmail}</td>
+          <td data-testid="report-reportReason">{report.reportReason}</td>
+          <td data-testid="report-reportedEmail">{report.reportedUserEmail}</td>
+          <td data-testid="report-reportedAt">
+            {formatDate(report.reportedAt)}
+          </td>
+          <td data-testid="report-status">{report.status}</td>
+          <td data-testid="report-handledAt">
             {report.result === '처리 완료' ? formatDate(report.handledAt) : ''}
           </td>
           <TdButtonGroup className="td-button-group">
