@@ -38,5 +38,6 @@ describe('AdminContent 컴포넌트 테스트', () => {
     setup(true);
 
     expect(screen.getByTestId('loading-container')).toBeInTheDocument();
+    expect(screen.queryByText('콘텐츠')).not.toBeInTheDocument();
   });
 });

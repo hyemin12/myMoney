@@ -41,12 +41,18 @@ function ReviewList({
       ))}
 
       {isLoading && (
-        <LoadingContainer>
+        <LoadingContainer data-testid="loading-container">
           <Loading />
         </LoadingContainer>
       )}
 
-      {hasNextPage && <ObserverDiv id="more" ref={observerRef}></ObserverDiv>}
+      {hasNextPage && (
+        <ObserverDiv
+          data-testid="observer-ref"
+          id="more"
+          ref={observerRef}
+        ></ObserverDiv>
+      )}
     </>
   );
 }
