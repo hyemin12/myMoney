@@ -11,7 +11,12 @@ interface Props {
   totalPage?: number;
 }
 
-function AdminContent({ title, children, isLoading, totalPage }: Props) {
+function AdminContent({
+  title,
+  children,
+  isLoading = false,
+  totalPage = undefined,
+}: Props) {
   return (
     <Container>
       <Title>{title}</Title>
