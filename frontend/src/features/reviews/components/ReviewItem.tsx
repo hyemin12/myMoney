@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import { DotsThreeIcon } from '@/assets/icons';
-import { Dropdown, Badge, ReviewActions } from '@/shared/components';
+import { Dropdown, Badge } from '@/shared/components';
 import { useLike, Like } from '@/features/like';
 import {
   Container,
@@ -10,6 +10,7 @@ import {
   LikesContainer,
   TitleContainer,
   InfoContainer,
+  ReviewActions,
 } from '@/features/reviews';
 import { IReviewItem } from '@/features/review';
 import { formatDate } from '@/shared/utils';

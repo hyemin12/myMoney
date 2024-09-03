@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { EditIcon, TrashIcon, ReportIcon } from '@/assets/icons';
 import useAuthStore from '@/store/auth.store';
 import { useInfiniteReviewListWithParams } from '@/features/reviews';
-import Icon from './Icon';
+import Icon from '@/shared/components/Icon';
 import styled from 'styled-components';
 import useModalStore from '@/store/modal.store';
 

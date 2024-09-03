@@ -11,7 +11,7 @@ import {
   AuthorContainer,
 } from './ReviewContent.style';
 import StatRating from '../../components/StarRating';
-import ReviewActions from '@/shared/components/ReviewActions';
+import { ReviewActions } from '@/features/reviews';
 
 function ReviewContent() {
   const { id } = useParams();

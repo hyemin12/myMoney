@@ -1,5 +1,6 @@
 export { default as ReviewItem } from './components/ReviewItem';
 export { default as ReviewList } from './components/ReviewList';
+export { default as ReviewActions } from './components/ReviewActions';
 
 export * from './api/reviews.api';
 

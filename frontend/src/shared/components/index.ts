@@ -7,4 +7,3 @@ export { default as Input } from './Input';
 export { default as Loading } from './Loading';
 export { default as Modal } from './Modal/Modal';
 export { default as Badge } from './Badge';
-export { default as ReviewActions } from './ReviewActions';
