@@ -8,7 +8,12 @@ function AdminHeader() {
   return (
     <Header>
       <h4>관리자 페이지</h4>
-      <Button scheme="primary" size="small" onClick={userLogout}>
+      <Button
+        aria-label="로그아웃 버튼"
+        scheme="primary"
+        size="small"
+        onClick={userLogout}
+      >
         로그아웃
       </Button>
     </Header>
