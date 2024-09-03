@@ -1,8 +1,9 @@
-import { Button } from '@/shared/components';
+import styled from 'styled-components';
+
 import { IFormatSuspendedUsers } from '../models/admin.model';
 import { formatDate } from '@/shared/utils';
-import styled from 'styled-components';
 import { calcIndex } from '../utils/calcTableIndex';
+import getReportActionButtons from '../utils/getReportActionButtons';
 
 interface Props {
   approveReport: (reviewId: number) => void;
@@ -32,29 +33,14 @@ function AdminReportTableBody({
           <td data-testid="report-handledAt">
             {report.result === '처리 완료' ? formatDate(report.handledAt) : ''}
           </td>
+
           <TdButtonGroup className="td-button-group">
-            {report.result === '처리 완료' ? (
-              <Button disabled size="small" scheme="disabled">
-                완료
-              </Button>
-            ) : (
-              <>
-                <Button
-                  scheme="border"
-                  size="small"
-                  onClick={() => cancelReport(report.reportId)}
-                >
-                  취소
-                </Button>
-                <Button
-                  scheme="primary"
-                  size="small"
-                  onClick={() => approveReport(report.reportId)}
-                >
-                  승인
-                </Button>
-              </>
-            )}
+            {getReportActionButtons({
+              result: report.result,
+              reportId: report.reportId,
+              cancelReport,
+              approveReport,
+            })}
           </TdButtonGroup>
         </tr>
       ))}
