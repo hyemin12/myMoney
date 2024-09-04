@@ -1,6 +1,6 @@
 import { UseFormRegister } from 'react-hook-form';
 
-import Checkbox from './Checkbox';
+import RememberEmailCheckbox from './RememberEmailCheckbox';
 import { AlertText, Button, Input } from '@/shared/components';
 import {
   FindPassword,
@@ -49,7 +49,7 @@ function LoginForm({
       {toggleCheckedRememberEmail && (
         <OptionStyle>
           <IDCheckbox>
-            <Checkbox
+            <RememberEmailCheckbox
               checkedRememberEmail={checkedRememberEmail}
               toggleCheckedRememberEmail={toggleCheckedRememberEmail}
             />
