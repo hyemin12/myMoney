@@ -1,7 +1,12 @@
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
-import { useAuth, IUserLogin, LoginForm, AuthOptions } from '@/features/auth';
+import {
+  useAuth,
+  IUserLogin,
+  LoginForm,
+  AuthOptionLink,
+} from '@/features/auth';
 import useModalStore from '@/store/modal.store';
 
 function AdminLogin() {
@@ -30,7 +35,7 @@ function AdminLogin() {
             })
           }
         >
-          <AuthOptions
+          <AuthOptionLink
             description="계정을 잊으셨나요?"
             linkPath=""
             linkText="계정찾기"
