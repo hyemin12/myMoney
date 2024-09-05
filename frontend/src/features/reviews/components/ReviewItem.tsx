@@ -14,6 +14,7 @@ import {
 } from '@/features/reviews';
 import { IReviewItem } from '@/features/review';
 import { formatDate } from '@/shared/utils';
+import LazyImage from '@/shared/components/LazyImage';
 
 function ReviewItem({
   title,
@@ -64,11 +65,7 @@ function ReviewItem({
 
       <ImgContainer>
         <Link to={`/list/${id}`}>
-          {reviewImg ? (
-            <>
-              <img src={reviewImg} alt={title} />
-            </>
-          ) : null}
+          {reviewImg ? <LazyImage src={reviewImg} alt={title} /> : null}
         </Link>
         {Boolean(verified) && (
           <Badge
