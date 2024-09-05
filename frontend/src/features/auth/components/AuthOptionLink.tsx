@@ -7,16 +7,16 @@ interface Props {
   linkPath: string;
 }
 
-function AuthOptions({ description, linkText, linkPath }: Props) {
+function AuthOptionLink({ description, linkText, linkPath }: Props) {
   return (
-    <AuthOptionsStyle>
+    <AuthOptionLinkContainer>
       <p>{description}</p>
       <Link to={linkPath}>{linkText}</Link>
-    </AuthOptionsStyle>
+    </AuthOptionLinkContainer>
   );
 }
 
-const AuthOptionsStyle = styled.div`
+const AuthOptionLinkContainer = styled.div`
   display: flex;
   gap: 4px;
   color: ${({ theme }) => theme.color.darkGray};
@@ -29,4 +29,4 @@ const AuthOptionsStyle = styled.div`
   }
 `;
 
-export default AuthOptions;
+export default AuthOptionLink;

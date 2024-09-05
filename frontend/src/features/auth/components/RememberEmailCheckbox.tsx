@@ -8,20 +8,21 @@ interface Props {
   toggleCheckedRememberEmail: () => void;
 }
 
-function Checkbox({ checkedRememberEmail, toggleCheckedRememberEmail }: Props) {
+function RememberEmailCheckbox({
+  checkedRememberEmail,
+  toggleCheckedRememberEmail,
+}: Props) {
   return (
-    <>
-      <CheckboxLabel htmlFor="loginCheckbox">
-        {checkedRememberEmail && (
-          <Icon fill="#59b05f" width={12} icon={<CheckedIcon />} />
-        )}
-        <CheckboxInput
-          onChange={toggleCheckedRememberEmail}
-          type="checkbox"
-          id="loginCheckbox"
-        />
-      </CheckboxLabel>
-    </>
+    <CheckboxLabel htmlFor="loginCheckbox">
+      {checkedRememberEmail && (
+        <Icon fill="#59b05f" width={12} icon={<CheckedIcon />} />
+      )}
+      <CheckboxInput
+        onChange={toggleCheckedRememberEmail}
+        type="checkbox"
+        id="loginCheckbox"
+      />
+    </CheckboxLabel>
   );
 }
 const CheckboxInput = styled.input.attrs({ type: 'checkbox' })`
@@ -43,4 +44,4 @@ const CheckboxLabel = styled.label`
   }
 `;
 
-export default Checkbox;
+export default RememberEmailCheckbox;

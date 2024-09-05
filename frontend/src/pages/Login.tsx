@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import { NaedonnaesanTextLogo } from '@/assets/icons';
 import { withUnauthenticatedUser } from '@/shared/hocs';
 import { useAuth } from '@/features/auth/hooks/useAuth';
-import { IUserLogin, LoginForm, AuthOptions } from '@/features/auth';
+import { IUserLogin, LoginForm, AuthOptionLink } from '@/features/auth';
 import { Icon } from '@/shared/components';
 
 function Login() {
@@ -28,6 +28,9 @@ function Login() {
     if (cookies.email) {
       setValue('email', cookies.email);
       setCheckedRememberEmail(true);
+    } else {
+      setValue('email', '');
+      setCheckedRememberEmail(false);
     }
   }, []);
 
@@ -48,7 +51,7 @@ function Login() {
         onSubmit={onSubmit}
         errorMessage={errorMessage}
       />
-      <AuthOptions
+      <AuthOptionLink
         description="아직 계정이 없으신가요?"
         linkPath="/join/step1"
         linkText="회원가입"

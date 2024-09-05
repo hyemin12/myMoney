@@ -27,7 +27,6 @@ function JoinForm({
         scheme="primary"
         size="large"
         $fullWidth
-        onSubmit={onSubmit}
         disabled={!isValid}
       >
         {isLastStep ? '회원가입' : '계속하기'}

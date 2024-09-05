@@ -1,17 +1,17 @@
 import { screen, render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import AuthOptions from '../components/AuthOptions';
+import AuthOptionLink from '../components/AuthOptionLink';
 import { theme } from '@/styles/theme';
 
 const LINK_PATH = '/join/step1';
 
-describe('AuthOptions 컴포넌트 테스트', () => {
+describe('AuthOptionLink 컴포넌트 테스트', () => {
   const setup = () => {
     render(
       <MemoryRouter>
         <ThemeProvider theme={theme}>
-          <AuthOptions
+          <AuthOptionLink
             description="아직 계정이 없으신가요?"
             linkPath={LINK_PATH}
             linkText="회원가입"

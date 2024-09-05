@@ -6,7 +6,7 @@ import {
   IUserRegistration,
   JoinTemplate,
   useAuth,
-  AuthOptions,
+  AuthOptionLink,
 } from '@/features/auth';
 import { AlertText, Input } from '@/shared/components';
 import { withUnauthenticatedUser } from '@/shared/hocs';
@@ -59,7 +59,7 @@ function JoinStep1Email() {
       </JoinTemplate>
 
       <Inner>
-        <AuthOptions
+        <AuthOptionLink
           description="이미 계정을 가지고 계신가요?"
           linkText="로그인"
           linkPath="/login"

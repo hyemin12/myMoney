@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { debounce } from 'lodash';
 import styled from 'styled-components';
 
 import { AttentionIcon } from '@/assets/icons';
@@ -16,13 +17,18 @@ function AdminLayout({ children }: Props) {
   const [isTabletSize, setIsTabletSize] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
-    const handleResize = () => {
+    const handleResize = debounce(() => {
       setIsTabletSize(window.innerWidth <= 768);
-    };
+    }, 500);
 
     window.addEventListener('resize', handleResize);
+
     handleResize();
-    return () => window.removeEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      handleResize.cancel();
+    };
   }, []);
 
   if (isTabletSize)
