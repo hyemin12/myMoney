@@ -3,13 +3,15 @@ import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
 import Layout from '@/layout/user/Layout';
-import { JoinTemplate, IUserRegistration, useAuth } from '@/features/auth';
+import { JoinTemplate, IUserRegistration } from '@/features/join';
+
 import { AlertText, Input } from '@/shared/components';
 import { withUnauthenticatedUser } from '@/shared/hocs';
-import { VALIDATE } from '@/shared/constants/validate';
+import { useJoin } from '@/features/join/hooks/useJoin';
+import { VALIDATION } from '@/shared/constants/validation';
 
-const JoinStep3Password = () => {
-  const { errorMessage, userJoin } = useAuth();
+function JoinStep3Password() {
+  const { errorMessage, joinUser } = useJoin();
   const {
     register,
     handleSubmit,
@@ -36,23 +38,6 @@ const JoinStep3Password = () => {
     }
   }, [password, passwordChecked]);
 
-  const passwordValidation = {
-    required: '비밀번호는 필수 입력입니다',
-    minLength: {
-      value: 6,
-      message: '최소 6글자 이상 입력해주세요',
-    },
-    maxLength: {
-      value: 12,
-      message: '최대 12글자까지만 사용가능합니다.',
-    },
-    pattern: {
-      value: VALIDATE.PASSWORD_REGEX,
-      message:
-        '비밀번호 형식이 올바르지 않거나 동일한 문자/숫자를 연속으로 3개 이상 사용할 수 없습니다.',
-    },
-  };
-
   const passwordCheckedValidation = {
     required: '비밀번호를 다시 입력해주세요',
     validate: {
@@ -64,7 +49,7 @@ const JoinStep3Password = () => {
   };
 
   const onSubmit = handleSubmit((data) => {
-    userJoin(data.password.trim());
+    joinUser(data.password.trim());
   });
 
   return (
@@ -79,7 +64,7 @@ const JoinStep3Password = () => {
         <fieldset>
           <Input
             $inputType="password"
-            {...register('password', passwordValidation)}
+            {...register('password', VALIDATION.PASSWORD_VALIDATION)}
             placeholder="비밀번호를 입력해주세요"
           />
           {errors.password && (
@@ -105,7 +90,7 @@ const JoinStep3Password = () => {
       </JoinTemplate>
     </Layout>
   );
-};
+}
 
 const PasswordDescription = styled.p`
   color: ${({ theme }) => theme.color.border};

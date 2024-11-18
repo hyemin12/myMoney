@@ -4,7 +4,7 @@ import { useAuth } from '@/features/auth';
 import { Button } from '@/shared/components';
 
 function AdminHeader() {
-  const { userLogout } = useAuth();
+  const { logoutUser } = useAuth();
   return (
     <Header>
       <h4>관리자 페이지</h4>
@@ -12,7 +12,7 @@ function AdminHeader() {
         aria-label="로그아웃 버튼"
         scheme="primary"
         size="small"
-        onClick={userLogout}
+        onClick={logoutUser}
       >
         로그아웃
       </Button>

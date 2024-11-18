@@ -2,20 +2,17 @@ import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
 import Layout from '@/layout/user/Layout';
-import {
-  IUserRegistration,
-  JoinTemplate,
-  useAuth,
-  AuthOptionLink,
-} from '@/features/auth';
-import { AlertText, Input } from '@/shared/components';
+import { IUserRegistration, JoinTemplate } from '@/features/join';
+import { AlertText, AuthOptionLink, Input } from '@/shared/components';
 import { withUnauthenticatedUser } from '@/shared/hocs';
-import { VALIDATE } from '@/shared/constants/validate';
 import useUserRegistrationStore from '@/store/user.registration.store';
+import { useJoin } from '@/features/join/hooks/useJoin';
+import { VALIDATION } from '@/shared/constants/validation';
 
 function JoinStep1Email() {
-  const { errorMessage, userCheckedEmail } = useAuth();
+  const { errorMessage, checkedEmail } = useJoin();
   const { storeEmail } = useUserRegistrationStore();
+
   const {
     register,
     handleSubmit,
@@ -25,16 +22,8 @@ function JoinStep1Email() {
     defaultValues: { email: storeEmail ?? '' },
   });
 
-  const emailValidation = {
-    required: '이메일을 입력해주세요',
-    pattern: {
-      value: VALIDATE.EMAIL_REGEX,
-      message: '올바른 이메일 형식이 아닙니다.',
-    },
-  };
-
   const onSubmit = handleSubmit((data) => {
-    userCheckedEmail(data.email.trim());
+    checkedEmail({ email: data.email.trim() });
   });
 
   return (
@@ -49,7 +38,7 @@ function JoinStep1Email() {
         <fieldset>
           <Input
             $inputType="text"
-            {...register('email', emailValidation)}
+            {...register('email', VALIDATION.EMAIL)}
             placeholder="이메일을 입력해주세요"
           />
           {errors.email && (

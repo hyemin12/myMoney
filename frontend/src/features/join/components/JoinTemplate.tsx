@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import JoinForm from './JoinForm';
 import ProgressBar from './ProgressBar';
+import JoinForm from './JoinForm';
 
 const TOTAL_STEP = 3;
 

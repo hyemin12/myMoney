@@ -1,10 +1,9 @@
 import { screen, render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import AuthOptionLink from '../components/AuthOptionLink';
+import AuthOptionLink from '../../../shared/components/AuthOptionLink';
 import { theme } from '@/styles/theme';
-
-const LINK_PATH = '/join/step1';
+import { PATH } from '@/shared/constants/paths';
 
 describe('AuthOptionLink 컴포넌트 테스트', () => {
   const setup = () => {
@@ -13,7 +12,7 @@ describe('AuthOptionLink 컴포넌트 테스트', () => {
         <ThemeProvider theme={theme}>
           <AuthOptionLink
             description="아직 계정이 없으신가요?"
-            linkPath={LINK_PATH}
+            linkPath={PATH.JOIN_STEP1}
             linkText="회원가입"
           />
         </ThemeProvider>
@@ -36,6 +35,6 @@ describe('AuthOptionLink 컴포넌트 테스트', () => {
   test('linkPath 확인', () => {
     const { linkTextElement } = setup();
 
-    expect(linkTextElement).toHaveAttribute('href', LINK_PATH);
+    expect(linkTextElement).toHaveAttribute('href', PATH.JOIN_STEP1);
   });
 });
