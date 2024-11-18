@@ -15,34 +15,33 @@ interface NavItem {
   icon: React.ReactNode;
 }
 
+const NAV_ITEMS: NavItem[] = [
+  {
+    text: '홈',
+    path: '/',
+    icon: <NavigationHomeIcon />,
+  },
+  {
+    text: '목록',
+    path: '/list',
+    icon: <ArchiveIcon />,
+  },
+  {
+    path: '/review',
+    icon: <PlusIcon />,
+  },
+  {
+    text: '검색',
+    path: '/search',
+    icon: <MagnifyingGlassIcon />,
+  },
+  {
+    text: '마이',
+    path: '/mypage',
+    icon: <UserIcon />,
+  },
+];
 export default function Navigation() {
-  const NAV_ITEMS: NavItem[] = [
-    {
-      text: '홈',
-      path: '/',
-      icon: <NavigationHomeIcon />,
-    },
-    {
-      text: '목록',
-      path: '/list',
-      icon: <ArchiveIcon />,
-    },
-    {
-      path: '/review',
-      icon: <PlusIcon />,
-    },
-    {
-      text: '검색',
-      path: '/search',
-      icon: <MagnifyingGlassIcon />,
-    },
-    {
-      text: '마이',
-      path: '/mypage',
-      icon: <UserIcon />,
-    },
-  ];
-
   return (
     <NavStyle>
       {NAV_ITEMS.map((item, index) => (

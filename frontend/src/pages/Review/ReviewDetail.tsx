@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-import Layout from '@/layout/Layout';
+import Layout from '@/layout/user/Layout';
 import { CommentList } from '@/features/comment';
 import {
   ReviewContent,

@@ -1,6 +1,5 @@
 import {
   AdminContent,
-  AdminLayout,
   AdminTable,
   AdminUnverifiedReviewsTableBody,
 } from '@/features/admin';
@@ -10,6 +9,7 @@ import { useCurrentPage } from '@/shared/hooks/useCurrentPage';
 import { useGetUnverifiedReviews } from '@/features/admin/hooks/useGetUnverifiedReviews';
 import { ADMIN_UNVERIFIED_REVIEWS_TABLE_HEAD } from '@/shared/constants/adminTableHead';
 import { usePatchApproveReview } from '@/features/admin/hooks/usePatchApproveReview';
+import AdminLayout from '@/layout/admin/AdminLayout';
 
 function UnverifiedReviewsDashboard() {
   const { openModal } = useModalStore();

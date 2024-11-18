@@ -8,7 +8,7 @@ import {
   HelpIcon,
   ReportIcon,
 } from '@/assets/icons';
-import Layout from '@/layout/Layout';
+import Layout from '@/layout/user/Layout';
 import { withAuthenticatedUser } from '@/shared/hocs';
 import { Icon, Loading } from '@/shared/components';
 import { LoadingContainer } from '@/features/admin/components/AdminContent';

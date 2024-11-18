@@ -1,7 +1,8 @@
-import { AdminContent, AdminLayout, AdminTable } from '@/features/admin';
+import { AdminContent, AdminTable } from '@/features/admin';
 import AdminUserManagementTableBody from '@/features/admin/components/AdminUserManagementTableBody';
 import { useGetAllUsers } from '@/features/admin/hooks/useGetAllUsers';
 import { IFullUser } from '@/features/auth';
+import AdminLayout from '@/layout/admin/AdminLayout';
 import { ADMIN_USERS_TABLE_HEAD } from '@/shared/constants/adminTableHead';
 import { useCurrentPage } from '@/shared/hooks/useCurrentPage';
 

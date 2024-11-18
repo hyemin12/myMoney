@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import Layout from '@/layout/Layout';
+import Layout from '@/layout/user/Layout';
 import { ReviewList, fetchReviews, IResponseReviews } from '@/features/reviews';
 import { BestReviews } from '@/features/home';
 import { Category } from '@/features/category';

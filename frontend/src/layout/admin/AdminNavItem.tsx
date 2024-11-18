@@ -2,7 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Icon } from '@/shared/components';
-import { IAdminNavItem } from '../models/admin.model';
+import { IAdminNavItem } from '@/features/admin';
 
 function AdminNavItem({ icon, name, path, $iconSize }: IAdminNavItem) {
   const { pathname } = useLocation();

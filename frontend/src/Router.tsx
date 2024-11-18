@@ -9,8 +9,8 @@ const ReviewList = lazy(() => import('@/pages/Review/ReviewList'));
 const ReviewDetail = lazy(() => import('@/pages/Review/ReviewDetail'));
 const MyPage = lazy(() => import('@/pages/Mypage/MyPage'));
 const Login = lazy(() => import('@/pages/Login'));
-const ReportedUsersDashboard = lazy(
-  () => import('@/pages/Admin/ReportedUsersDashboard'),
+const SuspendedUsersDashboard = lazy(
+  () => import('@/pages/Admin/SuspendedUsersDashboard'),
 );
 const UserManagementDashboard = lazy(
   () => import('@/pages/Admin/UserManagementDashboard'),
@@ -40,7 +40,7 @@ export function Router() {
 
           {/* 관리자 페이지 */}
           <Route path="/admin">
-            <Route path="report-user" element={<ReportedUsersDashboard />} />
+            <Route path="report-user" element={<SuspendedUsersDashboard />} />
             <Route path="users" element={<UserManagementDashboard />} />
             <Route
               path="unverified-reviews"

@@ -1,10 +1,5 @@
 import { httpClient } from '@/shared/utils/http';
-
-interface IAuthProps {
-  email?: string;
-  nickname?: string;
-  password?: string;
-}
+import { IAuthProps } from '../models/auth.model';
 
 export const checkedEmail = async (email: IAuthProps) => {
   return await httpClient.post('/users/checkedEmail', email);

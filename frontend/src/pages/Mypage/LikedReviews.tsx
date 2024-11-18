@@ -1,4 +1,4 @@
-import Layout from '@/layout/Layout';
+import Layout from '@/layout/user/Layout';
 import { ReviewList, formatReviews, useLikedReviews } from '@/features/reviews';
 
 const LikedReviews = () => {

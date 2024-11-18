@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 
-import Layout from '@/layout/Layout';
+import Layout from '@/layout/user/Layout';
 import { JoinTemplate, IUserRegistration, useAuth } from '@/features/auth';
 import { AlertText, Input } from '@/shared/components';
 import { withUnauthenticatedUser } from '@/shared/hocs';

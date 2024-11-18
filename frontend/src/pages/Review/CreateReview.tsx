@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 
-import Header from '@/layout/Header';
+import Header from '@/layout/user/Header';
 import { IReview, ReviewForm, useReviewEditing } from '@/features/review';
 import { FormStyled } from './EditReview';
 import { withAuthenticatedUser } from '@/shared/hocs';

@@ -1,5 +1,4 @@
 import {
-  AdminLayout,
   AdminContent,
   AdminTable,
   AdminReportTableBody,
@@ -11,13 +10,13 @@ import { useGetSuspendedUsers } from '@/features/admin/hooks/useGetSuspendedUser
 import { ADMIN_SUSPENDED_USERS_TABLE_HEAD } from '@/shared/constants/adminTableHead';
 import { usePatchReview } from '@/features/admin/hooks/usePatchReport';
 import useModalStore from '@/store/modal.store';
+import AdminLayout from '@/layout/admin/AdminLayout';
 
 function SuspendedUsersDashboard() {
   const { openModal } = useModalStore();
 
   const currentPage = useCurrentPage();
   const { data, isLoading } = useGetSuspendedUsers(currentPage);
-  console.log(data);
 
   const suspendedUsers = data?.reports ?? [];
   const pagination = data?.pagination;

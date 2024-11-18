@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-import Header from '@/layout/Header';
+import Header from '@/layout/user/Header';
 import { IReview, ReviewForm, useReviewEditing } from '@/features/review';
 import { withAuthenticatedUser } from '@/shared/hocs';
 import { useForm } from 'react-hook-form';

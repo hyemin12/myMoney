@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import styled, { css } from 'styled-components';
 
-import Layout from '@/layout/Layout';
+import Layout from '@/layout/user/Layout';
 import {
   ReviewList,
   useInfiniteReviewListWithParams,
