@@ -1,10 +1,10 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { patchApproveReview } from '../api/admin.api';
 import useModalStore from '@/store/modal.store';
 import { QUERY_KEYS } from '@/shared/constants/querykeys';
+import { queryClient } from '@/shared/utils';
 
 export const usePatchApproveReview = () => {
-  const queryClient = useQueryClient();
   const { openModal } = useModalStore();
 
   return useMutation({

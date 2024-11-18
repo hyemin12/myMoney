@@ -9,7 +9,7 @@ import {
   IReview,
 } from '@/features/review';
 import { Input, Button } from '@/shared/components';
-import { TCategoryNames, useCategory } from '@/features/category';
+import { TCategoryNames, useGetCategory } from '@/features/category';
 import {
   FieldErrors,
   UseFormGetValues,
@@ -39,7 +39,7 @@ function ReviewForm({
   $mode,
   watch,
 }: Props) {
-  const { categoryList } = useCategory();
+  const { data: categoryList } = useGetCategory();
 
   return (
     <form onSubmit={handleSubmit}>
@@ -56,7 +56,7 @@ function ReviewForm({
       <StarRating
         $size={24}
         setValue={setValue}
-        ratingIndex={getValues!('stars' ?? 0)}
+        ratingIndex={getValues!('stars') ?? 0}
       />
       {categoryList && (
         <CategorySelector

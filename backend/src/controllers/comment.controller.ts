@@ -3,9 +3,26 @@ import { CustomRequest } from '../middleware/authentication';
 import {
   serviceCreateComment,
   serviceDeleteComment,
+  serviceGetComments,
   serviceUpdateComment,
 } from '../services/comment.service';
 import { ERROR_MESSAGE } from '../constance/errorMessage';
+
+export const getAllComments = async (req: CustomRequest, res: Response) => {
+  const { reviewId } = req.params;
+
+  if (!req.user) {
+    throw new Error(ERROR_MESSAGE.INVALID_USER);
+  }
+  const userId = req.user?.id;
+
+  const comments = await serviceGetComments(Number(reviewId), userId);
+  res.status(200).send({ status: 200, comments: comments });
+  try {
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
+};
 
 export const addComment = async (req: CustomRequest, res: Response) => {
   if (!req.user) {

@@ -4,4 +4,7 @@ export const QUERY_KEYS = {
   ADMIN_GET_UNVERIFIED_REVIEWS: 'unverifiedReviews',
 
   USER_INFO: 'userInfo',
+
+  COMMENTS: 'comments',
+  CATEGORY: 'category',
 };

@@ -1,5 +1,15 @@
 import { httpClient } from '@/shared/utils/http';
-import { TCommentItemWrite } from '../models/comment.model';
+import {
+  IGetCommentsResponse,
+  TCommentItemWrite,
+} from '../models/comment.model';
+
+export const getComments = async (reviewId: number) => {
+  const { data } = await httpClient.get<IGetCommentsResponse>(
+    `/comments/${reviewId}`,
+  );
+  return data;
+};
 
 export const addReviewComment = async (data: TCommentItemWrite) => {
   return await httpClient.post(`/comments`, data);

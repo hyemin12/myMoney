@@ -13,12 +13,12 @@ import {
   DotsThreeIcon,
 } from '@/assets/icons';
 import CategoryButton from './CategoryButton';
-import { useCategory } from '../hooks/useCategory';
+import { useGetCategory } from '../hooks/useGetCategory';
 import { LoadingContainer } from '@/features/admin/components/AdminContent';
 import { Loading } from '@/shared/components';
 import { ICategoryItem } from '../models/category.model';
 
-const assetMap = {
+const ASSET_MAP = {
   디지털: <CategoryDevicesIcon />,
   의류: <CategoryTShirtIcon />,
   '가구/인테리어': <CategoryArmchairIcon />,
@@ -32,9 +32,10 @@ const assetMap = {
 };
 
 function Category() {
-  const { categoryList, isLoading } = useCategory();
+  const { data, isLoading } = useGetCategory();
   const [searchParams] = useSearchParams();
   const categoryId = searchParams.get('categoryId');
+
   if (isLoading) {
     return (
       <LoadingContainer data-testid="loading-container">
@@ -43,11 +44,11 @@ function Category() {
     );
   }
 
-  const categories: ICategoryItem[] = categoryList.map(
+  const categories: ICategoryItem[] = data.map(
     (category: { id: number; name: string }) => ({
       categoryId: category.id,
       categoryName: category.name,
-      element: assetMap[category.name as keyof typeof assetMap],
+      element: ASSET_MAP[category.name as keyof typeof ASSET_MAP],
     }),
   );
 
@@ -58,7 +59,7 @@ function Category() {
           <CategoryButton
             key={category.categoryId}
             {...category}
-            isActive={parseInt(categoryId!) === category.categoryId}
+            $isActive={parseInt(categoryId!) === category.categoryId}
           />
         ))}
       </div>

@@ -4,22 +4,27 @@ import styled from 'styled-components';
 
 import { Button } from '@/shared/components';
 import { ICategoryItem } from '../models/category.model';
+import { PATH } from '@/shared/constants/paths';
 
 interface Props extends ICategoryItem {
-  isActive: boolean;
+  $isActive: boolean;
 }
 
 function CategoryButton({
   categoryId,
   element,
   categoryName,
-  isActive,
+  $isActive,
 }: Props) {
   return (
-    <CategoryButtonStyle className="item" key={categoryId} isActive={isActive}>
+    <CategoryButtonStyle
+      className="item"
+      key={categoryId}
+      $isActive={$isActive}
+    >
       <StyledLink
         to={{
-          pathname: '/list',
+          pathname: PATH.REVIEW_LIST,
           search:
             categoryId != 10 ? `?categoryId=${categoryId}` : `?isVerified=true`,
         }}
@@ -33,8 +38,8 @@ function CategoryButton({
               <img src={element as string} alt={categoryName} />
             )
           }
-          size={'small'}
-          scheme={'disabled'}
+          size="small"
+          scheme="disabled"
         />
         <p>{categoryName}</p>
       </StyledLink>
@@ -42,7 +47,7 @@ function CategoryButton({
   );
 }
 
-const CategoryButtonStyle = styled.div<{ isActive: boolean }>`
+const CategoryButtonStyle = styled.div<{ $isActive: boolean }>`
   grid-column: span 1;
   display: flex;
   justify-content: center;
@@ -67,8 +72,8 @@ const CategoryButtonStyle = styled.div<{ isActive: boolean }>`
   }
 
   // isActive가 true일 때만 적용할 스타일
-  ${({ isActive, theme }) =>
-    isActive &&
+  ${({ $isActive, theme }) =>
+    $isActive &&
     `
     button {
       background-color: ${theme.color.primary};
