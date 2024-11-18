@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-import { useAuth } from '@/features/auth';
 import { Button } from '@/shared/components';
+import { useLogout } from '@/features/auth/hooks/useLogout';
 
 function AdminHeader() {
-  const { logoutUser } = useAuth();
+  const { logoutUser } = useLogout();
   return (
     <Header>
       <h4>관리자 페이지</h4>

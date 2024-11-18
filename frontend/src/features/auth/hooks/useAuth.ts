@@ -5,9 +5,9 @@ import { useCookies } from 'react-cookie';
 import { ILoginSuccessResponse, IUserLogin } from '../models/auth.model';
 import useAuthStore from '@/store/auth.store';
 import { handleGoHome } from '@/shared/utils/routingUtils';
-import { useLoginUser } from './useLoginUser';
+import { useLoginUser } from './useLoginMutation';
 import { PATH } from '@/shared/constants/paths';
-import { useLogoutUser } from './useLogoutUser';
+import { useLogoutUser } from './useLogoutMutation';
 
 // 아이디 저장 만료일 (한달)
 const EXPIRATION_MAX_AGE = 30 * 24 * 60 * 60;

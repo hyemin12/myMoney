@@ -12,10 +12,10 @@ import Layout from '@/layout/user/Layout';
 import { withAuthenticatedUser } from '@/shared/hocs';
 import { Icon, Loading } from '@/shared/components';
 import { LoadingContainer } from '@/features/admin/components/AdminContent';
-import { useAuth } from '@/features/auth';
 import useModalStore from '@/store/modal.store';
 import { useUserInfo } from '@/features/auth/hooks/useGetUserInfo';
 import { PATH } from '@/shared/constants/paths';
+import { useLogout } from '@/features/auth/hooks/useLogout';
 
 const MY_PAGE_NAVS = [
   { icon: <BabyIcon />, title: '내 정보 관리', path: PATH.MY_INFO },
@@ -35,7 +35,7 @@ const MY_PAGE_NAVS = [
 function MyPage() {
   const navigate = useNavigate();
   const { data: userInfo, isLoading } = useUserInfo();
-  const { logoutUser } = useAuth();
+  const { logoutUser } = useLogout();
   const { openModal } = useModalStore();
 
   const handleNavigation = (path: string) => {

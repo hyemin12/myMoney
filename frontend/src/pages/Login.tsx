@@ -6,9 +6,9 @@ import styled from 'styled-components';
 
 import { NaedonnaesanTextLogo } from '@/assets/icons';
 import { withUnauthenticatedUser } from '@/shared/hocs';
-import { useAuth } from '@/features/auth/hooks/useAuth';
 import { IUserLogin, LoginForm } from '@/features/auth';
 import { AuthOptionLink, Icon } from '@/shared/components';
+import { useLogin } from '@/features/auth/hooks/useLogin';
 
 function Login() {
   const [cookies] = useCookies(['email']);
@@ -17,13 +17,8 @@ function Login() {
     loginUser,
     toggleCheckedRememberEmail,
     checkedRememberEmail,
-  } = useAuth();
-  // const [checkedRememberEmail, setCheckedRememberEmail] = useState(false);
+  } = useLogin();
   const { register, handleSubmit, setValue } = useForm<IUserLogin>();
-
-  // const toggleCheckedRememberEmail = () => {
-  //   setCheckedRememberEmail(!checkedRememberEmail);
-  // };
 
   const onSubmit = handleSubmit((data: IUserLogin) => {
     loginUser(data, checkedRememberEmail);
