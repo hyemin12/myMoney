@@ -1,28 +1,18 @@
-import {
-  AdminContent,
-  AdminLayout,
-  AdminTable,
-  IAdminTableHead,
-  useAdmin,
-} from '@/features/admin';
+import { AdminContent, AdminLayout, AdminTable } from '@/features/admin';
 import AdminUserManagementTableBody from '@/features/admin/components/AdminUserManagementTableBody';
+import { useGetAllUsers } from '@/features/admin/hooks/useGetAllUsers';
 import { IFullUser } from '@/features/auth';
-
-const tableHead: IAdminTableHead[] = [
-  { name: 'No', $widthRatio: 7 },
-  { name: '이메일', $widthRatio: 20 },
-  { name: '닉네임', $widthRatio: 20 },
-  { name: '고유 아이디', $widthRatio: 15 },
-  { name: '상태', $widthRatio: 10 },
-  { name: '신고횟수', $widthRatio: 10 },
-  { name: '정지 종료일', $widthRatio: 20 },
-];
+import { ADMIN_USERS_TABLE_HEAD } from '@/shared/constants/adminTableHead';
+import { useCurrentPage } from '@/shared/hooks/useCurrentPage';
 
 function UserManagementDashboard() {
-  const { allUsers, isLoadingAllUsers, allUsersPagination, currentPage } =
-    useAdmin();
+  const currentPage = useCurrentPage();
+  const { data, isLoading } = useGetAllUsers(currentPage);
 
-  const calcAllUsers = (users: IFullUser[]) => {
+  const users = data?.users ?? [];
+  const pagination = data?.pagination;
+
+  const mapUsersWithUpdatedStatus = (users: IFullUser[]) => {
     return users.map((user) => {
       const banEndDate = user.banEndDate ? new Date(user.banEndDate) : null;
       const status =
@@ -38,13 +28,13 @@ function UserManagementDashboard() {
     <AdminLayout>
       <AdminContent
         title="사용자 관리"
-        isLoading={isLoadingAllUsers}
-        totalPage={allUsersPagination?.totalCount || 1}
+        isLoading={isLoading}
+        totalPage={pagination?.totalCount || 1}
       >
-        <AdminTable tableHead={tableHead}>
+        <AdminTable tableHead={ADMIN_USERS_TABLE_HEAD}>
           <AdminUserManagementTableBody
             currentPage={currentPage}
-            allUsers={calcAllUsers(allUsers)}
+            allUsers={mapUsersWithUpdatedStatus(users)}
           />
         </AdminTable>
       </AdminContent>
