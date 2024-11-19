@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { ImageIcon } from '@/assets/icons';
 import { Icon } from '@/shared/components';
-import { IUnverifiedReviewItem } from '@/features/review';
+import { IUnverifiedReviewItem } from '@/features/admin';
 import { calcIndex } from '../utils/calcTableIndex';
 import { formatDate } from '@/shared/utils';
 

@@ -11,3 +11,13 @@ export type TCommentItemWrite = {
   content: IComment['content'];
   reviewId: number;
 };
+
+export type TCommentItemUpdate = {
+  content: IComment['content'];
+  id: IComment['id'];
+};
+
+export interface IGetCommentsResponse {
+  comments: IComment[];
+  status: number;
+}

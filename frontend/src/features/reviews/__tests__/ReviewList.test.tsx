@@ -1,6 +1,8 @@
 import { screen, render, within } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
-import ReviewList, { IReviewListProps } from '../components/ReviewList';
+import ReviewList, {
+  IReviewListProps,
+} from '../components/ReviewList/ReviewList';
 import { theme } from '@/styles/theme';
 import { MemoryRouter } from 'react-router-dom';
 import { formatDate } from '@/shared/utils';

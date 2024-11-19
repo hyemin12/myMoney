@@ -1,35 +1,27 @@
-import { useEffect } from 'react';
-
 import {
   AdminContent,
-  AdminLayout,
   AdminTable,
   AdminUnverifiedReviewsTableBody,
-  IAdminTableHead,
 } from '@/features/admin';
 import { withAdminAuthenticatedUser } from '@/shared/hocs';
-import { useAdmin } from '@/features/admin/';
 import useModalStore from '@/store/modal.store';
-
-const tableHead: IAdminTableHead[] = [
-  { name: 'No', $widthRatio: 7 },
-  { name: '제목', $widthRatio: 45 },
-  { name: '작성자(닉네임)', $widthRatio: 16 },
-  { name: '작성일', $widthRatio: 16 },
-  { name: '인증 사진', $widthRatio: 16 },
-];
+import { useCurrentPage } from '@/shared/hooks/useCurrentPage';
+import { useGetUnverifiedReviews } from '@/features/admin/hooks/useGetUnverifiedReviews';
+import { ADMIN_UNVERIFIED_REVIEWS_TABLE_HEAD } from '@/shared/constants/adminTableHead';
+import { usePatchApproveReview } from '@/features/admin/hooks/usePatchApproveReview';
+import AdminLayout from '@/layout/admin/AdminLayout';
 
 function UnverifiedReviewsDashboard() {
-  const {
-    refetchUnverifiedReviews,
-    unverifiedReviews,
-    isLoadingUnverifiedReviews,
-    unverifiedReviewsPagination,
-    approveReview,
-    currentPage,
-  } = useAdmin();
-
   const { openModal } = useModalStore();
+
+  const currentPage = useCurrentPage();
+  const { data, isLoading } = useGetUnverifiedReviews(currentPage);
+
+  const unverifiedReviews = data?.reviews ?? [];
+  const pagination = data?.pagination;
+
+  const { mutate: approveReview } = usePatchApproveReview();
+
   const handleApproveReview = async (reviewId: number, receiptImg: string) => {
     openModal('APPROVE_REVIEW', {
       approveReview: () => approveReview(reviewId),
@@ -41,15 +33,15 @@ function UnverifiedReviewsDashboard() {
     <AdminLayout>
       <AdminContent
         title="미승인 후기 관리"
-        isLoading={isLoadingUnverifiedReviews}
-        totalPage={unverifiedReviewsPagination?.totalCount}
+        isLoading={isLoading}
+        totalPage={pagination?.totalCount}
       >
         {unverifiedReviews.length === 0 ? (
           <div>
             <p>미승인 후기가 없습니다.</p>
           </div>
         ) : (
-          <AdminTable tableHead={tableHead}>
+          <AdminTable tableHead={ADMIN_UNVERIFIED_REVIEWS_TABLE_HEAD}>
             <AdminUnverifiedReviewsTableBody
               currentPage={currentPage}
               unverifiedReviews={unverifiedReviews}

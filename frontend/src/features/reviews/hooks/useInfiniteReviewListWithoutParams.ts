@@ -1,6 +1,7 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 import { fetchLikedReviews, fetchMyReviews } from '../api/reviews.api';
+import { QUERY_KEYS } from '@/shared/constants/querykeys';
 
 const useInfiniteReviewListWithoutParams = (
   queryKey: string,
@@ -22,6 +23,9 @@ const useInfiniteReviewListWithoutParams = (
 };
 
 export const useMyReviews = () =>
-  useInfiniteReviewListWithoutParams('myReviews', fetchMyReviews);
+  useInfiniteReviewListWithoutParams(QUERY_KEYS.MY_REVIEWS, fetchMyReviews);
 export const useLikedReviews = () =>
-  useInfiniteReviewListWithoutParams('likedReviews', fetchLikedReviews);
+  useInfiniteReviewListWithoutParams(
+    QUERY_KEYS.LIKED_REVIEWS,
+    fetchLikedReviews,
+  );

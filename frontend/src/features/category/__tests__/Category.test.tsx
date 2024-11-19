@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '@/styles/theme';
-import { useCategory } from '../hooks/useCategory';
+import { useCategory } from '../hooks/useGetCategory';
 import Category from '../components/Category';
 
 jest.mock('../hooks/useCategory', () => ({

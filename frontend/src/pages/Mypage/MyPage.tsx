@@ -8,35 +8,38 @@ import {
   HelpIcon,
   ReportIcon,
 } from '@/assets/icons';
-import Layout from '@/layout/Layout';
+import Layout from '@/layout/user/Layout';
 import { withAuthenticatedUser } from '@/shared/hocs';
 import { Icon, Loading } from '@/shared/components';
 import { LoadingContainer } from '@/features/admin/components/AdminContent';
-import { useAuth } from '@/features/auth';
 import useModalStore from '@/store/modal.store';
+import { useUserInfo } from '@/features/auth/hooks/useGetUserInfo';
+import { PATH } from '@/shared/constants/paths';
+import { useLogout } from '@/features/auth/hooks/useLogout';
 
-const myPageNavItems = [
-  { icon: <BabyIcon />, title: '내 정보 관리', path: '/mypage' },
+const MY_PAGE_NAVS = [
+  { icon: <BabyIcon />, title: '내 정보 관리', path: PATH.MY_INFO },
   {
     icon: <ArchiveIcon />,
     title: '내가 작성한 리뷰 목록',
-    path: '/mypage/reviews',
+    path: PATH.MY_REVIEWS,
   },
   {
     icon: <HeartFillIcon />,
     title: '좋아요 누른 리뷰 목록',
-    path: '/mypage/liked',
+    path: PATH.LIKED_REVIEWS,
   },
-  { icon: <HelpIcon />, title: '고객센터', path: '/mypage/support' },
+  { icon: <HelpIcon />, title: '고객센터', path: PATH.SUPPORT },
 ];
 
 function MyPage() {
   const navigate = useNavigate();
-  const { userInfo, isLoadingUsers, userLogout } = useAuth();
+  const { data: userInfo, isLoading } = useUserInfo();
+  const { logoutUser } = useLogout();
   const { openModal } = useModalStore();
 
   const handleNavigation = (path: string) => {
-    if (path === '/mypage' || path === '/mypage/support') {
+    if (path === PATH.MY_PAGE || path === PATH.SUPPORT) {
       openModal('ALERT', { message: '준비중인 서비스 입니다.' });
       return;
     }
@@ -45,13 +48,13 @@ function MyPage() {
 
   return (
     <Layout showBackButton={false} title="마이페이지">
-      {isLoadingUsers && (
+      {isLoading && (
         <LoadingContainer>
           <Loading />
         </LoadingContainer>
       )}
 
-      {!isLoadingUsers && (
+      {!isLoading && (
         <Container>
           <UserContainer className="user-container">
             <h4>{userInfo.nickname}</h4>
@@ -64,12 +67,12 @@ function MyPage() {
               <p>신고당한 횟수:</p>
             </div>
             <p>
-              <span>{userInfo.reportCount}</span>회
+              <span>{userInfo.reportCount ?? 0}</span>회
             </p>
           </ReportContainer>
 
           <ItemContainer>
-            {myPageNavItems.map((item) => (
+            {MY_PAGE_NAVS.map((item) => (
               <div
                 key={item.title}
                 role="link"
@@ -81,7 +84,7 @@ function MyPage() {
             ))}
           </ItemContainer>
 
-          <LogoutButton role="button" onClick={userLogout}>
+          <LogoutButton role="button" onClick={logoutUser}>
             로그아웃
           </LogoutButton>
         </Container>

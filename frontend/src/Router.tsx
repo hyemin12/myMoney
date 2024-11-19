@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { PATH } from './shared/constants/paths';
 
 const Home = lazy(() => import('@/pages/Home'));
 const Search = lazy(() => import('@/pages/Search'));
@@ -9,8 +10,8 @@ const ReviewList = lazy(() => import('@/pages/Review/ReviewList'));
 const ReviewDetail = lazy(() => import('@/pages/Review/ReviewDetail'));
 const MyPage = lazy(() => import('@/pages/Mypage/MyPage'));
 const Login = lazy(() => import('@/pages/Login'));
-const ReportedUsersDashboard = lazy(
-  () => import('@/pages/Admin/ReportedUsersDashboard'),
+const SuspendedUsersDashboard = lazy(
+  () => import('@/pages/Admin/SuspendedUsersDashboard'),
 );
 const UserManagementDashboard = lazy(
   () => import('@/pages/Admin/UserManagementDashboard'),
@@ -29,38 +30,51 @@ export function Router() {
     <BrowserRouter>
       <Suspense fallback={<div>로딩중..</div>}>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/review" element={<CreateReview />} />
-          <Route path="/review/:id" element={<EditReview />} />
-          <Route path="/list" element={<ReviewList />} />
-          <Route path="/list/:id" element={<ReviewDetail />} />
-          <Route path="/mypage" element={<MyPage />} />
-          <Route path="/login" element={<Login />} />
+          <Route path={PATH.INDEX} element={<Home />} />
+          <Route path={PATH.SEARCH} element={<Search />} />
+
+          <Route path={PATH.MY_PAGE} element={<MyPage />} />
+          <Route path={PATH.LOGIN} element={<Login />} />
+
+          <Route path={PATH.REVIEW_LIST}>
+            <Route index element={<ReviewList />} />
+            <Route path=":id" element={<ReviewDetail />} />
+          </Route>
+
+          <Route path={PATH.CREATE_REVIEW}>
+            <Route index element={<CreateReview />} />
+            <Route path=":id" element={<EditReview />} />
+          </Route>
 
           {/* 관리자 페이지 */}
-          <Route path="/admin">
-            <Route path="report-user" element={<ReportedUsersDashboard />} />
-            <Route path="users" element={<UserManagementDashboard />} />
+          <Route path={PATH.ADMIN}>
             <Route
-              path="unverified-reviews"
+              path={PATH.REPORT_USER}
+              element={<SuspendedUsersDashboard />}
+            />
+            <Route
+              path={PATH.USER_MANAGEMENT}
+              element={<UserManagementDashboard />}
+            />
+            <Route
+              path={PATH.UNVERIFIED_REVIEWS}
               element={<UnverifiedReviewsDashboard />}
             />
           </Route>
 
           {/* 회원가입 */}
-          <Route path="/join">
+          <Route path={PATH.JOIN}>
             <Route index element={<JoinStep1Email />} />
-            <Route path="step1" element={<JoinStep1Email />} />
-            <Route path="step2" element={<JoinStep2Nickname />} />
-            <Route path="step3" element={<JoinStep3Password />} />
+            <Route path={PATH.JOIN_STEP1} element={<JoinStep1Email />} />
+            <Route path={PATH.JOIN_STEP2} element={<JoinStep2Nickname />} />
+            <Route path={PATH.JOIN_STEP3} element={<JoinStep3Password />} />
           </Route>
 
           {/* 마이페이지 */}
-          <Route path="/mypage">
+          <Route path={PATH.MY_PAGE}>
             <Route index element={<MyPage />} />
-            <Route path="reviews" element={<MyReviews />} />
-            <Route path="liked" element={<LikedReviews />} />
+            <Route path={PATH.MY_REVIEWS} element={<MyReviews />} />
+            <Route path={PATH.LIKED_REVIEWS} element={<LikedReviews />} />
           </Route>
         </Routes>
       </Suspense>

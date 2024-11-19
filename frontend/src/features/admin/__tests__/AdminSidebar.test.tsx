@@ -1,7 +1,7 @@
 import { screen, render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import AdminSidebar from '../components/AdminSidebar';
+import AdminSidebar from '../../../layout/admin/AdminSidebar';
 import { theme } from '@/styles/theme';
 
 // 네비게이션 섹션의 제목(사이트관리)이 제대로 표시되는지

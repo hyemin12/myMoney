@@ -46,7 +46,7 @@ export const checkedDuplicateEmail = async (req: Request, res: Response) => {
   const { email } = req.body;
   try {
     await serviceCheckDuplicateEmail(email);
-    res.status(200).send({ message: 'success' });
+    res.status(200).send({ message: 'success', email });
   } catch (error: any) {
     throw new Error(error.message);
   }
@@ -56,7 +56,7 @@ export const checkedDuplicateNickname = async (req: Request, res: Response) => {
   const { nickname } = req.body;
   try {
     await serviceCheckDuplicateNickname(nickname);
-    res.status(200).send({ message: 'success' });
+    res.status(200).send({ message: 'success', nickname });
   } catch (error: any) {
     throw new Error(error.message);
   }

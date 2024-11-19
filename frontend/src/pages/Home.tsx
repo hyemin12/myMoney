@@ -1,49 +1,44 @@
-import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import Layout from '@/layout/Layout';
-import { ReviewList, fetchReviews, IResponseReviews } from '@/features/reviews';
-import { BestReviews } from '@/features/home';
+import Layout from '@/layout/user/Layout';
+import {
+  ReviewList,
+  BestReviews as BestReviewContainer,
+  useQueryReviewList,
+} from '@/features/reviews';
 import { Category } from '@/features/category';
+import { QUERY_KEYS } from '@/shared/constants/querykeys';
 
 function Home() {
-  const [bestReviews, setBestReviews] = useState<IResponseReviews[]>([]);
-  const [latestReviews, setLatestReviews] = useState([]);
-  const [isLoadingBestReviews, setIsLoadingBestReviews] = useState(false);
-  const [isLoadingLatestReviews, setIsLoadingLatestReviews] = useState(false);
+  const { data: bestReviewsResponse, isLoading: isLoadingBestReviews } =
+    useQueryReviewList(
+      {
+        sortBy: 'likes',
+        orderBy: 'DESC',
+        limit: 3,
+      },
+      [QUERY_KEYS.BEST_REVIEWS],
+    );
+  const bestReviews = bestReviewsResponse?.reviews ?? [];
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoadingBestReviews(true);
-        const bestReviewsResponse = await fetchReviews({
-          sortBy: 'likes',
-          orderBy: 'DESC',
-          limit: 3,
-        });
-        setBestReviews(bestReviewsResponse.reviews);
-
-        setIsLoadingLatestReviews(true);
-        const latestReviewsResponse = await fetchReviews({
-          sortBy: 'createdAt',
-          orderBy: 'DESC',
-        });
-        setLatestReviews(latestReviewsResponse.reviews);
-      } catch (error) {
-        throw error;
-      } finally {
-        setIsLoadingBestReviews(false);
-        setIsLoadingLatestReviews(false);
-      }
-    };
-
-    fetchData();
-  }, []);
+  const { data: latestReviewsResponse, isLoading: isLoadingLatestReviews } =
+    useQueryReviewList(
+      {
+        sortBy: 'createdAt',
+        orderBy: 'DESC',
+        limit: 10,
+      },
+      [QUERY_KEYS.LATEST_REVIEWS],
+    );
+  const latestReviews = latestReviewsResponse?.reviews ?? [];
 
   return (
     <Layout showBackButton={false}>
       <HomeStyle>
-        <BestReviews reviews={bestReviews} isLoading={isLoadingBestReviews} />
+        <BestReviewContainer
+          reviews={bestReviews}
+          isLoading={isLoadingBestReviews}
+        />
         <Category />
         <hr />
         <ReviewList

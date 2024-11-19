@@ -1,6 +1,6 @@
 import { screen, render, fireEvent } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
-import JoinForm from '@/features/auth/components/JoinForm';
+import JoinForm from '@/features/join/components/JoinForm';
 import { theme } from '@/styles/theme';
 
 describe('JoinForm 컴포넌트 테스트', () => {

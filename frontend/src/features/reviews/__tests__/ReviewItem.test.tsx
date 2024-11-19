@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import ReviewItem from '../components/ReviewItem';
+import ReviewItem from '../components/ReviewList/ReviewItem';
 import { useLike } from '@/features/like';
 import { theme } from '@/styles/theme';
 

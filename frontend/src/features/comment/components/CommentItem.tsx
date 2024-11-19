@@ -1,57 +1,60 @@
-import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
 import { formatDate } from '@/shared/utils';
-import { Button, Modal } from '@/shared/components';
-import { useComment, IComment } from '@/features/comment';
-import useAuthStore from '@/store/auth.store';
+import { Button } from '@/shared/components';
+import { IComment, TCommentItemUpdate } from '@/features/comment';
+import React from 'react';
 
 interface Props {
+  reviewId: number;
   comment: IComment;
   onUpdate: (commentId: number, content: string) => void;
+  onDelete: (commentId: number) => void;
+  onActiveEdit: (commentId: number) => void;
+  onCancelEdit: () => void;
+  editMode: boolean;
 }
 
-function CommentItem({ comment, onUpdate }: Props) {
-  const { id } = useParams();
-
-  if (!id) return;
-
-  const [isEdit, setIsEdit] = useState(false);
-  const [editedContent, setEditedContent] = useState(comment.content);
-  const { deleteComment } = useComment(Number(id));
-  const { isLoggedIn } = useAuthStore();
-
-  const handleDelete = () => {};
+function CommentItem({
+  comment,
+  onUpdate,
+  onDelete,
+  editMode,
+  onActiveEdit,
+  onCancelEdit,
+}: Props) {
+  const { register, handleSubmit } = useForm<TCommentItemUpdate>({
+    defaultValues: { content: comment.content, id: comment.id },
+  });
 
   const handleEdit = () => {
-    setIsEdit(true);
-    setEditedContent(comment.content);
+    onActiveEdit(comment.id);
   };
 
-  const handleCancel = () => {
-    setIsEdit(false);
-    setEditedContent(comment.content);
+  const onSubmit = (data: TCommentItemUpdate) => {
+    if (!editMode) return;
+    onUpdate(data.id, data.content);
+    onCancelEdit();
   };
 
-  const handleSubmit = () => {
-    onUpdate(comment.id, editedContent);
-    comment.content = editedContent;
-    setIsEdit(false);
-  };
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEditedContent(event.target.value);
+  const handleDelete = () => {
+    onDelete(comment.id);
   };
 
   const renderButtons = () => {
-    if (isEdit) {
+    if (editMode) {
       return (
         <>
-          <Button size="small" scheme="primary" onClick={handleSubmit}>
+          <Button size="small" scheme="primary" type="submit">
             수정 완료
           </Button>
-          <Button size="small" scheme="border" onClick={handleCancel}>
+          <Button
+            size="small"
+            scheme="border"
+            type="button"
+            onClick={onCancelEdit}
+          >
             취소
           </Button>
         </>
@@ -61,10 +64,20 @@ function CommentItem({ comment, onUpdate }: Props) {
     if (comment.isAuthor) {
       return (
         <>
-          <Button size="small" scheme="primary" onClick={handleEdit}>
+          <Button
+            size="small"
+            scheme="primary"
+            type="button"
+            onClick={handleEdit}
+          >
             수정
           </Button>
-          <Button size="small" scheme="border" onClick={handleDelete}>
+          <Button
+            size="small"
+            scheme="border"
+            type="button"
+            onClick={handleDelete}
+          >
             삭제
           </Button>
         </>
@@ -76,22 +89,23 @@ function CommentItem({ comment, onUpdate }: Props) {
 
   return (
     <Container>
-      <div className="info">
-        <span>{comment.name}</span>
-        <span>{formatDate(comment.createdAt)}</span>
-      </div>
-
-      {isEdit ? (
-        <input
-          className="editInput"
-          type="text"
-          value={editedContent}
-          onChange={handleChange}
-          autoFocus
-        />
-      ) : (
-        <div className="cont">{comment.content}</div>
-      )}
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="info">
+          <span>{comment.name}</span>
+          <span className="date">{formatDate(comment.createdAt)}</span>
+        </div>
+        {editMode ? (
+          <input
+            {...register('content', { required: true })}
+            className="editInput"
+            type="text"
+            autoFocus
+          />
+        ) : (
+          <div className="cont">{comment.content}</div>
+        )}
+        <ButtonContainer>{renderButtons()}</ButtonContainer>
+      </form>
     </Container>
   );
 }
@@ -113,7 +127,8 @@ const Container = styled.div`
     span {
       font-weight: ${({ theme }) => theme.fontWeight.semiBold};
     }
-    span:last-child {
+    span.date {
+      color: ${({ theme }) => theme.color.border};
       font-weight: ${({ theme }) => theme.fontWeight.regular};
     }
   }
@@ -133,7 +148,8 @@ const Container = styled.div`
     padding: 10px;
     background-color: ${({ theme }) => theme.color.background};
     border-radius: ${({ theme }) => theme.borderRadius.default};
+    word-wrap: break-word;
   }
 `;
 
-export default CommentItem;
+export default React.memo(CommentItem);

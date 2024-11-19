@@ -1,16 +1,32 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-import Header from '@/layout/Header';
-import { IReview, ReviewForm, useReviewEditing } from '@/features/review';
+import Header from '@/layout/user/Header';
 import { withAuthenticatedUser } from '@/shared/hocs';
 import { useForm } from 'react-hook-form';
+import { IReviewEdit } from '@/features/review-editing/models/reviewEditing.model';
+import { useUpdateReview } from '@/features/review-editing/hooks/useUpdateReview';
+import useModalStore from '@/store/modal.store';
+import { PATH } from '@/shared/constants/paths';
+import { useGetReviewDetail } from '@/features/review-detail';
+import { ReviewForm } from '@/features/review-editing';
+import { Loading } from '@/shared/components';
 
 function EditReview() {
   const { id } = useParams<{ id: string }>();
-  const { review, updateToReview } = useReviewEditing(id!);
+  const reviewId = Number(id);
 
+  const { openModal } = useModalStore();
+  const navigate = useNavigate();
+  const updateToReviewSuccess = () => {
+    openModal('ALERT', { message: '수정되었습니다.' });
+    navigate(`${PATH.REVIEW_LIST}/${reviewId}`);
+  };
+  const { mutate: updateToReview } = useUpdateReview(updateToReviewSuccess);
+
+  const { data: review, isLoading } = useGetReviewDetail(reviewId);
+  console.log(review);
   const {
     register,
     handleSubmit,
@@ -18,35 +34,54 @@ function EditReview() {
     getValues,
     formState: { errors, isValid },
     watch,
-  } = useForm<IReview>({ mode: 'onChange' });
+    reset,
+  } = useForm<IReviewEdit>({
+    mode: 'onChange',
+    defaultValues: {
+      title: '',
+      content: '',
+      stars: 3,
+      categoryId: 1,
+      receiptImg: '',
+      reviewImg: [],
+    },
+  });
 
   useEffect(() => {
     if (review) {
-      setValue('title', review.title || '');
-      setValue('content', review.content || '');
-      setValue('stars', review.stars || 3);
-      setValue('categoryId', review.categoryId || 1);
-      setValue('receiptImg', review.receiptImg || '');
-      setValue('reviewImg', review.reviewImg || []);
+      console.log(review.stars, review.receiptImg, review.reviewImg);
+      // setValue('title', review.title);
+      // setValue('content', review.content);
+      // setValue('stars', review.stars);
+      // setValue('categoryId', review.categoryId);
+      // setValue('receiptImg', review.receiptImg);
+      // setValue('reviewImg', review.reviewImg);
+      reset(review);
     }
-  }, [review, setValue]);
+  }, [review, reset]);
 
-  const onSubmit = (data: IReview) => {
-    updateToReview(id!, data);
+  const onSubmit = (data: IReviewEdit) => {
+    if (!id) return;
+    updateToReview({ id, data });
   };
 
   return (
     <FormStyled>
       <Header showBackButton={true} title="리뷰 수정" />
-      <ReviewForm
-        register={register}
-        handleSubmit={handleSubmit(onSubmit)}
-        setValue={setValue}
-        getValues={getValues}
-        errors={errors}
-        $mode="edit"
-        watch={watch}
-      />
+
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <ReviewForm
+          register={register}
+          handleSubmit={handleSubmit(onSubmit)}
+          setValue={setValue}
+          getValues={getValues}
+          errors={errors}
+          $mode="edit"
+          watch={watch}
+        />
+      )}
     </FormStyled>
   );
 }

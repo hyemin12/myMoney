@@ -1,7 +1,7 @@
-import { IFetchReviewsParams } from '@/features/review/review-detail/api/reviewDetail.api';
 import { httpClient } from '@/shared/utils/http';
+import { IReviewsParams } from '../models/reviews.model';
 
-export const fetchReviews = async (params: IFetchReviewsParams) => {
+export const fetchReviews = async (params: IReviewsParams) => {
   const { data } = await httpClient.get('/reviews', {
     params: { ...params },
   });

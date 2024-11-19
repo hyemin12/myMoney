@@ -1,17 +1,18 @@
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
 import { EditIcon, TrashIcon, ReportIcon } from '@/assets/icons';
 import useAuthStore from '@/store/auth.store';
-import { useInfiniteReviewListWithParams } from '@/features/reviews';
 import Icon from '@/shared/components/Icon';
-import styled from 'styled-components';
 import useModalStore from '@/store/modal.store';
+import { useDeleteReview } from '@/features/review-detail';
 
 interface Props {
   isAuthor: boolean;
   reviewId: number;
   authorId: number;
   showIconOnly?: boolean;
+  direction?: 'col' | 'row';
 }
 
 const reviewActionButtons = [
@@ -40,10 +41,12 @@ function ReviewActions({
   reviewId,
   authorId,
   showIconOnly = false,
+  direction = 'col',
 }: Props) {
   const navigate = useNavigate();
   const { isLoggedIn } = useAuthStore();
-  const { deleteReviewInReviews } = useInfiniteReviewListWithParams();
+  const { mutate: deleteReviewInReviews } = useDeleteReview();
+
   const { openModal } = useModalStore();
 
   const handleAction = (action: string) => {
@@ -67,7 +70,7 @@ function ReviewActions({
   };
 
   return (
-    <ul>
+    <ActionButtonContainer direction={direction}>
       {reviewActionButtons
         .filter((button) => (isAuthor ? button.isAuthor : !button.isAuthor))
         .map((button) => (
@@ -79,9 +82,13 @@ function ReviewActions({
             {!showIconOnly && button.label}
           </ActionButtonStyle>
         ))}
-    </ul>
+    </ActionButtonContainer>
   );
 }
+
+const ActionButtonContainer = styled.ul<{ direction: 'col' | 'row' }>`
+  ${({ direction }) => direction === 'row' && `display:flex; gap:8px;`};
+`;
 
 const ActionButtonStyle = styled.li`
   width: 100%;

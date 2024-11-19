@@ -1,14 +1,15 @@
 import { useForm } from 'react-hook-form';
 
-import Layout from '@/layout/Layout';
-import { JoinTemplate, IUserRegistration, useAuth } from '@/features/auth';
+import Layout from '@/layout/user/Layout';
+import { JoinTemplate, IUserRegistration } from '@/features/join';
 import { AlertText, Input } from '@/shared/components';
 import { withUnauthenticatedUser } from '@/shared/hocs';
-import { VALIDATE } from '@/shared/constants/validate';
 import useUserRegistrationStore from '@/store/user.registration.store';
+import { useJoin } from '@/features/join/hooks/useJoin';
+import { VALIDATION } from '@/shared/constants/validation';
 
-const JoinStep2Nickname = () => {
-  const { errorMessage, userCheckedNickname } = useAuth();
+function JoinStep2Nickname() {
+  const { errorMessage, checkedNickname } = useJoin();
   const { storeNickname } = useUserRegistrationStore();
   const {
     register,
@@ -21,20 +22,8 @@ const JoinStep2Nickname = () => {
     },
   });
 
-  const nicknameValidation = {
-    required: '닉네임을 입력하세요',
-    validate: (nickname: string) => {
-      const containsBannedWord = VALIDATE.BANNED_WORDS.some((word) =>
-        nickname.includes(word),
-      );
-      return containsBannedWord
-        ? '부적절한 단어가 포함되어있습니다'
-        : undefined;
-    },
-  };
-
   const onSubmit = handleSubmit((data) => {
-    userCheckedNickname(data.nickname.trim());
+    checkedNickname({ nickname: data.nickname.trim() });
   });
 
   return (
@@ -49,7 +38,7 @@ const JoinStep2Nickname = () => {
         <fieldset>
           <Input
             $inputType="text"
-            {...register('nickname', nicknameValidation)}
+            {...register('nickname', VALIDATION.NICKNAME)}
             type="text"
             placeholder="닉네임을 입력해주세요"
           />
@@ -60,6 +49,6 @@ const JoinStep2Nickname = () => {
       </JoinTemplate>
     </Layout>
   );
-};
+}
 
 export default withUnauthenticatedUser(JoinStep2Nickname);

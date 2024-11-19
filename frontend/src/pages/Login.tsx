@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useCookies } from 'react-cookie';
@@ -6,32 +6,27 @@ import styled from 'styled-components';
 
 import { NaedonnaesanTextLogo } from '@/assets/icons';
 import { withUnauthenticatedUser } from '@/shared/hocs';
-import { useAuth } from '@/features/auth/hooks/useAuth';
-import { IUserLogin, LoginForm, AuthOptionLink } from '@/features/auth';
-import { Icon } from '@/shared/components';
+import { IUserLogin, LoginForm } from '@/features/auth';
+import { AuthOptionLink, Icon } from '@/shared/components';
+import { useLogin } from '@/features/auth/hooks/useLogin';
 
 function Login() {
   const [cookies] = useCookies(['email']);
-  const { errorMessage, userLogin } = useAuth();
-  const [checkedRememberEmail, setCheckedRememberEmail] = useState(false);
+  const {
+    errorMessage,
+    loginUser,
+    toggleCheckedRememberEmail,
+    checkedRememberEmail,
+  } = useLogin();
   const { register, handleSubmit, setValue } = useForm<IUserLogin>();
 
-  const toggleCheckedRememberEmail = () => {
-    setCheckedRememberEmail(!checkedRememberEmail);
-  };
-
   const onSubmit = handleSubmit((data: IUserLogin) => {
-    userLogin(data, checkedRememberEmail);
+    loginUser(data, checkedRememberEmail);
   });
 
   useEffect(() => {
-    if (cookies.email) {
-      setValue('email', cookies.email);
-      setCheckedRememberEmail(true);
-    } else {
-      setValue('email', '');
-      setCheckedRememberEmail(false);
-    }
+    setValue('email', cookies.email ? cookies.email : '');
+    toggleCheckedRememberEmail();
   }, []);
 
   return (
