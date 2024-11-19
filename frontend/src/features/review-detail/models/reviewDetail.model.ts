@@ -1,4 +1,4 @@
-import { IReviewEdit } from '@/features/review-editing/models/review-editng.model';
+import { IReviewEdit } from '@/features/review-editing/models/reviewEditing.model';
 
 export interface IReviewDetail extends IReviewEdit {
   id: number;

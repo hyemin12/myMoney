@@ -3,11 +3,11 @@ import styled from 'styled-components';
 
 import { ImageSlide, Loading } from '@/shared/components';
 import BestReviewItem from './BestReviewItem';
-import { IResponseReviews } from '@/features/reviews';
 import { LoadingContainer } from '@/features/admin/components/AdminContent';
+import { IFormattedReview } from '../../models/reviews.model';
 
 interface Props {
-  reviews?: IResponseReviews[];
+  reviews?: IFormattedReview[];
   isLoading?: boolean;
 }
 
@@ -26,7 +26,7 @@ function BestReviews({ reviews, isLoading }: Props) {
         img={
           'https://i0.wp.com/millionmine.com/wp-content/uploads/2020/03/reveiws.jpg?fit=1000%2C630&ssl=1'
         }
-        isVerified={1}
+        isVerified
         title={'베스트 리뷰를 써보자!'}
         userName={'내돈내산'}
         stars={5}

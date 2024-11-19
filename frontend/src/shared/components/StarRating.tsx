@@ -4,12 +4,12 @@ import { StarFilledIcon } from '@/assets/icons';
 import { Icon } from '@/shared/components';
 import { theme } from '@/styles/theme';
 import { UseFormSetValue } from 'react-hook-form';
-import { IReview } from '../../features/review/models/review.model';
+import { IReviewEdit } from '@/features/review-editing/models/reviewEditing.model';
 
 interface Props {
   ratingIndex: number;
   $size: number;
-  setValue?: UseFormSetValue<IReview>;
+  setValue?: UseFormSetValue<IReviewEdit>;
 }
 
 function StatRating({ ratingIndex, setValue, $size }: Props) {

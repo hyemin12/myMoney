@@ -32,12 +32,19 @@ export function Router() {
         <Routes>
           <Route path={PATH.INDEX} element={<Home />} />
           <Route path={PATH.SEARCH} element={<Search />} />
-          <Route path={PATH.CREATE_REVIEW} element={<CreateReview />} />
-          <Route path={PATH.EDIT_REVIEW} element={<EditReview />} />
-          <Route path={PATH.REVIEW_LIST} element={<ReviewList />} />
-          <Route path={PATH.REVIEW_DETAIL} element={<ReviewDetail />} />
+
           <Route path={PATH.MY_PAGE} element={<MyPage />} />
           <Route path={PATH.LOGIN} element={<Login />} />
+
+          <Route path={PATH.REVIEW_LIST}>
+            <Route index element={<ReviewList />} />
+            <Route path=":id" element={<ReviewDetail />} />
+          </Route>
+
+          <Route path={PATH.CREATE_REVIEW}>
+            <Route index element={<CreateReview />} />
+            <Route path=":id" element={<EditReview />} />
+          </Route>
 
           {/* 관리자 페이지 */}
           <Route path={PATH.ADMIN}>

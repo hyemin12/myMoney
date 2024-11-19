@@ -2,12 +2,13 @@ import React, { useRef, useState } from 'react';
 import { UseFormGetValues } from 'react-hook-form';
 import styled from 'styled-components';
 
-import { convertToBase64, IReview } from '@/features/review';
 import { Button } from '@/shared/components';
 import { IFormControlProps } from './ReviewForm';
+import { IReviewEdit } from '../models/reviewEditing.model';
+import convertToBase64 from '../utils/convertToBase64';
 
 interface Props extends IFormControlProps {
-  getValues: UseFormGetValues<IReview>;
+  getValues: UseFormGetValues<IReviewEdit>;
 }
 
 function ReceiptUpload({ register, setValue, getValues }: Props) {

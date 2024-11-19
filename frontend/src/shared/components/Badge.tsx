@@ -1,4 +1,4 @@
-// import BadgeImg from '@/assets/images/badge-img.png';
+import BadgeImg from '@/assets/images/badge-img.png';
 import styled, { css } from 'styled-components';
 
 interface BadgeProps {
@@ -12,7 +12,7 @@ function Badge({ type, text, verifiedIcon = false, $position }: BadgeProps) {
   return (
     <BadgeStyle type={type} className="badge" $position={$position}>
       {verifiedIcon && (
-        <img className="badgeImg" src="./badge-img.png" alt="인증마크" />
+        <img className="badgeImg" src={BadgeImg} alt="인증마크" />
       )}
       {text}
     </BadgeStyle>

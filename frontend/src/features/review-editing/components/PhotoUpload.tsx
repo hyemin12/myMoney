@@ -1,20 +1,24 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { UseFormGetValues } from 'react-hook-form';
 import styled from 'styled-components';
 
-import { CameraIcon, CloseIcon } from '@/assets/icons';
-import { convertToBase64, IReview } from '@/features/review';
-import { Icon } from '@/shared/components';
+import { CameraIcon } from '@/assets/icons';
 import { IFormControlProps } from './ReviewForm';
+import { IReviewEdit } from '../models/reviewEditing.model';
+import convertToBase64 from '../utils/convertToBase64';
+import UploadPhotoThumbnail from './UploadPhotoThumbnail';
 
 interface Props extends IFormControlProps {
-  getValues: UseFormGetValues<IReview>;
+  getValues: UseFormGetValues<IReviewEdit>;
 }
-
 function PhotoUpload({ register, setValue, getValues }: Props) {
-  const [photoToAddList, setPhotoToAddList] = useState<string[]>(
-    getValues('reviewImg') ?? [],
-  );
+  const [photoToAddList, setPhotoToAddList] = useState<string[]>([]);
+
+  useEffect(() => {
+    const initialPhotos = getValues('reviewImg') ?? [];
+    setPhotoToAddList(initialPhotos);
+  }, []);
+
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,17 +53,7 @@ function PhotoUpload({ register, setValue, getValues }: Props) {
     setPhotoToAddList((prevList) => prevList.filter((_, i) => i !== index));
   };
 
-  const renderPhotoPreviews = () => {
-    return photoToAddList.map((url: string, index: number) => (
-      <PhotoPreview key={index}>
-        <CloseButton onClick={() => handleRemovePhoto(index)}>
-          <Icon width={12} fill="white" icon={<CloseIcon />} />
-        </CloseButton>
-        <img src={url} alt={`Photo ${index}`} />
-      </PhotoPreview>
-    ));
-  };
-
+  console.log(photoToAddList);
   return (
     <Container>
       <input
@@ -70,12 +64,15 @@ function PhotoUpload({ register, setValue, getValues }: Props) {
         multiple
         ref={fileInputRef}
       />
-      <Button onClick={handleClick} aria-label="사진 첨부">
+      <Button type="button" onClick={handleClick} aria-label="사진 첨부">
         <CameraIcon />
         <p>사진 첨부</p>
       </Button>
 
-      {renderPhotoPreviews()}
+      <UploadPhotoThumbnail
+        list={photoToAddList}
+        handleRemovePhoto={handleRemovePhoto}
+      />
     </Container>
   );
 }
@@ -104,33 +101,4 @@ const Button = styled.button`
   p {
     font-size: ${({ theme }) => theme.text.small.fontSize};
   }
-`;
-
-const PhotoPreview = styled.div`
-  position: relative;
-  width: 60px;
-  height: 60px;
-  margin-right: 10px;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 5px;
-  }
-`;
-
-const CloseButton = styled.button`
-  position: absolute;
-  top: -8px;
-  right: -5px;
-  background-color: black;
-  width: 18px;
-  height: 18px;
-  border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  cursor: pointer;
 `;

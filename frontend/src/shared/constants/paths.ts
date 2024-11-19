@@ -2,9 +2,7 @@ export const PATH = {
   INDEX: '/',
   SEARCH: '/search',
   CREATE_REVIEW: '/review',
-  EDIT_REVIEW: '/review/:id',
   REVIEW_LIST: '/list',
-  REVIEW_DETAIL: '/list/:id',
   LOGIN: '/login',
 
   // 관리자 페이지

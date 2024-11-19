@@ -1,15 +1,3 @@
-import styled from 'styled-components';
-
-import {
-  PhotoUpload,
-  StarRating,
-  ReceiptUpload,
-  CategorySelector,
-  CreateContent,
-  IReview,
-} from '@/features/review';
-import { Input, Button } from '@/shared/components';
-import { TCategoryNames, useGetCategory } from '@/features/category';
 import {
   FieldErrors,
   UseFormGetValues,
@@ -17,18 +5,29 @@ import {
   UseFormSetValue,
   UseFormWatch,
 } from 'react-hook-form';
+import styled from 'styled-components';
+
+import {
+  PhotoUpload,
+  ReceiptUpload,
+  CategorySelector,
+  CreateContent,
+} from '@/features/review-editing';
+import { Input, Button, StarRating } from '@/shared/components';
+import { TCategoryNames, useGetCategory } from '@/features/category';
+import { IReviewEdit } from '../models/reviewEditing.model';
 
 export interface IFormControlProps {
-  register: UseFormRegister<IReview>;
-  setValue: UseFormSetValue<IReview>;
+  register: UseFormRegister<IReviewEdit>;
+  setValue: UseFormSetValue<IReviewEdit>;
 }
 
 interface Props extends IFormControlProps {
-  getValues: UseFormGetValues<IReview>;
-  errors?: FieldErrors<IReview>;
+  getValues: UseFormGetValues<IReviewEdit>;
+  errors?: FieldErrors<IReviewEdit>;
   $mode: 'create' | 'edit';
   handleSubmit: (e: React.FormEvent) => void;
-  watch: UseFormWatch<IReview>;
+  watch: UseFormWatch<IReviewEdit>;
 }
 
 function ReviewForm({

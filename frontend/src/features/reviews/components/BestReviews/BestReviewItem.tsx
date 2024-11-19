@@ -3,11 +3,12 @@ import styled from 'styled-components';
 
 import { StarOutlineIcon, StarFilledIcon } from '@/assets/icons';
 import { Badge } from '@/shared/components';
+import { PATH } from '@/shared/constants/paths';
 
 interface Props {
   id: number;
   img?: string;
-  isVerified?: number;
+  isVerified?: boolean;
   title?: string;
   userName?: string;
   stars?: number;
@@ -42,7 +43,7 @@ function BestReview({
       </div>
 
       <div className="wrapBottom">
-        <StyledLink to={`/reviews/${id}`}>
+        <StyledLink to={`${PATH.REVIEW_LIST}/${id}`}>
           <div className="title">{title}</div>
         </StyledLink>
         <div className="userName">{userName}</div>

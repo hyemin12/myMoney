@@ -1,5 +1,5 @@
 import { httpClient } from '@/shared/utils/http';
-import { IReviewDetail } from '../models/review-detail.model';
+import { IReviewDetail } from '../models/reviewDetail.model';
 
 export const fetchReview = async (reviewId: number) => {
   const { data } = await httpClient.get<IReviewDetail>(`/reviews/${reviewId}`);

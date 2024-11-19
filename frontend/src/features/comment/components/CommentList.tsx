@@ -1,15 +1,17 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 
 import CommentAdd from './CommentAdd';
 import CommentItem from './CommentItem';
 import { Loading } from '@/shared/components';
-import { IComment } from '@/features/comment';
-import { useGetComments } from '../hooks/useGetComments';
-import { useAddComment } from '../hooks/useAddComment';
-import { useUpdateComment } from '../hooks/useUpdateComment';
-import { useDeleteComment } from '../hooks/useDeleteComment';
-import { useState } from 'react';
+import {
+  IComment,
+  useGetComments,
+  useUpdateComment,
+  useAddComment,
+  useDeleteComment,
+} from '@/features/comment';
 import { handleGoHome } from '@/shared/utils';
 
 function CommentList() {

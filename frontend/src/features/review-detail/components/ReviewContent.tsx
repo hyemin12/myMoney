@@ -38,6 +38,7 @@ function ReviewContent() {
           reviewId={NumberReviewId}
           authorId={review.userId}
           showIconOnly
+          direction="row"
         />
       </AuthorContainer>
 

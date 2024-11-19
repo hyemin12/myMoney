@@ -2,15 +2,12 @@ import { useParams } from 'react-router-dom';
 
 import Layout from '@/layout/user/Layout';
 import { CommentList } from '@/features/comment';
-import {
-  ReviewContent,
-  ReviewImages,
-  useReviewDetail,
-} from '@/features/review';
+import { ReviewContent, useGetReviewDetail } from '@/features/review-detail';
+import { ReviewImages } from '@/shared/components';
 
 function ReviewDetail() {
   const { id } = useParams();
-  const { review } = useReviewDetail(Number(id));
+  const { data: review } = useGetReviewDetail(Number(id));
 
   if (!review) return;
 
