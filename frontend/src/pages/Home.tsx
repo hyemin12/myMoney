@@ -1,49 +1,28 @@
-import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import Layout from '@/layout/user/Layout';
-import { ReviewList, fetchReviews, IResponseReviews } from '@/features/reviews';
-import { BestReviews } from '@/features/home';
+import {
+  ReviewList,
+  BestReviews as BestReviewContainer,
+} from '@/features/reviews';
 import { Category } from '@/features/category';
+import { useGetHomeReviews } from '@/features/reviews';
 
 function Home() {
-  const [bestReviews, setBestReviews] = useState<IResponseReviews[]>([]);
-  const [latestReviews, setLatestReviews] = useState([]);
-  const [isLoadingBestReviews, setIsLoadingBestReviews] = useState(false);
-  const [isLoadingLatestReviews, setIsLoadingLatestReviews] = useState(false);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoadingBestReviews(true);
-        const bestReviewsResponse = await fetchReviews({
-          sortBy: 'likes',
-          orderBy: 'DESC',
-          limit: 3,
-        });
-        setBestReviews(bestReviewsResponse.reviews);
-
-        setIsLoadingLatestReviews(true);
-        const latestReviewsResponse = await fetchReviews({
-          sortBy: 'createdAt',
-          orderBy: 'DESC',
-        });
-        setLatestReviews(latestReviewsResponse.reviews);
-      } catch (error) {
-        throw error;
-      } finally {
-        setIsLoadingBestReviews(false);
-        setIsLoadingLatestReviews(false);
-      }
-    };
-
-    fetchData();
-  }, []);
+  const {
+    bestReviews,
+    latestReviews,
+    isLoadingBestReviews,
+    isLoadingLatestReviews,
+  } = useGetHomeReviews();
 
   return (
     <Layout showBackButton={false}>
       <HomeStyle>
-        <BestReviews reviews={bestReviews} isLoading={isLoadingBestReviews} />
+        <BestReviewContainer
+          reviews={bestReviews}
+          isLoading={isLoadingBestReviews}
+        />
         <Category />
         <hr />
         <ReviewList

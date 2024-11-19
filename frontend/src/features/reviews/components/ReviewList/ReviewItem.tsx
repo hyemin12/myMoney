@@ -11,8 +11,8 @@ import {
   TitleContainer,
   InfoContainer,
   ReviewActions,
+  IFormattedReview,
 } from '@/features/reviews';
-import { IReviewItem } from '@/features/review';
 import { formatDate } from '@/shared/utils';
 import LazyImage from '@/shared/components/LazyImage';
 
@@ -28,7 +28,7 @@ function ReviewItem({
   isLiked,
   userId,
   isMyReview,
-}: IReviewItem) {
+}: IFormattedReview) {
   const { likeToggle, localIsLiked, localLikes } = useLike({
     reviewId: id,
     isLikedDB: isLiked,

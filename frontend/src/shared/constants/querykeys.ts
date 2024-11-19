@@ -7,4 +7,8 @@ export const QUERY_KEYS = {
 
   COMMENTS: 'comments',
   CATEGORY: 'category',
+
+  REVIEWS: 'reviews',
+  MY_REVIEWS: 'myReviews',
+  LIKED_REVIEWS: 'likedReviews',
 };

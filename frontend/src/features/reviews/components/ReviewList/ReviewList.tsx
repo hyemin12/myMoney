@@ -1,13 +1,12 @@
 import { InfiniteQueryObserverResult } from '@tanstack/react-query';
 import styled from 'styled-components';
 
-import { ReviewItem } from '@/features/reviews';
-import { IReviewItem } from '@/features/review';
+import { IFormattedReview, ReviewItem } from '@/features/reviews';
 import { Loading } from '@/shared/components';
 import { useIntersectionObserver } from '@/shared/hooks/useIntersectionObserver';
 
 export interface IReviewListProps {
-  reviews: IReviewItem[];
+  reviews: IFormattedReview[];
   title?: string;
   isLoading?: boolean;
   hasNextPage?: boolean;

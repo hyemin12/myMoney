@@ -20,20 +20,6 @@ export interface IReviewDetail extends IReview {
   comments: [];
 }
 
-export interface IReviewItem {
-  title: string;
-  createdAt: string;
-  userName: string;
-  reviewImg: string;
-  content: string;
-  verified: boolean;
-  likes: number;
-  userId: number;
-  id: number;
-  isMyReview: boolean;
-  isLiked: boolean;
-}
-
 export interface IUnverifiedReviewItem {
   id: number;
   userId: number;

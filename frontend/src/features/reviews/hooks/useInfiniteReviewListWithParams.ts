@@ -3,8 +3,9 @@ import { useInfiniteQuery, useMutation } from '@tanstack/react-query';
 
 import { QUERYSTRING } from '@/shared/constants/querystring';
 import { fetchReviews } from '../api/reviews.api';
-import formatReviews from '../utils/formatReviews';
+import { transformInfiniteReview } from '../utils/formattedReviews';
 import { deleteReview, IFetchReviewsParams } from '@/features/review';
+import { QUERY_KEYS } from '@/shared/constants/querykeys';
 
 export const useInfiniteReviewListWithParams = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -60,7 +61,7 @@ export const useInfiniteReviewListWithParams = () => {
     hasNextPage,
     refetch,
   } = useInfiniteQuery({
-    queryKey: ['fetchReviews', searchParams.toString()],
+    queryKey: [QUERY_KEYS.REVIEWS, searchParams.toString()],
     queryFn: ({ pageParam = 1 }) => fetchReviewsData(pageParam),
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {
@@ -73,7 +74,7 @@ export const useInfiniteReviewListWithParams = () => {
     },
   });
 
-  const formattedData = formatReviews(reviews);
+  const formattedData = transformInfiniteReview(reviews);
 
   const onSuccessHandler = (message: string) => {
     return () => {
