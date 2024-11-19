@@ -29,12 +29,8 @@ function Search() {
     const savedKeywords = localStorage.getItem('keywords');
     return savedKeywords ? JSON.parse(savedKeywords) : [];
   });
-  const {
-    reviews,
-    isLoadingFetchReviews,
-    fetchReviewsNextPage,
-    hasNextPageFetchReviews,
-  } = useInfiniteReviewListWithParams();
+  const { reviews, isLoading, fetchNextPage, hasNextPage } =
+    useInfiniteReviewListWithParams();
   const { register, handleSubmit, setValue, watch } = useForm<ISearchForm>();
 
   const onSubmit = (data: ISearchForm) => {
@@ -103,10 +99,10 @@ function Search() {
           <ReviewList
             title="검색 결과"
             reviews={reviews}
-            isLoading={isLoadingFetchReviews}
+            isLoading={isLoading}
             text={<NoRecentSearchResult text="검색한 결과가 없습니다." />}
-            fetchNextPage={fetchReviewsNextPage}
-            hasNextPage={hasNextPageFetchReviews}
+            fetchNextPage={fetchNextPage}
+            hasNextPage={hasNextPage}
           />
         </div>
       )}

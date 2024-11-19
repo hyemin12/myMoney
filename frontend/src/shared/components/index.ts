@@ -8,3 +8,6 @@ export { default as Loading } from './Loading';
 export { default as Modal } from './Modal/Modal';
 export { default as Badge } from './Badge';
 export { default as AuthOptionLink } from './AuthOptionLink';
+export { default as ReviewImage } from './ReviewImages/ReviewImage';
+export { default as ReviewImages } from './ReviewImages/ReviewImages';
+export { default as StarRating } from './StarRating';

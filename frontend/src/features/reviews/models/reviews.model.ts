@@ -30,3 +30,13 @@ export interface IFormattedReview
   verified: boolean;
   isLiked: boolean;
 }
+
+export interface IReviewsParams {
+  categoryId?: number;
+  isVerified?: true;
+  currentPage?: number;
+  query?: string;
+  sortBy?: string;
+  orderBy?: string;
+  limit?: number;
+}

@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
 import { EditIcon, TrashIcon, ReportIcon } from '@/assets/icons';
 import useAuthStore from '@/store/auth.store';
-import { useInfiniteReviewListWithParams } from '@/features/reviews';
 import Icon from '@/shared/components/Icon';
-import styled from 'styled-components';
 import useModalStore from '@/store/modal.store';
+import { useDeleteReview } from '@/features/review-detail';
 
 interface Props {
   isAuthor: boolean;
@@ -43,7 +43,8 @@ function ReviewActions({
 }: Props) {
   const navigate = useNavigate();
   const { isLoggedIn } = useAuthStore();
-  const { deleteReviewInReviews } = useInfiniteReviewListWithParams();
+  const { mutate: deleteReviewInReviews } = useDeleteReview();
+
   const { openModal } = useModalStore();
 
   const handleAction = (action: string) => {

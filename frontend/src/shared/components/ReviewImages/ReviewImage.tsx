@@ -1,13 +1,13 @@
 import { Badge } from '@/shared/components';
 import styled from 'styled-components';
 
-interface ReviewImageProps {
+interface IReviewImageProps {
   imgSrc: string;
   title: string;
   isVerified: boolean;
 }
 
-function ReviewImage({ imgSrc, title, isVerified }: ReviewImageProps) {
+function ReviewImage({ imgSrc, title, isVerified }: IReviewImageProps) {
   return (
     <ReviewImageStyle>
       <img src={imgSrc} alt={title + '이미지'} />

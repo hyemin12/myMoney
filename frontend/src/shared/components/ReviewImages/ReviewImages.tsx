@@ -6,13 +6,13 @@ import 'slick-carousel/slick/slick-theme.css';
 import ReviewImage from './ReviewImage';
 import { NextArrow, PrevArrow } from './ReviewImageSliderArrow';
 
-export interface ReviewImagesProps {
+export interface IReviewImagesProps {
   reviewImages: string[];
   title: string;
   isVerified: boolean;
 }
 
-function ReviewImages({ reviewImages, title, isVerified }: ReviewImagesProps) {
+function ReviewImages({ reviewImages, title, isVerified }: IReviewImagesProps) {
   const settings = {
     dots: true,
     arrow: true,

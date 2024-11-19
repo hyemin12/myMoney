@@ -4,7 +4,7 @@ import { StarFilledIcon } from '@/assets/icons';
 import { Icon } from '@/shared/components';
 import { theme } from '@/styles/theme';
 import { UseFormSetValue } from 'react-hook-form';
-import { IReview } from '../models/review.model';
+import { IReview } from '../../features/review/models/review.model';
 
 interface Props {
   ratingIndex: number;

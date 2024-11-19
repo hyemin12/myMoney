@@ -31,3 +31,12 @@ export interface IAdminTableHead {
   name: string;
   $widthRatio: number;
 }
+
+export interface IUnverifiedReviewItem {
+  id: number;
+  userId: number;
+  userName: string;
+  title: string;
+  createdAt: string;
+  receiptImg: string;
+}

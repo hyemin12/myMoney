@@ -11,4 +11,8 @@ export const QUERY_KEYS = {
   REVIEWS: 'reviews',
   MY_REVIEWS: 'myReviews',
   LIKED_REVIEWS: 'likedReviews',
+  BEST_REVIEWS: 'bestReviews',
+  LATEST_REVIEWS: 'latest_REVIEWS',
+
+  REVIEW_DETAIL: 'reviewDetail',
 };

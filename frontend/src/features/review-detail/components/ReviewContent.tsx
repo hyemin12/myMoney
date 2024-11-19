@@ -2,7 +2,6 @@ import { Link, useParams } from 'react-router-dom';
 
 import { Like, useLike } from '@/features/like';
 import { formatDate } from '@/shared/utils';
-import { useReviewDetail } from '../hooks/useReviewDetail';
 import {
   Container,
   TitleContainer,
@@ -10,15 +9,16 @@ import {
   Content,
   AuthorContainer,
 } from './ReviewContent.style';
-import StatRating from '../../components/StarRating';
 import { ReviewActions } from '@/features/reviews';
+import { useGetReviewDetail } from '../hooks/useGetReviewDetail';
+import StatRating from '@/shared/components/StarRating';
 
 function ReviewContent() {
   const { id } = useParams();
   if (!id) return;
 
   const NumberReviewId = Number(id);
-  const { review } = useReviewDetail(NumberReviewId);
+  const { data: review } = useGetReviewDetail(NumberReviewId);
 
   if (!review) return null;
 
@@ -32,6 +32,7 @@ function ReviewContent() {
     <Container>
       <AuthorContainer>
         <h3 className="nickname">{review.name}</h3>
+
         <ReviewActions
           isAuthor={review.isAuthor}
           reviewId={NumberReviewId}

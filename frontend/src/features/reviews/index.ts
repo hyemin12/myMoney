@@ -8,7 +8,7 @@ export * from './api/reviews.api';
 
 export * from './hooks/useInfiniteReviewListWithParams';
 export * from './hooks/useInfiniteReviewListWithoutParams';
-export * from './hooks/useGetHomeReviews';
+export * from './hooks/useQueryReviewList';
 
 export * from './models/reviews.model';
 

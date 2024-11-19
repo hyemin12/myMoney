@@ -1,24 +1,22 @@
 import { useSearchParams } from 'react-router-dom';
-import { useInfiniteQuery, useMutation } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 
 import { QUERYSTRING } from '@/shared/constants/querystring';
 import { fetchReviews } from '../api/reviews.api';
 import { transformInfiniteReview } from '../utils/formattedReviews';
-import { deleteReview, IFetchReviewsParams } from '@/features/review';
 import { QUERY_KEYS } from '@/shared/constants/querykeys';
+import { IReviewsParams } from '../models/reviews.model';
 
 export const useInfiniteReviewListWithParams = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  /** 쿼리스트링 분석
+  /** 쿼리스트링
    * - categoryIdParams: 카테고리 아이디
    * - isVerifiedParams: 인증 후기 가져오기
    * - pageParams: 페이지
    * - queryParams: 검색 결과
    */
-  const getQueryParams = (
-    searchParams: URLSearchParams,
-  ): IFetchReviewsParams => {
+  const getQueryParams = (searchParams: URLSearchParams): IReviewsParams => {
     const categoryId = searchParams.get(QUERYSTRING.CATEGORY_ID);
     const isVerified = searchParams.has(QUERYSTRING.IS_VERIFIED);
     const query = searchParams.get(QUERYSTRING.QUERY);
@@ -59,7 +57,6 @@ export const useInfiniteReviewListWithParams = () => {
     isLoading,
     fetchNextPage,
     hasNextPage,
-    refetch,
   } = useInfiniteQuery({
     queryKey: [QUERY_KEYS.REVIEWS, searchParams.toString()],
     queryFn: ({ pageParam = 1 }) => fetchReviewsData(pageParam),
@@ -76,28 +73,11 @@ export const useInfiniteReviewListWithParams = () => {
 
   const formattedData = transformInfiniteReview(reviews);
 
-  const onSuccessHandler = (message: string) => {
-    return () => {
-      alert(message);
-      refetch();
-    };
-  };
-
-  const deleteReviewInReviewsMutation = useMutation({
-    mutationFn: deleteReview,
-    onSuccess: onSuccessHandler('후기가 삭제되었습니다.'),
-    throwOnError: true,
-  });
-
-  const deleteReviewInReviews = (reviewId: number) => {
-    deleteReviewInReviewsMutation.mutate(reviewId);
-  };
   return {
     reviews: formattedData,
     updateParams,
-    isLoadingFetchReviews: isLoading,
-    fetchReviewsNextPage: fetchNextPage,
-    hasNextPageFetchReviews: hasNextPage,
-    deleteReviewInReviews,
+    isLoading,
+    fetchNextPage,
+    hasNextPage,
   };
 };
